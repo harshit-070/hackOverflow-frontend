@@ -1,8 +1,12 @@
-import { Box, FormControl, InputLabel, MenuItem, Select, Stack, TextField } from '@mui/material'
+import { Box, FormControl, InputLabel, MenuItem, Select, Stack, styled, TextField,Button } from '@mui/material'
 import React, { useState } from 'react'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+const StyledButton=styled(Button)`
+text-transform:none;
+`
 const Experience = () => {
     const [title,settitle]=useState('')
     const [category,setcategory]=useState('')
@@ -14,14 +18,14 @@ const Experience = () => {
     
   return (
     <>
-    <Stack direction='column'>
+    <Stack direction='column' spacing={2}>
         <TextField
         size='small'
         variant='standard'
         label='Job Title'
         value={title}
         onChange={(e)=>settitle(e.target.value)}
-        style={{marginBottom:'15px'}}
+        required
         />
         <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
@@ -46,14 +50,14 @@ const Experience = () => {
         label='Company Name'
         value={company}
         onChange={(e)=>setcompany(e.target.value)}
-        style={{marginBottom:'15px'}}
+        required
         />
         <TextField
         variant='standard'
         label='Location'
         value={location}
         onChange={(e)=>setlocation(e.target.value)}
-        style={{marginBottom:'15px'}}
+        required
         />
         <Box style={{display:'flex',gap:5}}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -85,8 +89,9 @@ const Experience = () => {
         label='Description'
         value={description}
         onChange={(e)=>setdescription(e.target.value)}
-        style={{marginBottom:'15px'}}
+        required
         />
+        <StyledButton >+ Add new Experience</StyledButton>
     </Stack>
     </>
   )

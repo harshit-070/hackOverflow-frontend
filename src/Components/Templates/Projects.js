@@ -1,9 +1,12 @@
-import { Box,Stack, TextField } from '@mui/material'
+import { Box,Stack, styled, TextField,Button } from '@mui/material'
 import React, { useState } from 'react'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+const StyledButton=styled(Button)`
+text-transform:none;
+`
 const Projects = () => {
     const [title,settitle]=useState('')
     const [role,setrole]=useState('')
@@ -13,14 +16,14 @@ const Projects = () => {
     const [value, setValue] = React.useState(null);
   return (
     <>
-    <Stack direction='column'>
+    <Stack direction='column' spacing={2}>
         <TextField
         size='small'
         variant='standard'
         label='Project Title'
         value={title}
         onChange={(e)=>settitle(e.target.value)}
-        style={{marginBottom:'15px'}}
+        required
         />
         <TextField
         size='small'
@@ -28,21 +31,21 @@ const Projects = () => {
         label='Project Role'
         value={role}
         onChange={(e)=>setrole(e.target.value)}
-        style={{marginBottom:'15px'}}
+        required
         />
         <TextField
         variant='standard'
         label='Company/Institute Name'
         value={company}
         onChange={(e)=>setcompany(e.target.value)}
-        style={{marginBottom:'15px'}}
+        required
         />
         <TextField
         variant='standard'
         label='Location'
         value={location}
         onChange={(e)=>setlocation(e.target.value)}
-        style={{marginBottom:'15px'}}
+        required
         />
         <Box style={{display:'flex',gap:5}}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -74,9 +77,11 @@ const Projects = () => {
         label='Description'
         value={description}
         onChange={(e)=>setdescription(e.target.value)}
-        style={{marginBottom:'15px'}}
+        required
         />
+        <StyledButton >+ Add new Project</StyledButton>
     </Stack>
+    
     </>
   )
 }

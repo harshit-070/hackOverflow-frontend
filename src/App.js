@@ -1,4 +1,8 @@
 import {Box} from '@mui/material'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import About from './Components/About/About';
+import Contact from './Components/Contact/Contact';
+import Home from './Components/Home/Home';
 
 //Components
 import Login from './Components/Login/Login';
@@ -10,17 +14,19 @@ import Templates from './Components/Templates/Templates';
 function App() {
   return (
     <Box>
-      {/* <Login/>
-      <SignUp/> */}
-      {/* <Box style={{display:'flex',justifyContent:'center'}}>
-      <Templates/>
-      </Box> */}
+      <BrowserRouter>
       <Navbar/>
       <Box style={{marginTop:'70px'}}>
-        {/* <Login/> */}
-      <Template/>
+        <Routes>
+          <Route path='' element={<Home/>}/>
+          <Route path='/about' element={<About/>}/>
+          <Route path='/templates' element={<Templates/>}/>
+          <Route path='/contact' element={<Contact/>}/>
+          <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/login' element={<Login/>}/>
+        </Routes>
       </Box>
-      
+      </BrowserRouter>
     </Box>
   );
 }
