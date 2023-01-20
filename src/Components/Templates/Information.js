@@ -51,13 +51,13 @@ const Information = ({open,setOpen}) => {
           </>
           :
           <>
-          {/* <Info/> */}
-          {/* <ContactDetails/> */}
-          {/* <Education/> */}
-          {/* <Experience/> */}
-          {/* <Projects/> */}
+          <Info/>
+          <ContactDetails/>
+          <Education/>
+          <Experience/>
+          <Projects/>
           <Skills/>
-          {/* <Achievements/> */}
+          <Achievements/>
           </>
         }
       

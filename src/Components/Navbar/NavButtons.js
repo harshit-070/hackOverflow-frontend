@@ -3,6 +3,7 @@ import React from 'react'
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import ListAltRoundedIcon from '@mui/icons-material/ListAltRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
+import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 
@@ -35,36 +36,49 @@ const LoginButton=styled(Button)`
 
 `
 const NavButtons =({direction}) => {
+  const navigate=useNavigate();
   return (
     <>
       <Stack direction={direction} spacing={2} sx={{marginLeft:'auto'}}>
           <StyledButton
           variant='text'
-          // onClick={()=>navigate('/')}
+          onClick={()=>navigate('')}
           >
-            Templates
+            Home
           </StyledButton>
           <StyledButton
           variant='text'
-          // onClick={()=>navigate('/companies')}
+          onClick={()=>navigate('/about')}
           >
             About 
           </StyledButton>
           <StyledButton
           variant='text'
-          // onClick={()=>navigate('/calendar')}
+          onClick={()=>navigate('/templates')}
+          >
+            Templates
+          </StyledButton>
+          <StyledButton
+          variant='text'
+          onClick={()=>navigate('/scorer')}
+          >
+            Resume Scorer
+          </StyledButton>
+          <StyledButton
+          variant='text'
+          onClick={()=>navigate('/contact')}
           >
             Contact
           </StyledButton>
           <StyledButton
           variant='text'
-          // onClick={()=>navigate('/calendar')}
+          onClick={()=>navigate('/signup')}
           >
             SignUp
           </StyledButton>
           <LoginButton
           variant='text'
-          // onClick={()=>navigate('/calendar')}
+          onClick={()=>navigate('/login')}
           >
             Login
           </LoginButton>

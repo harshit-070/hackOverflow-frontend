@@ -9,6 +9,7 @@ const Achievements = () => {
         <TextField
         size='small'
         variant='standard'
+        required
         label='Description'
         value={description}
         onChange={(e)=>setdescription(e.target.value)}

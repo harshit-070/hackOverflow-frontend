@@ -19,7 +19,11 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
+<<<<<<< HEAD
     "react-toastify": "^9.1.1",
+=======
+    "react-simple-typewriter": "^5.0.1",
+>>>>>>> e14f428367a37c218b642744eddf60c03415aa02
     "web-vitals": "^2.1.4"
   },
   "scripts": {
