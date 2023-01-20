@@ -10,6 +10,7 @@ import Navbar from './Components/Navbar/Navbar';
 import SignUp from './Components/SignUp/SignUp';
 import Template from './Components/Templates/Template';
 import Templates from './Components/Templates/Templates';
+import Footer from './Footer/Footer';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
         </Routes>
       </Box>
+      <Footer/>
       </BrowserRouter>
     </Box>
   );
