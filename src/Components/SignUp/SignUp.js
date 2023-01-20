@@ -19,6 +19,9 @@ import {
 import { toastError, toastSuccess } from "../../utils/toastMessage";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../feature/userSlice";
+import GoogleRedirect from "./GoogleRedirect";
+import { GitHub } from "@mui/icons-material";
+import GithubRedirect from "./GithubRedirect";
 // import { useNavigate } from 'react-router-dom';
 
 //Components
@@ -83,7 +86,7 @@ const SignUp = ({ view }) => {
       setCheck(false);
     }
     if (isError) {
-      toastError(error);
+      toastError("", error);
       setCheck(true);
     }
   }, [sendOTPResult]);
@@ -96,7 +99,7 @@ const SignUp = ({ view }) => {
       dispatch(setUser(data.data));
     }
     if (isError) {
-      toastError(error);
+      toastError("", error);
     }
   }, [dispatch, setSignupResult]);
 
@@ -232,24 +235,8 @@ const SignUp = ({ view }) => {
             </Box>
             <Typography textAlign="center">OR</Typography>
             <Box style={{ display: "flex", justifyContent: "space-between" }}>
-              <Google component="span">
-                Continue with Google &nbsp;
-                <img
-                  src="https://banner2.cleanpng.com/20171216/6c0/google-png-5a3554027e9924.3682726615134443545186.jpg"
-                  alt="goole"
-                  width="20px"
-                  height="25px"
-                />
-              </Google>
-              <Linkedin component="span">
-                Continue with Linkedin &nbsp;
-                <img
-                  src="https://banner2.cleanpng.com/20171202/e3c/linkedin-png-picture-5a22d434d1abf9.4575882015122319888588.jpg"
-                  alt="linkedin"
-                  width="20px"
-                  height="25px"
-                />
-              </Linkedin>
+              <GoogleRedirect />
+              <GithubRedirect />
             </Box>
           </Stack>
         </form>

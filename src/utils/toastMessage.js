@@ -3,7 +3,11 @@ import { toast } from "react-toastify";
 export const toastError = (message, error) => {
   console.log(error);
   if (!message) {
-    message = error.data.message;
+    if (error.data.message) {
+      message = error.data.message;
+    } else {
+      message = error.message;
+    }
   }
   toast.error(message, {
     position: "bottom-right",
