@@ -29,17 +29,17 @@ const Teamplate_1 = () => {
     }
   }, [getResumeResult]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  if (error) {
-    return <div>Error Please try again</div>;
-  }
+  // if (error) {
+  //   return <div>Error Please try again</div>;
+  // }
 
-  if (!data) {
-    return <div>Error</div>;
-  }
+  // if (!data) {
+  //   return <div>Error</div>;
+  // }
 
   return (
     <div className="template_1">
@@ -88,8 +88,8 @@ const Teamplate_1 = () => {
           <p className="long-margin">{data.summary}</p>
           <div className="rela-block caps greyed">Experience</div>
 
-          {data.experience &&
-            data.experience.map((experience) => <JobCard {...experience} />)}
+          {/* {data.experience &&
+            data.experience.map((experience) => <JobCard {...experience} />)} */}
         </div>
       </div>
       <Helmet>
