@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import GoogleRedirect from "../SignUp/GoogleRedirect";
 import GithubRedirect from "../SignUp/GithubRedirect";
 import { useLoginMutation } from "../../service/user.service";
@@ -19,7 +19,7 @@ import { toastError } from "../../utils/toastMessage";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../feature/userSlice";
 import { redirect } from "react-router-dom";
-import LogoH from '../../Assets/LogoH.jpeg'
+import LogoH from "../../Assets/LogoH.jpeg";
 
 //Components
 
@@ -27,11 +27,11 @@ import LogoH from '../../Assets/LogoH.jpeg'
 const Image = styled("img")({
   width: "100%",
   height: "140px",
-  borderRadius:'5px'
+  borderRadius: "5px",
 });
 
-const Login = ({setLogin}) => {
-  const navigate= useNavigate();
+const Login = ({ setLogin }) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -64,7 +64,7 @@ const Login = ({setLogin}) => {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center"}}>
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Stack
         direction="column"
         spacing={2}
@@ -74,7 +74,7 @@ const Login = ({setLogin}) => {
           alignItems: "center",
           padding: "15px",
           marginTop: "25px",
-          backgroundColor:'white' 
+          backgroundColor: "white",
         }}
       >
         <Image src={LogoH} alt="logo" />
@@ -123,21 +123,48 @@ const Login = ({setLogin}) => {
             Login
           </LoadingButton>
           <Box
-            onClick={()=>{
-              setLogin("signup")
-              navigate('/')}} style={{
+            onClick={() => {
+              setLogin("signup");
+              navigate("/forgot");
+            }}
+            style={{
               cursor: "pointer",
               textAlign: "center",
             }}
           >
-            <Typography variant='subtitle1' component='span' sx={{'&:hover':{color:'blue'}}}>Do not have any account? Signup</Typography>
+            <Typography
+              variant="subtitle1"
+              component="span"
+              sx={{ "&:hover": { color: "red" } }}
+            >
+              Forgot password?
+            </Typography>
           </Box>
-          <Typography textAlign="center" fontWeight={600}>OR</Typography>
+          <Box
+            onClick={() => {
+              setLogin("signup");
+              navigate("/");
+            }}
+            style={{
+              cursor: "pointer",
+              textAlign: "center",
+            }}
+          >
+            <Typography
+              variant="subtitle1"
+              component="span"
+              sx={{ "&:hover": { color: "blue" } }}
+            >
+              Do not have any account? Signup
+            </Typography>
+          </Box>
+          <Typography textAlign="center" fontWeight={600}>
+            OR
+          </Typography>
           <Box style={{ display: "flex", justifyContent: "center" }}>
             <GoogleRedirect />
             <GithubRedirect />
           </Box>
-          
         </Stack>
       </Stack>
     </Box>

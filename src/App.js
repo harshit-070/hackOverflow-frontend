@@ -17,7 +17,7 @@ import EditResume from "./Components/Templates/Template";
 import ViewResume from "./Components/Templates/View";
 import ResumeScorer from "./Components/ResumeScorer/ResumeScorer";
 import PrivateComponent from "./Components/PrivateComponent";
-import ForgotPassword from './Components/Login/ForgotPassword'
+import ForgotPassword from "./Components/Login/ForgotPassword";
 
 function App() {
   return (
@@ -34,7 +34,8 @@ function App() {
             <Route element={<PrivateComponent />}>
               <Route path="/edit/resume/:resume_id" element={<EditResume />} />
             </Route>
-            <Route path="/forgot" element={<ForgotPassword/>} />
+            <Route path="/edit/resume/:resume_id" element={<EditResume />} />
+            <Route path="/forgot" element={<ForgotPassword />} />
             <Route path="" element={<SignUp />} />
             <Route path="" element={<Login />} />
             <Route path="/google/auth" element={<GoogleAuth />} />

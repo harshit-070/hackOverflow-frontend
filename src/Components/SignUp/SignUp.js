@@ -44,22 +44,8 @@ const StyledButton = styled(LoadingButton)`
     background-color: #d93a00;
   }
 `;
-const Google = styled(Box)`
-  background: #ffcac8;
-  border-radius: 10px;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-`;
-const Linkedin = styled(Box)`
-  background: #7dd0f3;
-  border-radius: 10px;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-`;
+
 const SignUp = ({ setLogin }) => {
-  const logoURL = "https://www.iitjammu.ac.in/logo/IIT_JAMMU_LOGO.png";
   const navigate= useNavigate();
   const [name, setName] = useState("");
   const [username, setUserName] = useState("");
@@ -100,6 +86,7 @@ const SignUp = ({ setLogin }) => {
     if (isSuccess) {
       toastSuccess("Welcome to Resume Rise");
       dispatch(setUser(data.data));
+      return navigate('/templates')
     }
     if (isError) {
       toastError("", error);

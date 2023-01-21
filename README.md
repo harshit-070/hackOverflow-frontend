@@ -20,10 +20,30 @@
 Clone the repository to create a local copy on your computer and sync between the two locations. Above the list of files, click  Code(marked in green colour). Copy the URL for the repository using HTTPS, under "HTTPS" and then open the git bash. Type git clone, and then paste the copied URL. Finally the repository is cloned and now can be worked on in the local systems as well. 
 
 ## Install Dependencies and run
-### `npm i`
+#### `npm i`
 To install the node modules
 
-### `npm start`
+#### `npm start`
 To run the code. In the terminal, the provided url of the running instance (usually http://localhost:3000 unless something else running).
+
+## Screenshots
+![SignUp Page and OTP](./src/assets/SignUp.jpeg)
+> SignUp Page for the users visiting our website the first time 
+
+![OTP on Email](./src/assets/OTP.jpeg)
+> Otp sent to email for verificaaation after signing up 
+
+![Login Page](./src/assets/Login.jpeg)
+> Login Page for the already registered users
+
+![Template](./src/assets/Template1.jpeg)
+> Some Templates from our website with dynamiccaly updating the website
+
+![Templates](./src/assets/Template2.jpeg)
+> Some Templates from our website with dynamiccaly updating the website
+
+![Templates](./src/assets/Template3.jpeg)
+> Some Templates from our website with dynamiccaly updating the website
+
 
 

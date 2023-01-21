@@ -166,7 +166,7 @@ const Information = ({ open, setOpen }) => {
         </Box>
       </Drawer>
 
-      <Template1 />
+      {/* <Template1 /> */}
     </>
   );
 };

@@ -16,6 +16,20 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
     }),
 
+    forgotOTP: builder.query({
+      query: (email) => ({
+        url: `/user/forgotOTP?email=${email}`,
+        method: "GET",
+      }),
+    }),
+    forgotPassword: builder.mutation({
+      query: (body) => ({
+        url: "/user/resetPassword",
+        method: "POST",
+        body,
+      }),
+    }),
+
     googleRedirectURL: builder.query({
       query: () => ({
         url: "/user/google",
@@ -55,6 +69,8 @@ export const UserApi = apiSlice.injectEndpoints({
 export const {
   useLazySendOTPQuery,
   useSignupUserMutation,
+  useLazyForgotOTPQuery,
+  useForgotPasswordMutation,
   useLazyGoogleRedirectURLQuery,
   useLazyGithubRedirectURLQuery,
   useGoogleAuthMutation,
