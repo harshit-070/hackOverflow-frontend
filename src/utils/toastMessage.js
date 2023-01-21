@@ -35,3 +35,17 @@ export const toastSuccess = (message) => {
     toastId: "toaster-success",
   });
 };
+
+export const toastInfo = (message) => {
+  toast.info(message, {
+    position: "bottom-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    pauseOnFocusLoss: false,
+    draggable: true,
+    progress: undefined,
+    toastId: "toaster-success",
+  });
+};

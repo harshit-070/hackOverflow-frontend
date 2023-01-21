@@ -2,6 +2,13 @@ import { apiSlice } from "./api";
 
 export const UserApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    createResume: builder.mutation({
+      query: (resume_id) => ({
+        url: `/resume/create`,
+        method: "POST",
+      }),
+    }),
+
     getPersonalInfo: builder.query({
       query: (resume_id) => ({
         url: `/resume/personal/${resume_id}`,
@@ -72,6 +79,7 @@ export const UserApi = apiSlice.injectEndpoints({
 });
 
 export const {
+  useCreateResumeMutation,
   useLazyGetPersonalInfoQuery,
   useUpdatePersonalInfoMutation,
   useLazyGetContactInfoQuery,
