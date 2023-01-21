@@ -8,6 +8,6 @@ export const apiSlice = createApi({
     credentials: "include",
     // mode: "cors",
   }),
-  tagTypes: [],
+  tagTypes: ["Personal", "Contact", "Education", "Experience", "Resume"],
   endpoints: (builder) => ({}),
 });

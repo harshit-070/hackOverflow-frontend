@@ -14,6 +14,7 @@ import Template from "./Components/Templates/Template";
 import Templates from "./Components/Templates/Templates";
 import GoogleAuth from "./Components/SignUp/GoogleAuth";
 import GithubAuth from "./Components/SignUp/GithubAuth";
+import EditResume from "./Components/Templates/Template";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/google/auth" element={<GoogleAuth />} />
             <Route path="/github/auth" element={<GithubAuth />} />
+            <Route path="/edit/resume/:resume_id" element={<EditResume />} />
           </Routes>
         </Box>
       </BrowserRouter>

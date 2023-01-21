@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 export const toastError = (message, error) => {
   console.log(error);
   if (!message) {
-    if (error.data.message) {
+    if (error && error.data && error.data.message) {
       message = error.data.message;
     } else {
       message = error.message;

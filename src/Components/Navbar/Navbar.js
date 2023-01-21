@@ -1,23 +1,24 @@
-import React from 'react'
-import {AppBar,Box,Toolbar,styled} from '@mui/material'
-import NavButtons from './NavButtons'
-
+import React from "react";
+import { AppBar, Box, Toolbar, styled } from "@mui/material";
+import NavButtons from "./NavButtons";
+import Logo from "../../Assets/Logo.jpeg";
 //Style
-const Image=styled('img')({
-  height:'70px',
-  width:'auto'
-})
+const Image = styled("img")({
+  height: "70px",
+  width: "auto",
+});
+
 const Navbar = () => {
   return (
     <AppBar>
       <Toolbar>
-        <Box sx={{padding:'10px 20px'}}>
-          <Image scr='https://www.iitjammu.ac.in/logo/IIT_JAMMU_LOGO.png' alt='logo'/>
+        <Box sx={{ padding: "10px 20px" }}>
+          <Image scr={Logo} alt="logo" />
         </Box>
-        <NavButtons direction='row'/>
+        <NavButtons direction="row" />
       </Toolbar>
     </AppBar>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
