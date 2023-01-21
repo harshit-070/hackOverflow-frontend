@@ -62,40 +62,45 @@ const Teamplate_1 = () => {
                   fill="none"
                 />
               </svg>
-              <p className="logo-text">kj</p>
+              <p className="logo-text">{data.name && data.name[0]}</p>
             </div>
           </div>
-          <p>123 My Place Drive</p>
-          <p>Astoria, New York 11105</p>
-          <p>1-800-CALLPLZ</p>
-          <p>emailsareforsquares@gmail.com</p>
+          <p>{(data.address && data.address.city) || "City"}</p>
+          <p>{(data.address && data.address.country) || "Country"}</p>
+          <p>{(data.contact && data.contact.number) || "Contact Number"}</p>
+          <p>{(data.contact && data.contact.email) || "Email"}</p>
           <br />
-          <p className="rela-block social twitter">
-            {data.socialMedia.twitter}
-          </p>
-          {/* <p className="rela-block social pinterest">Pinterest things</p> */}
-          <p className="rela-block social linked-in">
-            {data.socialMedia.linkedin}
-          </p>
+          {data.socialMedia?.linkedin ? (
+            <p className="rela-block social linked-in">
+              {data.socialMedia?.linkedin}
+            </p>
+          ) : (
+            <></>
+          )}{" "}
+          {data.socialMedia?.github ? (
+            <p className="rela-block social github">
+              {data.socialMedia?.github}
+            </p>
+          ) : (
+            <></>
+          )}
           <p className="rela-block caps side-header">Expertise</p>
-          <p className="rela-block list-thing">HTML</p>
           {data.skills &&
             data.skills.map((skill) => (
               <p className="rela-block list-thing">{skill}</p>
             ))}
-
           <p className="rela-block caps side-header">Education</p>
           {data.education &&
             data.education.map((inst) => (
-              <p className="rela-block list-thing">{inst.title}</p>
+              <p className="rela-block list-thing">{inst.specialization}</p>
             ))}
         </div>
 
         <div className="rela-block content-container">
-          <h2 className="rela-block caps title">{data.title}</h2>
+          <h2 className="rela-block caps title">{data.headline}</h2>
           <div className="rela-block separator"></div>
           <div className="rela-block caps greyed">Profile</div>
-          <p className="long-margin">{data.summary}</p>
+          <p className="long-margin">{data.summary || "Summary"}</p>
           <div className="rela-block caps greyed">Experience</div>
 
           {data.experience &&
