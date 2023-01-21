@@ -16,7 +16,9 @@ const StyledButton=styled(Button)`
   font-size:16px;
   font-weight:600;
   &:hover{
-    border:2px solid white;
+    // border:2px solid white;
+    border:2px solid grey;
+    background-color:grey;
     transform:scale(1.1)
   }
 
@@ -29,7 +31,8 @@ const LoginButton=styled(Button)`
   font-size:16px;
   font-weight:600;
   &:hover{
-    border:2px solid white;
+    border:2px solid grey;
+    background-color:grey;
     transform:scale(1.1)
   }
 
@@ -62,12 +65,6 @@ const NavButtons =({direction}) => {
           onClick={()=>navigate('/scorer')}
           >
             Resume Scorer
-          </StyledButton>
-          <StyledButton
-          variant='text'
-          onClick={()=>navigate('/contact')}
-          >
-            Contact
           </StyledButton>
           <StyledButton
           variant='text'

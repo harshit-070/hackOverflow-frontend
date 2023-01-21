@@ -12,6 +12,7 @@ const Achievements = () => {
         required
         label='Description'
         value={description}
+        multiline
         onChange={(e)=>setdescription(e.target.value)}
         style={{marginBottom:'15px'}}
         />

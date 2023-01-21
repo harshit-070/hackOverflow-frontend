@@ -131,7 +131,7 @@ const Footer = () => {
         <Box style={{ paddingLeft: "20px" }}>
       <Component>
           <Email />
-        <Text>&nbsp;&nbsp;resumerise.com</Text>
+        <Text>&nbsp;&nbsp;resumerise@gmail.com</Text>
       </Component>
       <Component>
           <Phone />

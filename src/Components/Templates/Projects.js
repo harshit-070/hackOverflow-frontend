@@ -75,6 +75,7 @@ const Projects = () => {
       <TextField
         variant='standard'
         label='Description'
+        multiline
         value={description}
         onChange={(e)=>setdescription(e.target.value)}
         required

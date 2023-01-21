@@ -16,6 +16,7 @@ import Footer from './Footer/Footer';
 import GoogleAuth from "./Components/SignUp/GoogleAuth";
 import GithubAuth from "./Components/SignUp/GithubAuth";
 import EditResume from "./Components/Templates/Template";
+import ResumeScorer from "./Components/ResumeScorer/ResumeScorer";
 
 function App() {
   return (
@@ -29,8 +30,8 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/templates" element={<Templates />} />
-            <Route path="/contact" element={<Contact />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/scorer" element={<ResumeScorer />} />
             <Route path="" element={<Login />} />
             <Route path="/google/auth" element={<GoogleAuth />} />
             <Route path="/github/auth" element={<GithubAuth />} />

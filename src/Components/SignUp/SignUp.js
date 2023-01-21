@@ -235,8 +235,8 @@ const SignUp = ({ view }) => {
             >
               {/* <Typography variant='subtitle1'component='span' sx={{'&:hover':{color:'blue'}}}>Already have an account? Login</Typography> */}
             </Box>
-            <Typography textAlign="center">OR</Typography>
-            <Box style={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography textAlign="center" fontWeight={600}>OR</Typography>
+            <Box style={{ display: "flex", justifyContent: "center" }}>
               <GoogleRedirect />
               <GithubRedirect />
             </Box>

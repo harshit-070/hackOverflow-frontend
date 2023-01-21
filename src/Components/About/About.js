@@ -1,12 +1,12 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
-import AboutUs from '../../Assets/AboutUs.jpeg'
+import AboutUs from '../../Assets/AboutUs.png'
 
 const About = () => {
   return (
     <Box style={{display:'flex',justifyContent:'center',backgroundColor:'rgb(1 6 12)',paddingBottom:'30px'}}>
-    <Box width='75vw'>
-      <img src={AboutUs} alt='jdhj' width='100%' height='auto'/> 
+    <Box>
+      <img src={AboutUs} alt='About' width='100%' height='auto'/> 
       {/* <Typography variant='h2'>About Us</Typography>
       <Box style={{padding:'50px 30px'}}>
       <Typography variant='h6' fontWeight={600}>Purpose</Typography>
