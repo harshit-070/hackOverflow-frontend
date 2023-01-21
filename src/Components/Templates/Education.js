@@ -10,6 +10,7 @@ import {
   TextField,
   Button,
   Typography,
+  IconButton,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -104,7 +105,12 @@ const Education = () => {
     setAddEducation(true);
   };
 
-  const handleEditEducation = () => {};
+  const handleEditEducation = (_id) => {};
+
+  const handleDeleteEducation = (_id) => {
+    const data = educations.filter((education) => education._id !== _id);
+    updateEducationInfo({ resume_id, education: [...data] });
+  };
 
   return (
     <>
@@ -202,14 +208,33 @@ const Education = () => {
         <StyledButton onClick={handleAddEducation}>
           + Add Education
         </StyledButton>
-        <Box style={{boxShadow: "0 7px 15px 0 grey",padding:'5px'}}>
-          <Typography variant='body1' fontWeight={600}>IIT Jammu</Typography>
-          <Typography variant='subtitle1' color='grey' style={{fontSize:'12px'}}>CGPA</Typography>
-          <Box style={{marginLeft:'auto'}}>
-            <Edit/>
-            <Delete/>
-          </Box>
-        </Box>
+        {educations.map((education) => {
+          return (
+            <Box style={{ boxShadow: "0 7px 15px 0 grey", padding: "5px" }}>
+              <Typography variant="body1" fontWeight={600}>
+                {education.name}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                color="grey"
+                style={{ fontSize: "12px" }}
+              >
+                {education.percentage}
+              </Typography>
+              <Box style={{ marginLeft: "auto" }}>
+                <IconButton onClick={() => handleEditEducation(education._id)}>
+                  <Edit />
+                </IconButton>
+                <LoadingButton
+                  loading={loading}
+                  onClick={() => handleDeleteEducation(education._id)}
+                >
+                  <Delete />
+                </LoadingButton>
+              </Box>
+            </Box>
+          );
+        })}
       </Stack>
     </>
   );
