@@ -27,23 +27,39 @@ To install the node modules
 To run the code. In the terminal, the provided url of the running instance (usually http://localhost:3000 unless something else running).
 
 ## Screenshots
-![SignUp Page and OTP](./src/assets/SignUp.jpeg)
+![SignUp Page and OTP](./src/Assets/SignUp.jpeg)
 > SignUp Page for the users visiting our website the first time 
 
-![OTP on Email](./src/assets/OTP.jpeg)
+![OTP on Email](./src/Assets/OTP.jpeg)
 > Otp sent to email for verificaaation after signing up 
 
-![Login Page](./src/assets/Login.jpeg)
+![Login Page](./src/Assets/Login.jpeg)
 > Login Page for the already registered users
 
-![Template](./src/assets/Template1.jpeg)
+![Templates](./src/Assets/TemplateVary.jpeg)
+> Various Templates are provides for the choice and the user can get refined Templated according to the Profession and Skills.
+
+![Template](./src/Assets/Template1.jpeg)
 > Some Templates from our website with dynamiccaly updating the website
 
-![Templates](./src/assets/Template2.jpeg)
+![Templates](./src/Assets/Template2.jpeg)
 > Some Templates from our website with dynamiccaly updating the website
 
-![Templates](./src/assets/Template3.jpeg)
+![Templates](./src/Assets/Template3.jpeg)
 > Some Templates from our website with dynamiccaly updating the website
 
+## To Review the Resume 
+![Review](./src/Assets/Review.jpeg)
+![Review](./src/Assets/UploadReview.jpeg)
+
+## Room for Improvement
+- This website will provide various formatting tools, such as font and text size options, to help users create a visually appealing resume.
+- This website will also provide with the option to import data from the different social networking accounts, which will eventually save time and effort of the user.
+- Expand our AI/ML Model.
+- Add more templates to go through.
+- Can search the selected resumes according to the Company.
+- Suggest action verbs as it is very time consuming.
+
+## Acknowledgements
 
 
