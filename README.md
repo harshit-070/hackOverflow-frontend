@@ -26,7 +26,7 @@ To install the node modules
 #### `npm start`
 To run the code. In the terminal, the provided url of the running instance (usually http://localhost:3000 unless something else running).
 
-## Screenshots
+## SignUp, Login Page and OTP for Verification
 ![SignUp Page and OTP](./src/Assets/SignUp.jpeg)
 > SignUp Page for the users visiting our website the first time 
 
@@ -35,6 +35,8 @@ To run the code. In the terminal, the provided url of the running instance (usua
 
 ![Login Page](./src/Assets/Login.jpeg)
 > Login Page for the already registered users
+
+## Various Templates according to User's Choice
 
 ![Templates](./src/Assets/TemplateVary.jpeg)
 > Various Templates are provides for the choice and the user can get refined Templated according to the Profession and Skills.
@@ -49,8 +51,9 @@ To run the code. In the terminal, the provided url of the running instance (usua
 > Some Templates from our website with dynamiccaly updating the website
 
 ## To Review the Resume 
-![Review](./src/Assets/Review.jpeg)
+
 ![Review](./src/Assets/UploadReview.jpeg)
+![Review](./src/Assets/Review.jpeg)
 
 ## Room for Improvement
 - This website will provide various formatting tools, such as font and text size options, to help users create a visually appealing resume.
