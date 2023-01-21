@@ -30,7 +30,7 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/templates" element={<Templates />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="" element={<SignUp />} />
             <Route path="/scorer" element={<ResumeScorer />} />
             <Route path="" element={<Login />} />
             <Route path="/google/auth" element={<GoogleAuth />} />

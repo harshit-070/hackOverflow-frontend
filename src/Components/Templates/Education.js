@@ -89,7 +89,8 @@ const Education = () => {
     }
   }, [dispatch, getEducationInfoResult]);
 
-  const handleUpdateResume = () => {
+  const handleUpdateResume = (e) => {
+    e.preventDefault();
     const data = educations.filter((education) => education._id !== id);
 
     const dataToBePushed = {

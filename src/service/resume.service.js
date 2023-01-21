@@ -75,6 +75,56 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Experience", "Resume"],
     }),
+
+    getProjectInfo: builder.query({
+      query: (resume_id) => ({
+        url: `/resume/project/${resume_id}`,
+        method: "GET",
+      }),
+      providesTags: ["Project"],
+    }),
+
+    updateProjectInfo: builder.mutation({
+      query: (body) => ({
+        url: `/resume/project`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Project", "Resume"],
+    }),
+
+    getSkillsInfo: builder.query({
+      query: (resume_id) => ({
+        url: `/resume/skills/${resume_id}`,
+        method: "GET",
+      }),
+      providesTags: ["Skills"],
+    }),
+
+    updateSkillsInfo: builder.mutation({
+      query: (body) => ({
+        url: `/resume/skills`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Skills", "Resume"],
+    }),
+    getAchievementInfo: builder.query({
+      query: (resume_id) => ({
+        url: `/resume/achievements/${resume_id}`,
+        method: "GET",
+      }),
+      providesTags: ["Achievement"],
+    }),
+
+    updateAchievementInfo: builder.mutation({
+      query: (body) => ({
+        url: `/resume/achievements`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Achievement", "Resume"],
+    }),
   }),
 });
 
@@ -88,4 +138,10 @@ export const {
   useUpdateEducationInfoMutation,
   useLazyGetExperienceInfoQuery,
   useUpdateExperienceInfoMutation,
+  useLazyGetProjectInfoQuery,
+  useUpdateProjectInfoMutation,
+  useLazyGetSkillsInfoQuery,
+  useUpdateSkillsInfoMutation,
+  useLazyGetAchievementInfoQuery,
+  useUpdateAchievementInfoMutation,
 } = UserApi;

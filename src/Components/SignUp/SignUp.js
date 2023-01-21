@@ -17,6 +17,7 @@ import {
   useLazySendOTPQuery,
   useSignupUserMutation,
 } from "../../service/user.service";
+import {useNavigate} from 'react-router-dom'
 import { toastError, toastSuccess } from "../../utils/toastMessage";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../feature/userSlice";
@@ -57,9 +58,9 @@ const Linkedin = styled(Box)`
   display: flex;
   align-items: center;
 `;
-const SignUp = ({ view }) => {
+const SignUp = ({ setLogin }) => {
   const logoURL = "https://www.iitjammu.ac.in/logo/IIT_JAMMU_LOGO.png";
-
+  const navigate= useNavigate();
   const [name, setName] = useState("");
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -132,6 +133,7 @@ const SignUp = ({ view }) => {
           alignItems: "center",
           padding: "15px",
           marginTop: "25px",
+          backgroundColor:'white' 
         }}
       >
         <Image src={LogoH} alt="logo" />
@@ -228,12 +230,14 @@ const SignUp = ({ view }) => {
             </StyledButton>
 
             <Box
-              /*onClick={()=>navigate('/login')}*/ style={{
+              onClick={()=>{
+                setLogin("login")
+                navigate('/')}} style={{
                 cursor: "pointer",
                 textAlign: "center",
               }}
             >
-              {/* <Typography variant='subtitle1'component='span' sx={{'&:hover':{color:'blue'}}}>Already have an account? Login</Typography> */}
+              <Typography variant='subtitle1'component='span' sx={{'&:hover':{color:'blue'}}}>Already have an account? Login</Typography>
             </Box>
             <Typography textAlign="center" fontWeight={600}>OR</Typography>
             <Box style={{ display: "flex", justifyContent: "center" }}>

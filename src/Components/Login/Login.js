@@ -30,7 +30,7 @@ const Image = styled("img")({
   borderRadius:'5px'
 });
 
-const Login = () => {
+const Login = ({setLogin}) => {
   const navigate= useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -123,7 +123,9 @@ const Login = () => {
             Login
           </LoadingButton>
           <Box
-            onClick={()=>navigate('/signup')} style={{
+            onClick={()=>{
+              setLogin("signup")
+              navigate('/')}} style={{
               cursor: "pointer",
               textAlign: "center",
             }}

@@ -1,8 +1,5 @@
 import { Avatar, Button, Stack ,styled} from '@mui/material'
-import React from 'react'
-import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
-import ListAltRoundedIcon from '@mui/icons-material/ListAltRounded';
-import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
@@ -39,6 +36,12 @@ const LoginButton=styled(Button)`
 `
 const NavButtons =({direction}) => {
   const navigate=useNavigate();
+  const signupHandler=()=>{
+    navigate('');
+  }
+  const loginHandler=()=>{
+    navigate('');
+  }
   return (
     <>
       <Stack direction={direction} spacing={2} sx={{marginLeft:'auto'}}>
@@ -68,13 +71,13 @@ const NavButtons =({direction}) => {
           </StyledButton>
           <StyledButton
           variant='text'
-          onClick={()=>navigate('/signup')}
+          onClick={signupHandler}
           >
             SignUp
           </StyledButton>
           <LoginButton
           variant='text'
-          onClick={()=>navigate('')}
+          onClick={loginHandler}
           >
             Login
           </LoginButton>
