@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useLazyGetResumeQuery } from "../../../../service/resume.service";
+import { useLazyGetResumeQuery, useUpdateSkillsInfoMutation } from "../../../../service/resume.service";
 import { toastError } from "../../../../utils/toastMessage";
 import "./style.css";
 import { Helmet } from "react-helmet";
@@ -46,7 +46,7 @@ const Teamplate_1 = () => {
       <div className="rela-block page">
         <div className="rela-block top-bar">
           <div className="caps name">
-            <div className="abs-center">Kyle J Shanks</div>
+            <div className="abs-center">{name}</div>
           </div>
         </div>
         <div className="side-bar">
@@ -67,29 +67,28 @@ const Teamplate_1 = () => {
           <p>1-800-CALLPLZ</p>
           <p>emailsareforsquares@gmail.com</p>
           <br />
-          <p className="rela-block social twitter">Twitter stuff</p>
-          <p className="rela-block social pinterest">Pinterest things</p>
-          <p className="rela-block social linked-in">Linked-in man</p>
+          <p className="rela-block social twitter">{data.socialMedia.twitter}</p>
+          {/* <p className="rela-block social pinterest">Pinterest things</p> */}
+          <p className="rela-block social linked-in">{data.socialMedia.linkedin}</p>
           <p className="rela-block caps side-header">Expertise</p>
           <p className="rela-block list-thing">HTML</p>
-          <p className="rela-block list-thing">CSS (Stylus)</p>
-          <p className="rela-block list-thing">JavaScript & jQuery</p>
-          <p className="rela-block list-thing">Killer Taste</p>
+          {data.skills &&
+            data.skills.map((skill) => <p className="rela-block list-thing">{skill}</p>)}
+
           <p className="rela-block caps side-header">Education</p>
-          <p className="rela-block list-thing">Advanced potion making</p>
-          <p className="rela-block list-thing">Degree in popping and locking</p>
-          <p className="rela-block list-thing">Knitting game on point</p>
-          <p className="rela-block list-thing">Culinary af</p>
+          {data.education &&
+            data.education.map((inst) => <p className="rela-block list-thing">{inst.title}</p>)}
         </div>
+
         <div className="rela-block content-container">
-          <h2 className="rela-block caps title">Jr Front-End Developer</h2>
+          <h2 className="rela-block caps title">{data.title}</h2>
           <div className="rela-block separator"></div>
           <div className="rela-block caps greyed">Profile</div>
           <p className="long-margin">{data.summary}</p>
           <div className="rela-block caps greyed">Experience</div>
 
-          {/* {data.experience &&
-            data.experience.map((experience) => <JobCard {...experience} />)} */}
+          {data.experience &&
+            data.experience.map((experience) => <JobCard {...experience} />)}
         </div>
       </div>
       <Helmet>
