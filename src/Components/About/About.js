@@ -15,7 +15,7 @@ const About = () => {
       <Typography variant='h6' fontWeight={600}>Features</Typography>
       <Typography color='grey' variant='subtitle1'>Resume Rise will create, edit, and publish professional resumes online. Users can input their work experience, education, and skills, and the website will format and design the resume in a visually appealing way.</Typography>
       </Box>
-      
+      <img src='src\Assets\WhatsApp Image 2023-01-21 at 01.05.20.jpeg' alt='jdhj'/>
     </Box>
     </Box>
   )

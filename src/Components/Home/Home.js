@@ -6,7 +6,7 @@ import Login from '../Login/Login'
 const Home = () => {
   return (
     <Grid container>
-        <Grid item lg={6} md={6} sm={12} xs={12} >
+        <Grid item lg={7} md={6} sm={12} xs={12} >
             <Box style={{display:'flex',justifyContent:'center'}}>
                 <img src='src\Assets\WhatsApp Image 2023-01-20 at 22.54.40.jpeg' alt='Logo'/>
 
@@ -28,7 +28,7 @@ const Home = () => {
             </span>
             </Box>
         </Grid>
-        <Grid item lg={6} md={6} sm={12} xs={12}>
+        <Grid item lg={5} md={6} sm={12} xs={12}>
             <Login/>
         </Grid>
     </Grid>
