@@ -202,13 +202,12 @@ const Education = () => {
         <StyledButton onClick={handleAddEducation}>
           + Add Education
         </StyledButton>
-        <Box style={{boxShadow: "0 7px 15px 0 grey",padding:'5px'}}>
-          <Typography variant='body1' fontWeight={600}>IIT Jammu</Typography>
+        <Box style={{boxShadow: "0 2px 5px 0 grey",padding:'5px',borderRadius:'10px'}}>
+          <Typography variant='body1' fontWeight={600} component='span'>IIT Jammu</Typography>
+            
+            <Delete style={{fontSize:"20px",color:'grey',float:"right"}}/>&nbsp;
+            <Edit style={{fontSize:"20px",color:'skyblue',marginLeft:'auto',float:"right"}}/>&nbsp;
           <Typography variant='subtitle1' color='grey' style={{fontSize:'12px'}}>CGPA</Typography>
-          <Box style={{marginLeft:'auto'}}>
-            <Edit/>
-            <Delete/>
-          </Box>
         </Box>
       </Stack>
     </>
