@@ -75,6 +75,7 @@
   margin: 80px auto;
   background-color: #fff;
   box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
+  height: "1400px" !important;
 }
 .template_1 .top-bar {
   height: 220px;
@@ -103,7 +104,7 @@
 .template_1 .side-bar {
   display: false;
   position: absolute;
-  margin: false;
+  height: fit-content;
   top: 60px;
   left: 5%;
   right: false;
@@ -207,6 +208,7 @@
   margin-right: 0;
   width: calc(95% - 350px);
   padding: 25px 40px 50px;
+  height: 1000px !important;
 }
 .template_1 .content-container > * {
   margin: 0 auto 25px;

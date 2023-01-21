@@ -14,7 +14,7 @@ export const UserApi = apiSlice.injectEndpoints({
         url: `/resume/fetch/${resume_id}`,
         method: "GET",
       }),
-      invalidatesTags: ["Resume"],
+      providesTags: ["Resume"],
     }),
 
     getPersonalInfo: builder.query({
