@@ -16,6 +16,7 @@ import Footer from "./Footer/Footer";
 import GoogleAuth from "./Components/SignUp/GoogleAuth";
 import GithubAuth from "./Components/SignUp/GithubAuth";
 import EditResume from "./Components/Templates/Template";
+import ViewResume from "./Components/Templates/View";
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
             <Route path="/google/auth" element={<GoogleAuth />} />
             <Route path="/github/auth" element={<GithubAuth />} />
             <Route path="/edit/resume/:resume_id" element={<EditResume />} />
+            <Route
+              path="/view/resume/:resume_id/:template"
+              element={<ViewResume />}
+            />
           </Routes>
         </Box>
         {/* <Footer/> */}
