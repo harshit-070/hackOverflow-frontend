@@ -9,6 +9,14 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
     }),
 
+    getResume: builder.query({
+      query: (resume_id) => ({
+        url: `/resume/fetch/${resume_id}`,
+        method: "GET",
+      }),
+      invalidatesTags: ["Resume"],
+    }),
+
     getPersonalInfo: builder.query({
       query: (resume_id) => ({
         url: `/resume/personal/${resume_id}`,
@@ -130,6 +138,7 @@ export const UserApi = apiSlice.injectEndpoints({
 
 export const {
   useCreateResumeMutation,
+  useLazyGetResumeQuery,
   useLazyGetPersonalInfoQuery,
   useUpdatePersonalInfoMutation,
   useLazyGetContactInfoQuery,

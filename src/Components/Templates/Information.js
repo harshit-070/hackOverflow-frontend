@@ -5,8 +5,6 @@ import {
   ListItem,
   ListItemButton,
   Typography,
-  styled,
-  Grid,
 } from "@mui/material";
 import {
   Architecture,
@@ -27,27 +25,10 @@ import Experience from "./Experience";
 import Projects from "./Projects";
 import Skills from "./Skills";
 import Achievements from "./Achievements";
+import Teamplate1 from "./Template/1";
 
 const drawerWidth = 250;
 
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
 const Information = ({ open, setOpen }) => {
   const [tagline, settagline] = useState("Your CV Sections");
   const [selected, setSelect] = useState(0);
@@ -183,7 +164,8 @@ const Information = ({ open, setOpen }) => {
           )}
         </Box>
       </Drawer>
-      <Main open={open}>hi</Main>
+
+      <Teamplate1 />
     </>
   );
 };
