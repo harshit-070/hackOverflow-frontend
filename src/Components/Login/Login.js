@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-// import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import GoogleRedirect from "../SignUp/GoogleRedirect";
 import GithubRedirect from "../SignUp/GithubRedirect";
 import { useLoginMutation } from "../../service/user.service";
@@ -29,7 +29,7 @@ const Image = styled("img")({
 });
 
 const Login = () => {
-  // const navigate= useNavigate();
+  const navigate= useNavigate();
   const logoURL = "https://www.iitjammu.ac.in/logo/IIT_JAMMU_LOGO.png";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -121,18 +121,19 @@ const Login = () => {
             Login
           </LoadingButton>
           <Box
-            /*onClick={()=>navigate('/signup')}*/ style={{
+            onClick={()=>navigate('/signup')} style={{
               cursor: "pointer",
               textAlign: "center",
             }}
           >
-            {/* <Typography variant='subtitle1' component='span' sx={{'&:hover':{color:'blue'}}}>Do not have any account? Signup</Typography> */}
+            <Typography variant='subtitle1' component='span' sx={{'&:hover':{color:'blue'}}}>Do not have any account? Signup</Typography>
           </Box>
-          <Typography textAlign="center">OR</Typography>
-          <Box style={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography textAlign="center" fontWeight={600}>OR</Typography>
+          <Box style={{ display: "flex", justifyContent: "center" }}>
             <GoogleRedirect />
             <GithubRedirect />
           </Box>
+          
         </Stack>
       </Stack>
     </Box>
