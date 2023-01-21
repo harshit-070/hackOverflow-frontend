@@ -109,6 +109,22 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Skills", "Resume"],
     }),
+    getAchievementInfo: builder.query({
+      query: (resume_id) => ({
+        url: `/resume/achievements/${resume_id}`,
+        method: "GET",
+      }),
+      providesTags: ["Achievement"],
+    }),
+
+    updateAchievementInfo: builder.mutation({
+      query: (body) => ({
+        url: `/resume/achievements`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Achievement", "Resume"],
+    }),
   }),
 });
 
@@ -126,4 +142,6 @@ export const {
   useUpdateProjectInfoMutation,
   useLazyGetSkillsInfoQuery,
   useUpdateSkillsInfoMutation,
+  useLazyGetAchievementInfoQuery,
+  useUpdateAchievementInfoMutation,
 } = UserApi;
