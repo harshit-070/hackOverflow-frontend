@@ -18,6 +18,7 @@ import GithubAuth from "./Components/SignUp/GithubAuth";
 import EditResume from "./Components/Templates/Template";
 import ResumeScorer from "./Components/ResumeScorer/ResumeScorer";
 import PrivateComponent from "./Components/PrivateComponent";
+import ForgotPassword from './Components/Login/ForgotPassword'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             
             <Route path="/edit/resume/:resume_id" element={<EditResume />} />
             </Route>
+            <Route path="/forgot" element={<ForgotPassword/>} />
             <Route path="" element={<SignUp />} />
             <Route path="" element={<Login />} />
             <Route path="/google/auth" element={<GoogleAuth />} />
