@@ -8,6 +8,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Template1 from "./Template/1";
+import Template2 from "./Template/2";
 import Template3 from "./Template/3/Template3";
 const Template = () => {
   const [open, setOpen] = useState(false);
@@ -54,7 +55,9 @@ const Template = () => {
             <TabPanel value="1">
               <Template1 />
             </TabPanel>
-            <TabPanel value="2">Comming Soon...</TabPanel>
+            <TabPanel value="2">
+              <Template2 />
+            </TabPanel>
             <TabPanel value="3">
               <Template3 />
             </TabPanel>

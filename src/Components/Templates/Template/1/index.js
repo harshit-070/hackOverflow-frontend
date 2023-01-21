@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  useLazyGetResumeQuery,
-  useUpdateSkillsInfoMutation,
-} from "../../../../service/resume.service";
+import { useLazyGetResumeQuery } from "../../../../service/resume.service";
 import { toastError } from "../../../../utils/toastMessage";
 import "./style.css";
 import { Helmet } from "react-helmet";
@@ -32,17 +29,17 @@ const Teamplate_1 = () => {
     }
   }, [getResumeResult]);
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  // if (error) {
-  //   return <div>Error Please try again</div>;
-  // }
+  if (error) {
+    return <div>Error Please try again</div>;
+  }
 
-  // if (!data) {
-  //   return <div>Error</div>;
-  // }
+  if (!data) {
+    return <div>Error</div>;
+  }
 
   return (
     <div className="template_1">
