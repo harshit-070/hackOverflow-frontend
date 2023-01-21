@@ -92,6 +92,23 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Project", "Resume"],
     }),
+
+    getSkillsInfo: builder.query({
+      query: (resume_id) => ({
+        url: `/resume/skills/${resume_id}`,
+        method: "GET",
+      }),
+      providesTags: ["Skills"],
+    }),
+
+    updateSkillsInfo: builder.mutation({
+      query: (body) => ({
+        url: `/resume/skills`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Skills", "Resume"],
+    }),
   }),
 });
 
@@ -107,4 +124,6 @@ export const {
   useUpdateExperienceInfoMutation,
   useLazyGetProjectInfoQuery,
   useUpdateProjectInfoMutation,
+  useLazyGetSkillsInfoQuery,
+  useUpdateSkillsInfoMutation,
 } = UserApi;
