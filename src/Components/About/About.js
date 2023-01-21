@@ -1,11 +1,13 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
+import AboutUs from '../../Assets/AboutUs.jpeg'
 
 const About = () => {
   return (
-    <Box style={{display:'flex',justifyContent:'center'}}>
-    <Box width='75vw' style={{border:'2px solid red'}}>
-      <Typography variant='h2'>About Us</Typography>
+    <Box style={{display:'flex',justifyContent:'center',backgroundColor:'rgb(1 6 12)'}}>
+    <Box width='75vw'>
+      <img src={AboutUs} alt='jdhj' width='100%' height='auto'/> 
+      {/* <Typography variant='h2'>About Us</Typography>
       <Box style={{padding:'50px 30px'}}>
       <Typography variant='h6' fontWeight={600}>Purpose</Typography>
       <Typography color='grey' variant='subtitle1'>Resume Rise offers a professional resume building service that helps you create an amazing CV/Resume in just a few minutes, with dozens of free resume templates to choose from. We pride ourselves in creating the most professional resumes out there, at prices which are affordable for everyone.</Typography>
@@ -13,9 +15,8 @@ const About = () => {
       <br/>
       <br/>
       <Typography variant='h6' fontWeight={600}>Features</Typography>
-      <Typography color='grey' variant='subtitle1'>Resume Rise will create, edit, and publish professional resumes online. Users can input their work experience, education, and skills, and the website will format and design the resume in a visually appealing way.</Typography>
-      </Box>
-      <img src='src\Assets\WhatsApp Image 2023-01-21 at 01.05.20.jpeg' alt='jdhj'/>
+      <Typography color='grey' variant='subtitle1'>Resume Rise will create, edit, and publish professional resumes online. Users can input their work experience, education, and skills, and the website will format and design the resume in a visually appealing way.</Typography> */}
+      {/* </Box> */}
     </Box>
     </Box>
   )

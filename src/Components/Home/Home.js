@@ -6,13 +6,13 @@ import Logo from "../../Assets/Logo.jpeg";
 
 const Home = () => {
   return (
-    <Grid container>
+    <Grid container style={{backgroundColor:'#282634',paddingBottom:'50px'}}>
       <Grid item lg={6} md={6} sm={12} xs={12}>
         <Box style={{ display: "flex", justifyContent: "center" }}>
-          <img src={Logo} alt="Logo" />
+          <img src={Logo} alt="Logo" width='100%' height='auto'/>
         </Box>
         <Box>
-          <span style={{ color: "black", fontSize: "40px", fontWeight: 600 }}>
+          <div style={{ color: "white", fontSize: "40px", fontWeight: 600 }}>
             {/* Style will be inherited from the parent element */}
             <Typewriter
               words={[
@@ -28,10 +28,10 @@ const Home = () => {
               // onLoopDone={handleDone}
               // onType={handleType}
             />
-          </span>
+          </div>
         </Box>
       </Grid>
-      <Grid item lg={6} md={6} sm={12} xs={12}>
+      <Grid item lg={6} md={6} sm={12} xs={12} >
         <Login />
       </Grid>
     </Grid>
