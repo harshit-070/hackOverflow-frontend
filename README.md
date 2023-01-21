@@ -39,16 +39,16 @@ To run the code. In the terminal, the provided url of the running instance (usua
 ## Various Templates according to User's Choice
 
 ![Templates](./src/Assets/TemplateVary.jpeg)
-> Various Templates are provides for the choice and the user can get refined Templated according to the Profession and Skills.
+> Various Templates provides the choice and the user can get refined Templates according to the Profession and Skills.
 
 ![Template](./src/Assets/Template1.jpeg)
-> Some Templates from our website with dynamiccaly updating the website
+> Some Templates from our website with dynamically updating the website
 
 ![Templates](./src/Assets/Template2.jpeg)
-> Some Templates from our website with dynamiccaly updating the website
+> Some Templates from our website with dynamically updating the website
 
 ![Templates](./src/Assets/Template3.jpeg)
-> Some Templates from our website with dynamiccaly updating the website
+> Some Templates from our website with dynamically updating the website
 
 ## To Review the Resume 
 
@@ -70,4 +70,4 @@ To run the code. In the terminal, the provided url of the running instance (usua
 ## Acknowledgements
 
 Research Paper -
-Knouse, S. B. (1994). Impressions of the Resume: The Effects of Applicant Education, Experience, and Impression Management. Journal of Business and Psychology, 9(1), 33-45. [Link of the Research paper](https://doi.org/10.2307/25092450)
+Knouse, S. B. (1994). Impressions of the Resume: The Effects of Applicant Education, Experience, and Impression Management. Journal of Business and Psychology, 9(1), 33-45. [Link of the Research paper](https://www.jstor.org/stable/25092450)
