@@ -192,6 +192,7 @@ const Projects = () => {
               </LocalizationProvider>
               <TextField
                 variant="standard"
+                multiline
                 label="Description"
                 value={description}
                 onChange={(e) => setdescription(e.target.value)}

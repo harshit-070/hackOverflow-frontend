@@ -80,6 +80,7 @@ const Info = () => {
       <TextField
         variant="standard"
         label="About Me"
+        multiline
         required
         value={aboutMe}
         onChange={(e) => setAboutMe(e.target.value)}

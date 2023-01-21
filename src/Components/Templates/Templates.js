@@ -5,6 +5,8 @@ import { useCreateResumeMutation } from "../../service/resume.service";
 import { toastError, toastInfo, toastSuccess } from "../../utils/toastMessage";
 import "./Templates.css";
 
+
+
 const Image = styled("img")({
   height: "300px",
   width: "100%",
@@ -35,11 +37,11 @@ const Templates = () => {
   };
 
   return (
-    <Box>
+    <Box style={{padding:'30px'}}>
       <Typography variant="h2" fontWeight={600}>
         Resume Templates
       </Typography>
-      <Box style={{ display: "flex", justifyContent: "center" }}>
+      <Box style={{ display: "flex", justifyContent: "center" ,marginTop:'30px'}}>
         <Grid container style={{ width: "75vw" }}>
           <Grid
             item
@@ -83,13 +85,22 @@ const Templates = () => {
             xs={12}
             style={{ padding: "10px 20px" }}
           >
-            <Image
-              src="https://d.novoresume.com/images/doc/minimalist-resume-template.png"
-              alt="template"
-            />
+            <Box className="container">
+              <Image
+                className="image"
+                src="https://d.novoresume.com/images/doc/minimalist-resume-template.png"
+                alt="template"
+              />
+              <Box className="middle">
+                <Box className="text" onClick={handleCreateResume}>
+                  <Typography>Create Resume</Typography>
+                </Box>
+              </Box>
+            </Box>
+
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Minimalist 1/6
+                Minimalist 2/6
               </Typography>
               <Typography
                 color="grey"
@@ -108,13 +119,22 @@ const Templates = () => {
             xs={12}
             style={{ padding: "10px 20px" }}
           >
-            <Image
-              src="https://d.novoresume.com/images/doc/minimalist-resume-template.png"
-              alt="template"
-            />
+            <Box className="container">
+              <Image
+                className="image"
+                src="https://d.novoresume.com/images/doc/minimalist-resume-template.png"
+                alt="template"
+              />
+              <Box className="middle">
+                <Box className="text" onClick={handleCreateResume}>
+                  <Typography>Create Resume</Typography>
+                </Box>
+              </Box>
+            </Box>
+
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Minimalist 1/6
+                Minimalist 3/6
               </Typography>
               <Typography
                 color="grey"
@@ -133,13 +153,22 @@ const Templates = () => {
             xs={12}
             style={{ padding: "10px 20px" }}
           >
-            <Image
-              src="https://d.novoresume.com/images/doc/minimalist-resume-template.png"
-              alt="template"
-            />
+            <Box className="container">
+              <Image
+                className="image"
+                src="https://d.novoresume.com/images/doc/minimalist-resume-template.png"
+                alt="template"
+              />
+              <Box className="middle">
+                <Box className="text" onClick={handleCreateResume}>
+                  <Typography>Create Resume</Typography>
+                </Box>
+              </Box>
+            </Box>
+
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Minimalist 1/6
+                Minimalist 4/6
               </Typography>
               <Typography
                 color="grey"
@@ -158,13 +187,22 @@ const Templates = () => {
             xs={12}
             style={{ padding: "10px 20px" }}
           >
-            <Image
-              src="https://d.novoresume.com/images/doc/minimalist-resume-template.png"
-              alt="template"
-            />
+            <Box className="container">
+              <Image
+                className="image"
+                src="https://d.novoresume.com/images/doc/minimalist-resume-template.png"
+                alt="template"
+              />
+              <Box className="middle">
+                <Box className="text" onClick={handleCreateResume}>
+                  <Typography>Create Resume</Typography>
+                </Box>
+              </Box>
+            </Box>
+
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Minimalist 1/6
+                Minimalist 5/6
               </Typography>
               <Typography
                 color="grey"
@@ -183,13 +221,22 @@ const Templates = () => {
             xs={12}
             style={{ padding: "10px 20px" }}
           >
-            <Image
-              src="https://d.novoresume.com/images/doc/minimalist-resume-template.png"
-              alt="template"
-            />
+            <Box className="container">
+              <Image
+                className="image"
+                src="https://d.novoresume.com/images/doc/minimalist-resume-template.png"
+                alt="template"
+              />
+              <Box className="middle">
+                <Box className="text" onClick={handleCreateResume}>
+                  <Typography>Create Resume</Typography>
+                </Box>
+              </Box>
+            </Box>
+
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Minimalist 1/6
+                Minimalist 6/6
               </Typography>
               <Typography
                 color="grey"

@@ -12,10 +12,12 @@ import React, { useState, useEffect } from "react";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import LogoH from '../../Assets/LogoH.jpeg'
 import {
   useLazySendOTPQuery,
   useSignupUserMutation,
 } from "../../service/user.service";
+import {useNavigate} from 'react-router-dom'
 import { toastError, toastSuccess } from "../../utils/toastMessage";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../feature/userSlice";
@@ -30,8 +32,9 @@ import GithubRedirect from "./GithubRedirect";
 
 //Style
 const Image = styled("img")({
-  width: "80%",
+  width: "100%",
   height: "140px",
+  borderRadius:'5px'
 });
 const StyledButton = styled(LoadingButton)`
   font-size: 18px;
@@ -55,9 +58,9 @@ const Linkedin = styled(Box)`
   display: flex;
   align-items: center;
 `;
-const SignUp = ({ view }) => {
+const SignUp = ({ setLogin }) => {
   const logoURL = "https://www.iitjammu.ac.in/logo/IIT_JAMMU_LOGO.png";
-
+  const navigate= useNavigate();
   const [name, setName] = useState("");
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -130,9 +133,10 @@ const SignUp = ({ view }) => {
           alignItems: "center",
           padding: "15px",
           marginTop: "25px",
+          backgroundColor:'white' 
         }}
       >
-        <Image src={logoURL} alt="logo" />
+        <Image src={LogoH} alt="logo" />
         <form onSubmit={handleSignupClick}>
           <Stack
             direction="column"
@@ -226,15 +230,17 @@ const SignUp = ({ view }) => {
             </StyledButton>
 
             <Box
-              /*onClick={()=>navigate('/login')}*/ style={{
+              onClick={()=>{
+                setLogin("login")
+                navigate('/')}} style={{
                 cursor: "pointer",
                 textAlign: "center",
               }}
             >
-              {/* <Typography variant='subtitle1'component='span' sx={{'&:hover':{color:'blue'}}}>Already have an account? Login</Typography> */}
+              <Typography variant='subtitle1'component='span' sx={{'&:hover':{color:'blue'}}}>Already have an account? Login</Typography>
             </Box>
-            <Typography textAlign="center">OR</Typography>
-            <Box style={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography textAlign="center" fontWeight={600}>OR</Typography>
+            <Box style={{ display: "flex", justifyContent: "center" }}>
               <GoogleRedirect />
               <GithubRedirect />
             </Box>

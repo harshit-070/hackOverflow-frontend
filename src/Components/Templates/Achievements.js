@@ -60,6 +60,7 @@ const Achievements = () => {
           size="small"
           variant="standard"
           required
+          multiline
           label="Description"
           value={description}
           onChange={(e) => setdescription(e.target.value)}

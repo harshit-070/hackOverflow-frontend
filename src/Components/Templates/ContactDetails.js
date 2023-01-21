@@ -121,6 +121,7 @@ const ContactDetails = () => {
         <TextField
           variant="standard"
           label="LinkedIn URL"
+          multiline
           required
           value={linkedin}
           onChange={(e) => setlinkedin(e.target.value)}
@@ -128,6 +129,7 @@ const ContactDetails = () => {
         <TextField
           variant="standard"
           label="Github URL"
+          multiline
           required
           value={github}
           onChange={(e) => setgithub(e.target.value)}

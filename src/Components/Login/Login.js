@@ -19,18 +19,19 @@ import { toastError } from "../../utils/toastMessage";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../feature/userSlice";
 import { redirect } from "react-router-dom";
+import LogoH from '../../Assets/LogoH.jpeg'
 
 //Components
 
 //Style
 const Image = styled("img")({
-  width: "80%",
+  width: "100%",
   height: "140px",
+  borderRadius:'5px'
 });
 
-const Login = () => {
+const Login = ({setLogin}) => {
   const navigate= useNavigate();
-  const logoURL = "https://www.iitjammu.ac.in/logo/IIT_JAMMU_LOGO.png";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -76,7 +77,7 @@ const Login = () => {
           backgroundColor:'white' 
         }}
       >
-        <Image src={logoURL} alt="logo" />
+        <Image src={LogoH} alt="logo" />
         <Stack
           direction="column"
           spacing={2}
@@ -122,7 +123,9 @@ const Login = () => {
             Login
           </LoadingButton>
           <Box
-            onClick={()=>navigate('/signup')} style={{
+            onClick={()=>{
+              setLogin("signup")
+              navigate('/')}} style={{
               cursor: "pointer",
               textAlign: "center",
             }}

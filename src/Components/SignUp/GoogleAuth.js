@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { redirect, useSearchParams } from "react-router-dom";
+import { redirect, useNavigate, useSearchParams } from "react-router-dom";
 import { setUser } from "../../feature/userSlice";
 import { useGoogleAuthMutation } from "../../service/user.service";
 import { toastError } from "../../utils/toastMessage";
@@ -8,15 +8,14 @@ import { toastError } from "../../utils/toastMessage";
 const GoogleAuth = () => {
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
-
+  const navigate = useNavigate();
   const [googleAuth, googleAuthResult] = useGoogleAuthMutation();
   const dispatch = useDispatch();
   useEffect(() => {
     console.log(code);
     if (!code) {
       toastError("Invalid Code");
-      redirect("/");
-      return;
+      return navigate("/");
     } else {
       googleAuth(code);
     }
@@ -26,15 +25,14 @@ const GoogleAuth = () => {
     const { isError, error, data, isSuccess } = googleAuthResult;
 
     if (isSuccess) {
+      console.log(data.data.user);
       dispatch(setUser(data.data.user));
-      redirect("/template");
-      return;
+      return navigate("/templates");
     }
 
     if (isError) {
       toastError("", error);
-      redirect("/signup");
-      return;
+      return navigate("/");
     }
   }, [googleAuthResult, dispatch]);
 

@@ -14,6 +14,7 @@ const Template = () => {
           boxShadow: "2px 5px 5px grey",
           borderRadius: "0px 20px 20px 0px",
           padding: "0px 10px",
+          marginTop:'50px',
           cursor: "pointer",
         }}
         onClick={() => setOpen(true)}
