@@ -12,6 +12,7 @@ import React, { useState, useEffect } from "react";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import LogoH from '../../Assets/LogoH.jpeg'
 import {
   useLazySendOTPQuery,
   useSignupUserMutation,
@@ -30,8 +31,9 @@ import GithubRedirect from "./GithubRedirect";
 
 //Style
 const Image = styled("img")({
-  width: "80%",
+  width: "100%",
   height: "140px",
+  borderRadius:'5px'
 });
 const StyledButton = styled(LoadingButton)`
   font-size: 18px;
@@ -132,7 +134,7 @@ const SignUp = ({ view }) => {
           marginTop: "25px",
         }}
       >
-        <Image src={logoURL} alt="logo" />
+        <Image src={LogoH} alt="logo" />
         <form onSubmit={handleSignupClick}>
           <Stack
             direction="column"

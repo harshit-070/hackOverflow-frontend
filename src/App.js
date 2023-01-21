@@ -24,14 +24,14 @@ function App() {
       
         <ToastContainer />
         <Navbar />
-        <Box style={{ marginTop: "70px" }}>
+        <Box style={{ marginTop: "64px" }}>
           <Routes>
             <Route path="" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/templates" element={<Templates />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="" element={<Login />} />
             <Route path="/google/auth" element={<GoogleAuth />} />
             <Route path="/github/auth" element={<GithubAuth />} />
             <Route path="/edit/resume/:resume_id" element={<EditResume />} />

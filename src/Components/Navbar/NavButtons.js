@@ -24,9 +24,8 @@ const StyledButton=styled(Button)`
 const LoginButton=styled(Button)`
   padding:2px 10px;
   color:white;
-  background:#eac7c7;
   text-transform:none;
-  border-radius:10px;
+  border:2px solid white;
   font-size:16px;
   font-weight:600;
   &:hover{
@@ -78,7 +77,7 @@ const NavButtons =({direction}) => {
           </StyledButton>
           <LoginButton
           variant='text'
-          onClick={()=>navigate('/login')}
+          onClick={()=>navigate('')}
           >
             Login
           </LoginButton>

@@ -6,13 +6,13 @@ import Logo from "../../Assets/Logo.jpeg";
 
 const Home = () => {
   return (
-    <Grid container style={{backgroundColor:'#282634',paddingBottom:'50px'}}>
+    <Grid container style={{backgroundColor:'#282634',paddingBottom:'30px'}}>
       <Grid item lg={6} md={6} sm={12} xs={12}>
         <Box style={{ display: "flex", justifyContent: "center" }}>
-          <img src={Logo} alt="Logo" width='100%' height='auto'/>
+          <img src={Logo} alt="Logo" width='75%' height='400px'/>
         </Box>
-        <Box>
-          <div style={{ color: "white", fontSize: "40px", fontWeight: 600 }}>
+        <Box style={{display:'flex',justifyContent:'center',padding:'0 10px'}}>
+          <div style={{ color: "white", fontSize: "40px", fontWeight: 600,textAlign:'center' }}>
             {/* Style will be inherited from the parent element */}
             <Typewriter
               words={[

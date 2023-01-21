@@ -13,6 +13,48 @@ import {
   } from "@mui/icons-material";
   
   //Style
+  const CssTextField = styled(TextField)({
+    '& .MuiInputBase-input':{
+        color:'white',
+    },
+    '& .MuiInputBase-placeholder':{
+      color:'white',
+  },
+    '& label.Mui-focused': {
+      color: 'white !important',
+      fontWeight:500,
+      fontSize:25,
+      background:'#050b17',
+      margin:'0 10px',
+      paddingRight:'10px'
+    },
+    '& MuiLabel-root': {
+        color: 'white',
+        fontWeight:500,
+        fontSize:20,
+        letterSpacing:'20px',
+        // background:'white',
+        // padding:'0 10px'
+        
+      },
+    // '& .MuiInput-underline:after': {
+    //   borderBottomColor: 'green',
+    // },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        // borderColor: 'cyan',
+        border:'5px solid white',
+        borderRadius:'20px',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        border:'5px solid white',
+        borderRadius:'20px',
+      },
+    },
+  });
   const Component = styled(Box)`
     display: flex;
     align-items: center;
@@ -40,23 +82,23 @@ import {
 const Footer = () => {
     const navigate=useNavigate();
   return (
-    <Grid container style={{backgroundColor:'grey',color:'white',marginTop:'30px',paddingBottom:'30px'}}>
+    <Grid container style={{backgroundColor:'#050b17',color:'white',paddingBottom:'30px',bottom:0}}>
         <Grid item lg={4} md={4} sm={12} xs={12} style={{padding:'10px 30px'}}>
            <Stack  direction='column' spacing={2} >
                 <Typography variant='h4' fontWeight={600}>Contact Us</Typography>
-                <TextField
+                <CssTextField
                 variant='outlined'
                 label='Name'
                 placeholder='Enter Name'
                 required
                 />
-                <TextField
+                <CssTextField
                 variant='outlined'
                 label='Email'
                 placeholder='Enter Email'
                 required
                 />
-                <TextField
+                <CssTextField
                 variant='outlined'
                 required
                 label='Message'

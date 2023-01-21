@@ -4,7 +4,7 @@ import AboutUs from '../../Assets/AboutUs.jpeg'
 
 const About = () => {
   return (
-    <Box style={{display:'flex',justifyContent:'center',backgroundColor:'rgb(1 6 12)'}}>
+    <Box style={{display:'flex',justifyContent:'center',backgroundColor:'rgb(1 6 12)',paddingBottom:'30px'}}>
     <Box width='75vw'>
       <img src={AboutUs} alt='jdhj' width='100%' height='auto'/> 
       {/* <Typography variant='h2'>About Us</Typography>
