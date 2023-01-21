@@ -75,6 +75,23 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Experience", "Resume"],
     }),
+
+    getProjectInfo: builder.query({
+      query: (resume_id) => ({
+        url: `/resume/project/${resume_id}`,
+        method: "GET",
+      }),
+      providesTags: ["Project"],
+    }),
+
+    updateProjectInfo: builder.mutation({
+      query: (body) => ({
+        url: `/resume/project`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Project", "Resume"],
+    }),
   }),
 });
 
@@ -88,4 +105,6 @@ export const {
   useUpdateEducationInfoMutation,
   useLazyGetExperienceInfoQuery,
   useUpdateExperienceInfoMutation,
+  useLazyGetProjectInfoQuery,
+  useUpdateProjectInfoMutation,
 } = UserApi;
