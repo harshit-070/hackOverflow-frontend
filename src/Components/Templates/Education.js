@@ -210,10 +210,35 @@ const Education = () => {
         </StyledButton>
         {educations.map((education) => {
           return (
-            <Box style={{ boxShadow: "0 7px 15px 0 grey", padding: "5px" }}>
-              <Typography variant="body1" fontWeight={600}>
+            <Box
+              style={{
+                boxShadow: "0 2px 5px 0 grey",
+                padding: "5px",
+                borderRadius: "10px",
+              }}
+            >
+              <Typography variant="body1" fontWeight={600} component="span">
                 {education.name}
               </Typography>
+              <LoadingButton
+                onClick={() => handleEditEducation(education._id)}
+                style={{
+                  fontSize: "20px",
+                  color: "skyblue",
+                  marginLeft: "auto",
+                  float: "right",
+                }}
+              >
+                <Edit />
+              </LoadingButton>
+              <LoadingButton
+                loading={loading}
+                onClick={() => handleDeleteEducation(education._id)}
+                style={{ fontSize: "20px", color: "grey", float: "right" }}
+              >
+                <Delete />
+              </LoadingButton>
+              &nbsp; &nbsp;
               <Typography
                 variant="subtitle1"
                 color="grey"
@@ -221,17 +246,6 @@ const Education = () => {
               >
                 {education.percentage}
               </Typography>
-              <Box style={{ marginLeft: "auto" }}>
-                <IconButton onClick={() => handleEditEducation(education._id)}>
-                  <Edit />
-                </IconButton>
-                <LoadingButton
-                  loading={loading}
-                  onClick={() => handleDeleteEducation(education._id)}
-                >
-                  <Delete />
-                </LoadingButton>
-              </Box>
             </Box>
           );
         })}
