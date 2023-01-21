@@ -17,6 +17,7 @@ import GoogleAuth from "./Components/SignUp/GoogleAuth";
 import GithubAuth from "./Components/SignUp/GithubAuth";
 import EditResume from "./Components/Templates/Template";
 import ResumeScorer from "./Components/ResumeScorer/ResumeScorer";
+import PrivateComponent from "./Components/PrivateComponent";
 
 function App() {
   return (
@@ -26,18 +27,21 @@ function App() {
         <Navbar />
         <Box style={{ marginTop: "64px" }}>
           <Routes>
-            <Route path="" element={<Home />} />
-            <Route path="/about" element={<About />} />
+          <Route path="" element={<Home />} />
+          <Route path="/about" element={<About />} />
             <Route path="/templates" element={<Templates />} />
-            <Route path="" element={<SignUp />} />
             <Route path="/scorer" element={<ResumeScorer />} />
+            <Route element={<PrivateComponent/>}>
+            
+            <Route path="/edit/resume/:resume_id" element={<EditResume />} />
+            </Route>
+            <Route path="" element={<SignUp />} />
             <Route path="" element={<Login />} />
             <Route path="/google/auth" element={<GoogleAuth />} />
             <Route path="/github/auth" element={<GithubAuth />} />
-            <Route path="/edit/resume/:resume_id" element={<EditResume />} />
           </Routes>
         </Box>
-        {/* <Footer/> */}
+        <Footer/>
       </BrowserRouter>
     </Box>
   );

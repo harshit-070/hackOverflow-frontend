@@ -46,7 +46,7 @@ const Teamplate_1 = () => {
       <div className="rela-block page">
         <div className="rela-block top-bar">
           <div className="caps name">
-            <div className="abs-center">{name}</div>
+            <div className="abs-center">{data.name}</div>
           </div>
         </div>
         <div className="side-bar">
