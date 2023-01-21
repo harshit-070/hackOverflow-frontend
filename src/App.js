@@ -34,8 +34,9 @@ function App() {
             <Route path="/scorer" element={<ResumeScorer />} />
             <Route element={<PrivateComponent/>}>
             
-            <Route path="/edit/resume/:resume_id" element={<EditResume />} />
+            {/* <Route path="/edit/resume/:resume_id" element={<EditResume />} /> */}
             </Route>
+            <Route path="/edit/resume/:resume_id" element={<EditResume />} />
             <Route path="/forgot" element={<ForgotPassword/>} />
             <Route path="" element={<SignUp />} />
             <Route path="" element={<Login />} />

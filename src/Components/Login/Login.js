@@ -125,6 +125,16 @@ const Login = ({setLogin}) => {
           <Box
             onClick={()=>{
               setLogin("signup")
+              navigate('/forgot')}} style={{
+              cursor: "pointer",
+              textAlign: "center",
+            }}
+          >
+            <Typography variant='subtitle1' component='span' sx={{'&:hover':{color:'red'}}}>forgot password?</Typography>
+          </Box>
+          <Box
+            onClick={()=>{
+              setLogin("signup")
               navigate('/')}} style={{
               cursor: "pointer",
               textAlign: "center",

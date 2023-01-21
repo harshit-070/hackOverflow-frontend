@@ -3,11 +3,24 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import React from "react";
 import { useState } from "react";
 import Information from "./Information";
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 
 const Template = () => {
   const [open, setOpen] = useState(false);
+  const [value, setValue] = React.useState('1');
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <Box>
+      <Box style={{display:'flex',alignItems:'center'}}>
+
+      
       <Box
         style={{
           display: "inline-block",
@@ -23,9 +36,33 @@ const Template = () => {
           style={{ fontWeight: 600, fontSize: "40px" }}
         />
       </Box>
-      <Information open={open} setOpen={setOpen} />
+      
+      <Box sx={{ width: '100%', typography: 'body1',padding:'20px' }}>
+      <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <Tab label="Template One" value="1" />
+            <Tab label="Template Two" value="2" />
+            <Tab label="Template Three" value="3" />
+            <Tab label="Template Four" value="4" />
+            <Tab label="Template Five" value="5" />
+            <Tab label="Template Six" value="6" />
+          </TabList>
+        </Box>
+        <TabPanel value="1">Item One</TabPanel>
+        <TabPanel value="2">Item Two</TabPanel>
+        <TabPanel value="3">Item Three</TabPanel>
+      </TabContext>
+    </Box>
+    </Box>
+    <Information open={open} setOpen={setOpen} />
     </Box>
   );
 };
 
 export default Template;
+
+
+
+
+
