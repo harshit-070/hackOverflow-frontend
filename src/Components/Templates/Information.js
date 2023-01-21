@@ -27,6 +27,7 @@ import Skills from "./Skills";
 import Achievements from "./Achievements";
 import Teamplate1 from "./Template/1";
 import Template3 from "./Template/3/Template3";
+import Teamplate_1 from "./Template/1";
 
 const drawerWidth = 250;
 
@@ -166,7 +167,7 @@ const Information = ({ open, setOpen }) => {
         </Box>
       </Drawer>
 
-      {/* <Template3/> */}
+      {/* <Teamplate_1/> */}
     </>
   );
 };
