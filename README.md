@@ -63,6 +63,11 @@ To run the code. In the terminal, the provided url of the running instance (usua
 - Can search the selected resumes according to the Company.
 - Suggest action verbs as it is very time consuming.
 
+## Prototype
+
+[Our Figma Prototype of the Website](https://www.figma.com/proto/thVoXNtqrCQ5AS0wp8Xpn7/Hack-Over-Flow?page-id=0%3A1&node-id=0%3A1&viewport=106%2C263%2C0.04&scaling=min-zoom&starting-point-node-id=102%3A2&show-proto-sidebar=1)
+
 ## Acknowledgements
 
-
+Research Paper -
+Knouse, S. B. (1994). Impressions of the Resume: The Effects of Applicant Education, Experience, and Impression Management. Journal of Business and Psychology, 9(1), 33-45. [Link of the Research paper](https://doi.org/10.2307/25092450)
