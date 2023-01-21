@@ -9,6 +9,7 @@ import {
   styled,
   TextField,
   Button,
+  Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -21,6 +22,7 @@ import {
   useUpdateEducationInfoMutation,
 } from "../../service/resume.service";
 import { toastError, toastSuccess } from "../../utils/toastMessage";
+import { Delete, Edit } from "@mui/icons-material";
 
 const StyledButton = styled(Button)`
   text-transform: none;
@@ -200,6 +202,14 @@ const Education = () => {
         <StyledButton onClick={handleAddEducation}>
           + Add Education
         </StyledButton>
+        <Box style={{boxShadow: "0 7px 15px 0 grey",padding:'5px'}}>
+          <Typography variant='body1' fontWeight={600}>IIT Jammu</Typography>
+          <Typography variant='subtitle1' color='grey' style={{fontSize:'12px'}}>CGPA</Typography>
+          <Box style={{marginLeft:'auto'}}>
+            <Edit/>
+            <Delete/>
+          </Box>
+        </Box>
       </Stack>
     </>
   );

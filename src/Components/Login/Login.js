@@ -63,7 +63,7 @@ const Login = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box sx={{ display: "flex", justifyContent: "center"}}>
       <Stack
         direction="column"
         spacing={2}
@@ -73,6 +73,7 @@ const Login = () => {
           alignItems: "center",
           padding: "15px",
           marginTop: "25px",
+          backgroundColor:'white' 
         }}
       >
         <Image src={logoURL} alt="logo" />
