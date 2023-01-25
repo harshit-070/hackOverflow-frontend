@@ -9,10 +9,17 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Template1 from "./Template/1";
 import Template2 from "./Template/2";
+import Template4 from "./Template/4";
 import Template3 from "./Template/3/Template3";
+
 const Template = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = React.useState("1");
+
+  const [personalDetails, setPersonalDetails] = useState({
+    name: "",
+    summary: "",
+  });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -61,7 +68,9 @@ const Template = () => {
             <TabPanel value="3">
               <Template3 />
             </TabPanel>
-            <TabPanel value="4">Comming Soon...</TabPanel>
+            <TabPanel value="4">
+              <Template4 />
+            </TabPanel>
             <TabPanel value="5">Comming Soon...</TabPanel>
             <TabPanel value="6">Comming Soon...</TabPanel>
           </TabContext>

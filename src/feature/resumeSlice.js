@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  name: "",
-  summary: "",
-  headline: "",
+  personalDetails: {
+    name: "",
+    summary: "",
+  },
   contact: {
     email: "",
     number: "",
@@ -23,9 +24,7 @@ export const resumeSlice = createSlice({
   initialState,
   reducers: {
     setPersonalInfo: (state, action) => {
-      state.name = action.payload.name;
-      state.summary = action.payload.summary;
-      state.headline = action.payload.headline;
+      state.personalDetails = action.payload;
     },
 
     setContactInfo: (state, action) => {
