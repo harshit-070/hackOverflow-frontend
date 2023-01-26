@@ -42,19 +42,18 @@ const Login = ({ setLogin }) => {
   };
   const dispatch = useDispatch();
   const [login, loginResult] = useLoginMutation();
-
   useEffect(() => {
     const { isLoading, isError, isSuccess, data, error } = loginResult;
     setLoading(isLoading);
     if (isSuccess) {
       dispatch(setUser(data.data.user));
-      redirect("/template");
+      return navigate("/templates");
     }
 
     if (isError) {
       toastError("", error);
     }
-  }, [dispatch, loginResult]);
+  }, [dispatch, loginResult, navigate]);
 
   const handleClick = () => {
     login({
@@ -64,7 +63,9 @@ const Login = ({ setLogin }) => {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center",borderRadius:"20px"}}>
+    <Box
+      sx={{ display: "flex", justifyContent: "center", borderRadius: "20px" }}
+    >
       <Stack
         direction="column"
         spacing={2}
@@ -119,6 +120,7 @@ const Login = ({ setLogin }) => {
             variant="contained"
             sx={{ fontSize: "18px" }}
             onClick={handleClick}
+            loading={loading}
           >
             Login
           </LoadingButton>

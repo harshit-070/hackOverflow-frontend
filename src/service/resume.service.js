@@ -1,4 +1,3 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { apiSlice } from "./api";
 
 export const UserApi = apiSlice.injectEndpoints({
@@ -85,7 +84,7 @@ export const UserApi = apiSlice.injectEndpoints({
       invalidatesTags: ["Experience", "Resume"],
     }),
 
-    getProjectInfo: builder.query({
+    getProjectsInfo: builder.query({
       query: (resume_id) => ({
         url: `/resume/project/${resume_id}`,
         method: "GET",
@@ -93,7 +92,7 @@ export const UserApi = apiSlice.injectEndpoints({
       providesTags: ["Project"],
     }),
 
-    updateProjectInfo: builder.mutation({
+    updateProjectsInfo: builder.mutation({
       query: (body) => ({
         url: `/resume/project`,
         method: "POST",
@@ -118,7 +117,7 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Skills", "Resume"],
     }),
-    getAchievementInfo: builder.query({
+    getAchievementsInfo: builder.query({
       query: (resume_id) => ({
         url: `/resume/achievements/${resume_id}`,
         method: "GET",
@@ -126,7 +125,7 @@ export const UserApi = apiSlice.injectEndpoints({
       providesTags: ["Achievement"],
     }),
 
-    updateAchievementInfo: builder.mutation({
+    updateAchievementsInfo: builder.mutation({
       query: (body) => ({
         url: `/resume/achievements`,
         method: "POST",
@@ -148,10 +147,10 @@ export const {
   useUpdateEducationInfoMutation,
   useLazyGetExperienceInfoQuery,
   useUpdateExperienceInfoMutation,
-  useLazyGetProjectInfoQuery,
-  useUpdateProjectInfoMutation,
+  useLazyGetProjectsInfoQuery,
+  useUpdateProjectsInfoMutation,
   useLazyGetSkillsInfoQuery,
   useUpdateSkillsInfoMutation,
-  useLazyGetAchievementInfoQuery,
-  useUpdateAchievementInfoMutation,
+  useLazyGetAchievementsInfoQuery,
+  useUpdateAchievementsInfoMutation,
 } = UserApi;

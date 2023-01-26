@@ -11,14 +11,12 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useParams } from "react-router-dom";
-import {
-  useLazyGetProjectInfoQuery,
-  useUpdateProjectInfoMutation,
-} from "../../service/resume.service";
-import { useDispatch } from "react-redux";
-import { toastError, toastSuccess } from "../../utils/toastMessage";
+import { useUpdateProjectsInfoMutation } from "../../../../service/resume.service";
+import { useDispatch, useSelector } from "react-redux";
+import { toastError, toastSuccess } from "../../../../utils/toastMessage";
 import { LoadingButton } from "@mui/lab";
 import { Delete, Edit } from "@mui/icons-material";
+import { getProjectsDetails } from "../../../../feature/resumeSlice";
 
 const StyledButton = styled(Button)`
   text-transform: none;
@@ -36,18 +34,13 @@ const Projects = () => {
   const [endDate, setEndDate] = useState(new Date());
 
   const [projects, setExperiences] = useState([]);
-
+  const projectDetails = useSelector((state) => getProjectsDetails(state));
   const { resume_id } = useParams();
 
-  const [getProjectInfo, getProjectInfoResult] = useLazyGetProjectInfoQuery();
   const [updateProjectInfo, updateProjectResult] =
-    useUpdateProjectInfoMutation();
+    useUpdateProjectsInfoMutation();
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    getProjectInfo(resume_id);
-  }, [getProjectInfo, resume_id]);
 
   useEffect(() => {
     const { isLoading, isSuccess, isError, error } = updateProjectResult;
@@ -62,9 +55,7 @@ const Projects = () => {
   }, [updateProjectResult]);
 
   useEffect(() => {
-    const { isError, error, isSuccess, data } = getProjectInfoResult;
-
-    if (isSuccess) {
+    if (projectDetails) {
       setId("");
       settitle("");
       setcompany("");
@@ -73,13 +64,9 @@ const Projects = () => {
       setEndDate("");
       setdescription("");
       setProject(false);
-      setExperiences(data.data.projects || []);
+      setExperiences(projectDetails || []);
     }
-
-    if (isError) {
-      toastError("", error);
-    }
-  }, [dispatch, getProjectInfoResult]);
+  }, [projectDetails]);
 
   const handleUpdateResume = (e) => {
     e.preventDefault();

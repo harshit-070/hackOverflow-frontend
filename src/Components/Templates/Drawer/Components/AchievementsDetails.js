@@ -2,40 +2,30 @@ import { LoadingButton } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-  useLazyGetAchievementInfoQuery,
-  useUpdateAchievementInfoMutation,
-} from "../../service/resume.service";
-import { toastSuccess } from "../../utils/toastMessage";
+import { getAchievementDetails } from "../../../../feature/resumeSlice";
+import { useUpdateAchievementsInfoMutation } from "../../../../service/resume.service";
+import { toastSuccess } from "../../../../utils/toastMessage";
 
 const Achievements = () => {
   const [description, setdescription] = useState("");
   const [loading, setLoading] = useState(false);
   const { resume_id } = useParams();
 
-  const [getAchievementInfo, getAchievementInfoResult] =
-    useLazyGetAchievementInfoQuery();
+  const achievementsDetails = useSelector((state) =>
+    getAchievementDetails(state)
+  );
+
   const [updateAchievementInfo, updateAchievementResult] =
-    useUpdateAchievementInfoMutation();
+    useUpdateAchievementsInfoMutation();
 
   useEffect(() => {
-    getAchievementInfo(resume_id);
-  }, [getAchievementInfo, resume_id]);
-
-  useEffect(() => {
-    const { isError, isLoading, isSuccess, data, error } =
-      getAchievementInfoResult;
-    setLoading(isLoading);
-    if (isSuccess) {
-      setdescription(data.data.achievements);
+    if (achievementsDetails) {
+      setdescription(achievementsDetails);
     }
-
-    if (isError) {
-      toast("", error);
-    }
-  }, [getAchievementInfoResult]);
+  }, [achievementsDetails]);
   useEffect(() => {
     const { isError, isSuccess, error, isLoading } = updateAchievementResult;
     setLoading(isLoading);

@@ -34,6 +34,10 @@ const initialState = {
       otherCategory: "",
     },
   ],
+  experience: [],
+  projects: [],
+  skills: [],
+  achievements: "",
 };
 
 export const resumeSlice = createSlice({
@@ -58,6 +62,30 @@ export const resumeSlice = createSlice({
       }
     },
 
+    setExperienceDetails: (state, action) => {
+      if (action.payload) {
+        state.experience = [...action.payload];
+      }
+    },
+
+    setProjectsDetails: (state, action) => {
+      if (action.payload) {
+        state.projects = [...action.payload];
+      }
+    },
+
+    setAchievementsDetails: (state, action) => {
+      if (action.payload) {
+        state.achievements = [...action.payload];
+      }
+    },
+
+    setSkillsDetails: (state, action) => {
+      if (action.payload) {
+        state.skills = [...action.payload];
+      }
+    },
+
     setResume: (state, action) => {
       return { ...action.payload };
     },
@@ -78,6 +106,10 @@ export const {
   setPersonalDetails,
   setContactInfo,
   setEducationDetails,
+  setExperienceDetails,
+  setProjectsDetails,
+  setSkillsDetails,
+  setAchievementsDetails,
   setResume,
   setContactDetails,
 } = resumeSlice.actions;
@@ -87,3 +119,7 @@ export default resumeSlice.reducer;
 export const getPersonalDetails = (state) => state.resume.personalDetails;
 export const getContactDetails = (state) => state.resume.contactDetails;
 export const getEducationDetails = (state) => state.resume.education;
+export const getExperienceDetails = (state) => state.resume.experience;
+export const getProjectsDetails = (state) => state.resume.projects;
+export const getSkillsDetials = (state) => state.resume.skills;
+export const getAchievementDetails = (state) => state.resume.achievements;

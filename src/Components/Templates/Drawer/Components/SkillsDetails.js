@@ -1,13 +1,11 @@
 import { LoadingButton } from "@mui/lab";
 import { Chip, Stack, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  useLazyGetSkillsInfoQuery,
-  useUpdateSkillsInfoMutation,
-} from "../../service/resume.service";
-import { toastError, toastSuccess } from "../../utils/toastMessage";
+import { getSkillsDetials } from "../../../../feature/resumeSlice";
+import { useUpdateSkillsInfoMutation } from "../../../../service/resume.service";
+import { toastError, toastSuccess } from "../../../../utils/toastMessage";
 
 const Skills = () => {
   const [skill, setskill] = useState("");
@@ -15,14 +13,8 @@ const Skills = () => {
   const [skills, setSkills] = useState([]);
   const { resume_id } = useParams();
 
-  const [getSkillsInfo, getSkillsInfoResult] = useLazyGetSkillsInfoQuery();
   const [updateSkillsInfo, updateSkillsResult] = useUpdateSkillsInfoMutation();
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getSkillsInfo(resume_id);
-  }, [getSkillsInfo, resume_id]);
+  const skillsDetails = useSelector((state) => getSkillsDetials(state));
 
   useEffect(() => {
     const { isLoading, isSuccess, isError, error } = updateSkillsResult;
@@ -37,17 +29,11 @@ const Skills = () => {
   }, [updateSkillsResult]);
 
   useEffect(() => {
-    const { isError, error, isSuccess, data } = getSkillsInfoResult;
-
-    if (isSuccess) {
+    if (skillsDetails) {
       setskill(" ");
-      setSkills(data.data.skills || []);
+      setSkills(skillsDetails || []);
     }
-
-    if (isError) {
-      toastError("", error);
-    }
-  }, [dispatch, getSkillsInfoResult]);
+  }, [skillsDetails]);
 
   const handleUpdateResume = (e) => {
     e.preventDefault();
