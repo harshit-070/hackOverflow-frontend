@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
-import { useLazyGetPersonalInfoQuery } from "../../../../service/resume.service";
+import { useLazyGetEducationInfoQuery } from "../../../../service/resume.service";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toastError } from "../../../../utils/toastMessage";
-import { setPersonalDetails } from "../../../../feature/resumeSlice";
-
-const FetchPersonalDetails = () => {
-  const [getPersonalInfo, getPersonalInfoResult] =
-    useLazyGetPersonalInfoQuery();
+import { setEducationDetails } from "../../../../feature/resumeSlice";
+const FetchEducationDetails = () => {
+  const [getEducationInfo, getEducationInfoResult] =
+    useLazyGetEducationInfoQuery();
 
   const { resume_id } = useParams();
   const navigate = useNavigate();
@@ -19,23 +18,23 @@ const FetchPersonalDetails = () => {
       toastError("Invalid Resume Id");
       return navigate("/");
     }
-    getPersonalInfo(resume_id);
-  }, [getPersonalInfo, navigate, resume_id]);
+    getEducationInfo(resume_id);
+  }, [getEducationInfo, navigate, resume_id]);
 
   useEffect(() => {
     const { isLoading, isError, isSuccess, error, data } =
-      getPersonalInfoResult;
+      getEducationInfoResult;
 
     if (isSuccess) {
-      dispatch(setPersonalDetails(data.data.personalDetails));
+      dispatch(setEducationDetails(data.data.education));
     }
 
     if (isError) {
       toastError("", error);
       return navigate("/");
     }
-  }, [dispatch, getPersonalInfoResult, navigate]);
+  }, [dispatch, getEducationInfoResult, navigate]);
   return <></>;
 };
 
-export default FetchPersonalDetails;
+export default FetchEducationDetails;

@@ -17,14 +17,23 @@ const initialState = {
     facebook: "",
     otherSocialMedia: [],
   },
-  socialMedia: {
-    linkedin: "",
-    github: "",
-  },
-  address: {
-    city: "",
-    country: "",
-  },
+  education: [
+    {
+      specialization: "",
+      name: "",
+      percentage: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      start_month: "",
+      end_month: "",
+      start_year: "",
+      end_year: "",
+      description: "",
+      category: "",
+      otherCategory: "",
+    },
+  ],
 };
 
 export const resumeSlice = createSlice({
@@ -42,6 +51,13 @@ export const resumeSlice = createSlice({
         state.contactDetails = { ...action.payload };
       }
     },
+
+    setEducationDetails: (state, action) => {
+      if (action.payload) {
+        state.education = [...action.payload];
+      }
+    },
+
     setResume: (state, action) => {
       return { ...action.payload };
     },
@@ -61,6 +77,7 @@ export const resumeSlice = createSlice({
 export const {
   setPersonalDetails,
   setContactInfo,
+  setEducationDetails,
   setResume,
   setContactDetails,
 } = resumeSlice.actions;
@@ -69,3 +86,4 @@ export default resumeSlice.reducer;
 
 export const getPersonalDetails = (state) => state.resume.personalDetails;
 export const getContactDetails = (state) => state.resume.contactDetails;
+export const getEducationDetails = (state) => state.resume.education;

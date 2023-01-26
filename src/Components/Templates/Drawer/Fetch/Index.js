@@ -1,5 +1,6 @@
 import React from "react";
 import FetchContactDetails from "./FetchContactDetails";
+import FetchEducationDetails from "./FetchEducationDetails";
 import FetchPersonalDetails from "./FetchPersonalDetails";
 
 const FetchResume = () => {
@@ -7,6 +8,7 @@ const FetchResume = () => {
     <div>
       <FetchPersonalDetails />
       <FetchContactDetails />
+      <FetchEducationDetails />
     </div>
   );
 };
