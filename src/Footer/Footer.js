@@ -82,7 +82,7 @@ import {
 const Footer = () => {
     const navigate=useNavigate();
   return (
-    <Grid container style={{backgroundColor:'#050b17',color:'white',paddingBottom:'30px',bottom:0}}>
+    <Grid container style={{backgroundColor:'#050b17',color:'white',padding:'10px 100px',bottom:0}}>
         <Grid item lg={4} md={4} sm={12} xs={12} style={{padding:'10px 30px'}}>
            <Stack  direction='column' spacing={2} >
                 <Typography variant='h4' fontWeight={600}>Contact Us</Typography>

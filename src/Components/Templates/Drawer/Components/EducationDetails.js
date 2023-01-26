@@ -35,8 +35,11 @@ const Education = () => {
   const [location, setlocation] = useState(" ");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [startmonth, setstartmonth] = useState(new Date());
+  const [endmonth, setendmonth] = useState(new Date());
   const [loading, setLoading] = useState(false);
   const [addEduction, setAddEducation] = useState(false);
+  
 
   const [educations, setEducations] = useState([]);
 
@@ -197,28 +200,88 @@ const Education = () => {
                 value={location}
                 onChange={(e) => setlocation(e.target.value)}
               />
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                  label="Start Date"
+              <FormControl fullWidth>
+                <InputLabel>Start Month</InputLabel>
+                <Select
                   variant="standard"
-                  value={startDate}
-                  onChange={(newValue) => {
-                    setStartDate(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                  label="End Date"
-                  variant=""
-                  value={endDate}
-                  onChange={(newValue) => {
-                    setEndDate(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+                  required
+                  value={startmonth}
+                  label="startmonth"
+                  onChange={(e) => setstartmonth(e.target.value)}
+                >
+                  <MenuItem value="January">January</MenuItem>
+                  <MenuItem value="February">February</MenuItem>
+                  <MenuItem value="March">March</MenuItem>
+                  <MenuItem value="April">April</MenuItem>
+                  <MenuItem value="May">May</MenuItem>
+                  <MenuItem value="June">June</MenuItem>
+                  <MenuItem value="July">July</MenuItem>
+                  <MenuItem value="August">August</MenuItem>
+                  <MenuItem value="September">September</MenuItem>
+                  <MenuItem value="October">October</MenuItem>
+                  <MenuItem value="November">November</MenuItem>
+                  <MenuItem value="December">December</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl fullWidth>
+                <InputLabel>Category</InputLabel>
+                <Select
+                  variant="standard"
+                  required
+                  value={category}
+                  label="Category"
+                  onChange={(e) => setcategory(e.target.value)}
+                >
+                  <MenuItem value="secondary">Secondary</MenuItem>
+                  <MenuItem value="Higher Secondary">Higher Secondary</MenuItem>
+                  <MenuItem value="Diploma">Diploma</MenuItem>
+                  <MenuItem value="Graduation">Graduation</MenuItem>
+                  <MenuItem value="Post Graduation">Post Graduation</MenuItem>
+                  <MenuItem value="PhD">PhD</MenuItem>
+                  <MenuItem value="Others">Others</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl fullWidth>
+                <InputLabel>End Month</InputLabel>
+                <Select
+                  variant="standard"
+                  required
+                  value={endmonth}
+                  label="endmonth"
+                  onChange={(e) => setendmonth(e.target.value)}
+                >
+                  <MenuItem value="January">January</MenuItem>
+                  <MenuItem value="February">February</MenuItem>
+                  <MenuItem value="March">March</MenuItem>
+                  <MenuItem value="April">April</MenuItem>
+                  <MenuItem value="May">May</MenuItem>
+                  <MenuItem value="June">June</MenuItem>
+                  <MenuItem value="July">July</MenuItem>
+                  <MenuItem value="August">August</MenuItem>
+                  <MenuItem value="September">September</MenuItem>
+                  <MenuItem value="October">October</MenuItem>
+                  <MenuItem value="November">November</MenuItem>
+                  <MenuItem value="December">December</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl fullWidth>
+                <InputLabel>Category</InputLabel>
+                <Select
+                  variant="standard"
+                  required
+                  value={category}
+                  label="Category"
+                  onChange={(e) => setcategory(e.target.value)}
+                >
+                  <MenuItem value="secondary">Secondary</MenuItem>
+                  <MenuItem value="Higher Secondary">Higher Secondary</MenuItem>
+                  <MenuItem value="Diploma">Diploma</MenuItem>
+                  <MenuItem value="Graduation">Graduation</MenuItem>
+                  <MenuItem value="Post Graduation">Post Graduation</MenuItem>
+                  <MenuItem value="PhD">PhD</MenuItem>
+                  <MenuItem value="Others">Others</MenuItem>
+                </Select>
+              </FormControl>
               <LoadingButton loading={loading} type="submit">
                 Update
               </LoadingButton>
