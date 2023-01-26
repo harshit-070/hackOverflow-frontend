@@ -1,11 +1,25 @@
 import {
   Box,
+  Button,
   Drawer,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  InputLabel,
   List,
   ListItem,
   ListItemButton,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+  Stack,
+  TextField,
   Typography,
 } from "@mui/material";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
   Architecture,
   ContactPage,
@@ -28,12 +42,24 @@ import Achievements from "./Achievements";
 import Template1 from "./Template/1";
 import Template3 from "./Template/3/Template3";
 import Teamplate_1 from "./Template/1";
+import { LoadingButton } from "@mui/lab";
 
 const drawerWidth = 250;
 
 const Information = ({ open, setOpen }) => {
   const [tagline, settagline] = useState("Your CV Sections");
   const [selected, setSelect] = useState(0);
+  const [add, setAdd] = useState(false);
+  const [value, setValue] = useState("");
+  const [sectionname, setsectionname] = useState("");
+  const [title, settitle] = useState("");
+  const [description, setdescription] = useState("");
+  const [category, setcategory] = useState("");
+  const [subtitle, setsubtitle] = useState("");
+  const [location, setlocation] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <Drawer
@@ -164,7 +190,156 @@ const Information = ({ open, setOpen }) => {
               {selected === 7 ? <Achievements /> : ""}
             </>
           )}
+          <Button
+          variant='outlined'
+          size='small'
+          fullWidth
+          onClick={()=>setAdd(true)}
+          >
+            Add Sections
+          </Button>
+          {
+            add?
+            <>
+            <Box>
+            <FormControl>
+              <FormLabel id="demo-controlled-radio-buttons-group">Choose Section Type</FormLabel>
+              <RadioGroup
+                aria-labelledby="demo-controlled-radio-buttons-group"
+                name="controlled-radio-buttons-group"
+                value={value}
+                onChange={(e)=>setValue(e.target.value)}
+              >
+                <FormControlLabel value="Experience Type" control={<Radio />} label="Experience Type" />
+                <FormControlLabel value="Achievement Type" control={<Radio />} label="Achievement Type" />
+              </RadioGroup>
+            </FormControl>
+            </Box>
+            </>
+            :
+            null
+          }
         </Box>
+        {
+          value==='Experience Type'?
+          <>
+          <Stack direction="column" spacing={2}>
+          <form /*onSubmit={handleUpdateResume}*/>
+            <TextField
+              size="small"
+              variant="standard"
+              label="Enter Section Name"
+              value={sectionname}
+              onChange={(e) => setsectionname(e.target.value)}
+              required
+            />
+            <Stack direction="column" spacing={2}>
+              <TextField
+                size="small"
+                variant="standard"
+                label="Title"
+                value={title}
+                onChange={(e) => settitle(e.target.value)}
+                required
+              />
+              <Box sx={{ minWidth: 120 }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    Category
+                  </InputLabel>
+                  <Select
+                    variant="standard"
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={category}
+                    label="Category"
+                    onChange={(e) => setcategory(e.target.value)}
+                  >
+                    <MenuItem value="Others">Others</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+
+              <TextField
+                variant="standard"
+                label="Subtitile"
+                value={subtitle}
+                onChange={(e) => setsubtitle(e.target.value)}
+                required
+              />
+              <TextField
+                variant="standard"
+                label="Location"
+                value={location}
+                onChange={(e) => setlocation(e.target.value)}
+                required
+              />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Start Date"
+                  variant="standard"
+                  value={startDate}
+                  onChange={(newValue) => {
+                    setStartDate(newValue);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="End Date"
+                  variant=""
+                  value={endDate}
+                  onChange={(newValue) => {
+                    setEndDate(newValue);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+              <TextField
+                variant="standard"
+                label="Description"
+                multiline
+                value={description}
+                onChange={(e) => setdescription(e.target.value)}
+                required
+              />
+              <LoadingButton loading={loading} type="submit">
+                Update
+              </LoadingButton>
+            </Stack>
+          </form>
+          </Stack>
+          </>
+          :
+          <>
+          <form /*onSubmit={handleSubmit}*/>
+          <TextField
+              size="small"
+              variant="standard"
+              label="Enter Setion Name"
+              value={sectionname}
+              onChange={(e) => setsectionname(e.target.value)}
+              required
+            />
+          <Stack direction="column">
+            <TextField
+              size="small"
+              variant="standard"
+              required
+              multiline
+              label="Description"
+              value={description}
+              onChange={(e) => setdescription(e.target.value)}
+              sx={{ marginBottom: "15px", overflowX: "hidden" }}
+            />
+            <LoadingButton type="submit" loading={loading}>
+              Update{" "}
+            </LoadingButton>
+          </Stack>
+        </form>
+          </>
+        }
       </Drawer>
     </>
   );

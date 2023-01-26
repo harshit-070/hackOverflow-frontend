@@ -64,7 +64,7 @@ const Login = ({ setLogin }) => {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box sx={{ display: "flex", justifyContent: "center",borderRadius:"20px"}}>
       <Stack
         direction="column"
         spacing={2}

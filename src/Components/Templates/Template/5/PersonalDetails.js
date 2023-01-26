@@ -3,7 +3,7 @@ import React from "react";
 
 const PersonalDetails = () => {
   return (
-    <Box sx={{marginBottom:'1rem'}}>
+    <Box sx={{marginBottom:'2rem'}}>
       <Box>
         <Box></Box>
         <Typography variant='h3' fontWeight={600} sx={{color:'navy'}}>Shivam Kumar</Typography>
