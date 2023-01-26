@@ -225,9 +225,11 @@ const Information = ({ open, setOpen }) => {
                 </FormControl>
               </Box>
             </>
-          ) : null}
+          ) : (
+            <></>
+          )}
         </Box>
-        {value === "Experience Type" ? (
+        {selected === 0 && add && value === "Experience Type" ? (
           <>
             <Stack direction="column" spacing={2}>
               <form /*onSubmit={handleUpdateResume}*/>
@@ -317,7 +319,7 @@ const Information = ({ open, setOpen }) => {
               </form>
             </Stack>
           </>
-        ) : (
+        ) : selected === 0 && add && value === "Achievement Type" ? (
           <>
             <form /*onSubmit={handleSubmit}*/>
               <TextField
@@ -345,6 +347,8 @@ const Information = ({ open, setOpen }) => {
               </Stack>
             </form>
           </>
+        ) : (
+          <></>
         )}
       </Drawer>
     </>
@@ -352,3 +356,31 @@ const Information = ({ open, setOpen }) => {
 };
 
 export default Information;
+
+// <>
+//             <form /*onSubmit={handleSubmit}*/>
+//               <TextField
+//                 size="small"
+//                 variant="standard"
+//                 label="Enter Setion Name"
+//                 value={sectionname}
+//                 onChange={(e) => setsectionname(e.target.value)}
+//                 required
+//               />
+//               <Stack direction="column">
+//                 <TextField
+//                   size="small"
+//                   variant="standard"
+//                   required
+//                   multiline
+//                   label="Description"
+//                   value={description}
+//                   onChange={(e) => setdescription(e.target.value)}
+//                   sx={{ marginBottom: "15px", overflowX: "hidden" }}
+//                 />
+//                 <LoadingButton type="submit" loading={loading}>
+//                   Update{" "}
+//                 </LoadingButton>
+//               </Stack>
+//             </form>
+//           </>

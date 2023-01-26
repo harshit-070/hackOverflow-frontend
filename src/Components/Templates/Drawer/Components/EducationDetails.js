@@ -14,9 +14,6 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useUpdateEducationInfoMutation } from "../../../../service/resume.service";
 import { toastError, toastSuccess } from "../../../../utils/toastMessage";
 import { Delete, Edit } from "@mui/icons-material";
@@ -29,17 +26,16 @@ const Education = () => {
   const [id, setID] = useState(" ");
   const [education, seteducation] = useState(" ");
   const [category, setcategory] = useState("");
-  const [otherCategory, setOtherCategory] = useState(" ");
+  const [otherCategory, setOtherCategory] = useState("");
   const [institute, setinstitute] = useState(" ");
   const [percentage, setpercentage] = useState(" ");
   const [location, setlocation] = useState(" ");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [startmonth, setstartmonth] = useState(new Date());
-  const [endmonth, setendmonth] = useState(new Date());
+  const [startMonth, setStartMonth] = useState("January");
+  const [startYear, setStartYear] = useState(1973);
+  const [endMonth, setEndMonth] = useState("January");
+  const [endYear, setEndYear] = useState(1973);
   const [loading, setLoading] = useState(false);
   const [addEduction, setAddEducation] = useState(false);
-  
 
   const [educations, setEducations] = useState([]);
 
@@ -50,10 +46,40 @@ const Education = () => {
   const [updateEducationInfo, updateEducationResult] =
     useUpdateEducationInfoMutation();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const isInsertingEducation = () => {
+    return (
+      addEduction ||
+      education !== " " ||
+      institute !== " " ||
+      percentage !== " " ||
+      location !== " " ||
+      startMonth !== "January" ||
+      endMonth !== "January" ||
+      startYear !== 1973 ||
+      endYear !== 1973
+    );
+  };
+
+  const initData = () => {
+    setID(" ");
+    seteducation(" ");
+    setcategory("");
+    setOtherCategory(" ");
+    setinstitute(" ");
+    setpercentage(" ");
+    setlocation(" ");
+    setStartMonth("January");
+    setEndMonth("January");
+    setStartYear(1973);
+    setEndYear(1973);
+  };
+
   useEffect(() => {
     const { isLoading, isSuccess, isError, error } = updateEducationResult;
     setLoading(isLoading);
     if (isSuccess) {
+      setAddEducation(false);
       toastSuccess("Resume Updated");
     }
 
@@ -64,19 +90,9 @@ const Education = () => {
 
   useEffect(() => {
     if (educationDetails) {
-      setID("");
-      seteducation(" ");
-      setcategory("");
-      setOtherCategory(" ");
-      setinstitute(" ");
-      setpercentage(" ");
-      setlocation(" ");
-      setStartDate(new Date());
-      setEndDate(new Date());
-      setAddEducation(false);
       setEducations(educationDetails || []);
     }
-  }, [educationDetails]);
+  }, [educationDetails, isInsertingEducation]);
 
   const handleUpdateResume = (e) => {
     e.preventDefault();
@@ -89,8 +105,10 @@ const Education = () => {
       location,
       category,
       otherCategory,
-      startDate,
-      endDate,
+      start_year: parseInt(startYear),
+      end_year: parseInt(endYear),
+      start_month: startMonth,
+      end_month: endMonth,
     };
 
     if (id) {
@@ -103,15 +121,7 @@ const Education = () => {
   };
 
   const handleAddEducation = () => {
-    setID("");
-    seteducation(" ");
-    setcategory("");
-    setOtherCategory(" ");
-    setinstitute(" ");
-    setpercentage(" ");
-    setlocation(" ");
-    setStartDate(new Date());
-    setEndDate(new Date());
+    initData();
     setAddEducation(true);
   };
 
@@ -125,9 +135,10 @@ const Education = () => {
     setinstitute(data[0].name);
     setpercentage(data[0].percentage);
     setlocation(data[0].location);
-    setStartDate(data[0].startDate);
-    setEndDate(data[0].endDate);
-    // set
+    setStartMonth(data[0].start_month);
+    setEndMonth(data[0].end_month);
+    setStartYear(data[0].start_year);
+    setEndYear(data[0].end_year);
   };
 
   const handleDeleteEducation = (_id) => {
@@ -136,7 +147,7 @@ const Education = () => {
   };
 
   return (
-    <form onSubmit={handleUpdateResume}>
+    <>
       <Stack direction="column" spacing={2}>
         {addEduction ? (
           <form onSubmit={handleUpdateResume}>
@@ -149,36 +160,19 @@ const Education = () => {
                 value={education}
                 onChange={(e) => seteducation(e.target.value)}
               />
-
-              <FormControl fullWidth>
-                <InputLabel>Category</InputLabel>
-                <Select
-                  variant="standard"
-                  required
-                  value={category}
-                  label="Category"
-                  onChange={(e) => setcategory(e.target.value)}
-                >
-                  <MenuItem value="secondary">Secondary</MenuItem>
-                  <MenuItem value="Higher Secondary">Higher Secondary</MenuItem>
-                  <MenuItem value="Diploma">Diploma</MenuItem>
-                  <MenuItem value="Graduation">Graduation</MenuItem>
-                  <MenuItem value="Post Graduation">Post Graduation</MenuItem>
-                  <MenuItem value="PhD">PhD</MenuItem>
-                  <MenuItem value="Others">Others</MenuItem>
-                </Select>
-              </FormControl>
+              <Category value={category} setValue={setcategory} />
               {category === "Others" ? (
                 <TextField
                   size="small"
                   required
                   variant="standard"
-                  label="Add Category"
+                  label="Category"
                   value={otherCategory}
                   onChange={(e) => setOtherCategory(e.target.value)}
                 />
-              ) : null}
-
+              ) : (
+                <></>
+              )}
               <TextField
                 variant="standard"
                 label="Institute Name"
@@ -200,90 +194,28 @@ const Education = () => {
                 value={location}
                 onChange={(e) => setlocation(e.target.value)}
               />
-              <FormControl fullWidth>
-                <InputLabel>Start Month</InputLabel>
-                <Select
-                  variant="standard"
-                  required
-                  value={startmonth}
-                  label="startmonth"
-                  onChange={(e) => setstartmonth(e.target.value)}
-                >
-                  <MenuItem value="January">January</MenuItem>
-                  <MenuItem value="February">February</MenuItem>
-                  <MenuItem value="March">March</MenuItem>
-                  <MenuItem value="April">April</MenuItem>
-                  <MenuItem value="May">May</MenuItem>
-                  <MenuItem value="June">June</MenuItem>
-                  <MenuItem value="July">July</MenuItem>
-                  <MenuItem value="August">August</MenuItem>
-                  <MenuItem value="September">September</MenuItem>
-                  <MenuItem value="October">October</MenuItem>
-                  <MenuItem value="November">November</MenuItem>
-                  <MenuItem value="December">December</MenuItem>
-                </Select>
-              </FormControl>
-              <FormControl fullWidth>
-                <InputLabel>Category</InputLabel>
-                <Select
-                  variant="standard"
-                  required
-                  value={category}
-                  label="Category"
-                  onChange={(e) => setcategory(e.target.value)}
-                >
-                  <MenuItem value="secondary">Secondary</MenuItem>
-                  <MenuItem value="Higher Secondary">Higher Secondary</MenuItem>
-                  <MenuItem value="Diploma">Diploma</MenuItem>
-                  <MenuItem value="Graduation">Graduation</MenuItem>
-                  <MenuItem value="Post Graduation">Post Graduation</MenuItem>
-                  <MenuItem value="PhD">PhD</MenuItem>
-                  <MenuItem value="Others">Others</MenuItem>
-                </Select>
-              </FormControl>
-              <FormControl fullWidth>
-                <InputLabel>End Month</InputLabel>
-                <Select
-                  variant="standard"
-                  required
-                  value={endmonth}
-                  label="endmonth"
-                  onChange={(e) => setendmonth(e.target.value)}
-                >
-                  <MenuItem value="January">January</MenuItem>
-                  <MenuItem value="February">February</MenuItem>
-                  <MenuItem value="March">March</MenuItem>
-                  <MenuItem value="April">April</MenuItem>
-                  <MenuItem value="May">May</MenuItem>
-                  <MenuItem value="June">June</MenuItem>
-                  <MenuItem value="July">July</MenuItem>
-                  <MenuItem value="August">August</MenuItem>
-                  <MenuItem value="September">September</MenuItem>
-                  <MenuItem value="October">October</MenuItem>
-                  <MenuItem value="November">November</MenuItem>
-                  <MenuItem value="December">December</MenuItem>
-                </Select>
-              </FormControl>
-              <FormControl fullWidth>
-                <InputLabel>Category</InputLabel>
-                <Select
-                  variant="standard"
-                  required
-                  value={category}
-                  label="Category"
-                  onChange={(e) => setcategory(e.target.value)}
-                >
-                  <MenuItem value="secondary">Secondary</MenuItem>
-                  <MenuItem value="Higher Secondary">Higher Secondary</MenuItem>
-                  <MenuItem value="Diploma">Diploma</MenuItem>
-                  <MenuItem value="Graduation">Graduation</MenuItem>
-                  <MenuItem value="Post Graduation">Post Graduation</MenuItem>
-                  <MenuItem value="PhD">PhD</MenuItem>
-                  <MenuItem value="Others">Others</MenuItem>
-                </Select>
-              </FormControl>
+              <MonthPicker
+                value={startMonth}
+                setValue={setStartMonth}
+                label={"Start Month"}
+              />
+              <YearPicker
+                value={startYear}
+                setValue={setStartYear}
+                label="Start Year"
+              />
+              <MonthPicker
+                value={endMonth}
+                setValue={setEndMonth}
+                label={"End Month"}
+              />
+              <YearPicker
+                value={endYear}
+                setValue={setEndYear}
+                label="End Year"
+              />
               <LoadingButton loading={loading} type="submit">
-                Update
+                {id === " " ? "Add" : "Update"}
               </LoadingButton>
             </Stack>
           </form>
@@ -337,7 +269,83 @@ const Education = () => {
           );
         })}
       </Stack>
-    </form>
+    </>
+  );
+};
+
+const Category = ({ value, setValue }) => {
+  return (
+    <FormControl fullWidth>
+      <InputLabel>Category</InputLabel>
+      <Select
+        variant="standard"
+        required
+        value={value}
+        label="Category"
+        onChange={(e) => setValue(e.target.value)}
+      >
+        <MenuItem value="secondary">Secondary</MenuItem>
+        <MenuItem value="Higher Secondary">Higher Secondary</MenuItem>
+        <MenuItem value="Diploma">Diploma</MenuItem>
+        <MenuItem value="Graduation">Graduation</MenuItem>
+        <MenuItem value="Post Graduation">Post Graduation</MenuItem>
+        <MenuItem value="PhD">PhD</MenuItem>
+        <MenuItem value="Others">Others</MenuItem>
+      </Select>
+    </FormControl>
+  );
+};
+
+const MonthPicker = ({ value, setValue, label }) => {
+  return (
+    <FormControl fullWidth>
+      <InputLabel>{label}</InputLabel>
+      <Select
+        variant="standard"
+        required
+        value={value}
+        label={label}
+        onChange={(e) => setValue(e.target.value)}
+      >
+        <MenuItem value="January">January</MenuItem>
+        <MenuItem value="February">February</MenuItem>
+        <MenuItem value="March">March</MenuItem>
+        <MenuItem value="April">April</MenuItem>
+        <MenuItem value="May">May</MenuItem>
+        <MenuItem value="June">June</MenuItem>
+        <MenuItem value="July">July</MenuItem>
+        <MenuItem value="August">August</MenuItem>
+        <MenuItem value="September">September</MenuItem>
+        <MenuItem value="October">October</MenuItem>
+        <MenuItem value="November">November</MenuItem>
+        <MenuItem value="December">December</MenuItem>
+      </Select>
+    </FormControl>
+  );
+};
+
+const YearPicker = ({ value, setValue, label }) => {
+  const year = new Date().getFullYear() - 50;
+  const years = Array.from(new Array(80), (val, index) => index + year);
+  return (
+    <FormControl fullWidth>
+      <InputLabel>{label}</InputLabel>
+      <Select
+        variant="standard"
+        required
+        value={value}
+        label={label}
+        onChange={(e) => setValue(e.target.value)}
+      >
+        {years.map((year, index) => {
+          return (
+            <MenuItem value={year} key={index}>
+              {year}
+            </MenuItem>
+          );
+        })}
+      </Select>
+    </FormControl>
   );
 };
 
