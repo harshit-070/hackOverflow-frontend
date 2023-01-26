@@ -18,6 +18,7 @@ import { useUpdateEducationInfoMutation } from "../../../../service/resume.servi
 import { toastError, toastSuccess } from "../../../../utils/toastMessage";
 import { Delete, Edit } from "@mui/icons-material";
 import { getEducationDetails } from "../../../../feature/resumeSlice";
+import { MonthPicker, YearPicker } from "./InputField";
 
 const StyledButton = styled(Button)`
   text-transform: none;
@@ -45,21 +46,6 @@ const Education = () => {
 
   const [updateEducationInfo, updateEducationResult] =
     useUpdateEducationInfoMutation();
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const isInsertingEducation = () => {
-    return (
-      addEduction ||
-      education !== " " ||
-      institute !== " " ||
-      percentage !== " " ||
-      location !== " " ||
-      startMonth !== "January" ||
-      endMonth !== "January" ||
-      startYear !== 1973 ||
-      endYear !== 1973
-    );
-  };
 
   const initData = () => {
     setID(" ");
@@ -92,7 +78,7 @@ const Education = () => {
     if (educationDetails) {
       setEducations(educationDetails || []);
     }
-  }, [educationDetails, isInsertingEducation]);
+  }, [educationDetails]);
 
   const handleUpdateResume = (e) => {
     e.preventDefault();
@@ -291,59 +277,6 @@ const Category = ({ value, setValue }) => {
         <MenuItem value="Post Graduation">Post Graduation</MenuItem>
         <MenuItem value="PhD">PhD</MenuItem>
         <MenuItem value="Others">Others</MenuItem>
-      </Select>
-    </FormControl>
-  );
-};
-
-const MonthPicker = ({ value, setValue, label }) => {
-  return (
-    <FormControl fullWidth>
-      <InputLabel>{label}</InputLabel>
-      <Select
-        variant="standard"
-        required
-        value={value}
-        label={label}
-        onChange={(e) => setValue(e.target.value)}
-      >
-        <MenuItem value="January">January</MenuItem>
-        <MenuItem value="February">February</MenuItem>
-        <MenuItem value="March">March</MenuItem>
-        <MenuItem value="April">April</MenuItem>
-        <MenuItem value="May">May</MenuItem>
-        <MenuItem value="June">June</MenuItem>
-        <MenuItem value="July">July</MenuItem>
-        <MenuItem value="August">August</MenuItem>
-        <MenuItem value="September">September</MenuItem>
-        <MenuItem value="October">October</MenuItem>
-        <MenuItem value="November">November</MenuItem>
-        <MenuItem value="December">December</MenuItem>
-      </Select>
-    </FormControl>
-  );
-};
-
-const YearPicker = ({ value, setValue, label }) => {
-  const year = new Date().getFullYear() - 50;
-  const years = Array.from(new Array(80), (val, index) => index + year);
-  return (
-    <FormControl fullWidth>
-      <InputLabel>{label}</InputLabel>
-      <Select
-        variant="standard"
-        required
-        value={value}
-        label={label}
-        onChange={(e) => setValue(e.target.value)}
-      >
-        {years.map((year, index) => {
-          return (
-            <MenuItem value={year} key={index}>
-              {year}
-            </MenuItem>
-          );
-        })}
       </Select>
     </FormControl>
   );

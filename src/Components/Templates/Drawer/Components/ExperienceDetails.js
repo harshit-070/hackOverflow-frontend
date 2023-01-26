@@ -11,16 +11,14 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { toastError, toastSuccess } from "../../../../utils/toastMessage";
 import { useParams } from "react-router-dom";
 import { useUpdateExperienceInfoMutation } from "../../../../service/resume.service";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { LoadingButton } from "@mui/lab";
 import { Delete, Edit } from "@mui/icons-material";
 import { getExperienceDetails } from "../../../../feature/resumeSlice";
+import { MonthPicker, YearPicker } from "./InputField";
 
 const StyledButton = styled(Button)`
   text-transform: none;
@@ -32,12 +30,27 @@ const Experience = () => {
   const [company, setcompany] = useState("");
   const [location, setlocation] = useState("");
   const [description, setdescription] = useState("");
+  const [startMonth, setStartMonth] = useState("January");
+  const [startYear, setStartYear] = useState(1973);
+  const [endMonth, setEndMonth] = useState("January");
+  const [endYear, setEndYear] = useState(1973);
   const [loading, setLoading] = useState(false);
   const [addExperience, setAddExperience] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-
   const [experiences, setExperiences] = useState([]);
+
+  const initData = () => {
+    setId("");
+    settitle("");
+    setcompany("");
+    setcategory("");
+    setlocation("");
+    setStartMonth("January");
+    setEndMonth("January");
+    setStartYear(1973);
+    setEndYear(1973);
+    setdescription("");
+  };
+
   const experienceDetails = useSelector((state) => getExperienceDetails(state));
   const { resume_id } = useParams();
 
@@ -48,6 +61,7 @@ const Experience = () => {
     const { isLoading, isSuccess, isError, error } = updateExperienceResult;
     setLoading(isLoading);
     if (isSuccess) {
+      setAddExperience(false);
       toastSuccess("Resume Updated");
     }
 
@@ -57,16 +71,8 @@ const Experience = () => {
   }, [updateExperienceResult]);
 
   useEffect(() => {
+    console.log(experienceDetails);
     if (experienceDetails) {
-      setId("");
-      settitle("");
-      setcompany("");
-      setcategory("");
-      setlocation("");
-      setStartDate("");
-      setEndDate("");
-      setdescription("");
-      setAddExperience(false);
       setExperiences(experienceDetails || []);
     }
   }, [experienceDetails]);
@@ -81,9 +87,10 @@ const Experience = () => {
       category,
       location,
       description,
-      startDate,
-      endDate,
-      // start
+      start_year: parseInt(startYear),
+      end_year: parseInt(endYear),
+      start_month: startMonth,
+      end_month: endMonth,
     };
 
     if (id) {
@@ -96,14 +103,7 @@ const Experience = () => {
   };
 
   const handleAddExperience = () => {
-    setId("");
-    settitle("");
-    setcompany("");
-    setcategory("");
-    setlocation("");
-    setStartDate("");
-    setEndDate("");
-    setdescription("");
+    initData();
     setAddExperience(true);
   };
 
@@ -115,8 +115,10 @@ const Experience = () => {
     setcompany(data[0].name);
     setcategory(data[0].category);
     setlocation(data[0].location);
-    setStartDate(data[0].startDate);
-    setEndDate(data[0].endDate);
+    setStartMonth(data[0].start_month);
+    setEndMonth(data[0].end_month);
+    setStartYear(data[0].start_year);
+    setEndYear(data[0].end_year);
     setdescription(data[0].description);
   };
 
@@ -174,28 +176,26 @@ const Experience = () => {
                   onChange={(e) => setlocation(e.target.value)}
                   required
                 />
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label="Start Date"
-                    variant="standard"
-                    value={startDate}
-                    onChange={(newValue) => {
-                      setStartDate(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    label="End Date"
-                    variant=""
-                    value={endDate}
-                    onChange={(newValue) => {
-                      setEndDate(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
+                <MonthPicker
+                  value={startMonth}
+                  setValue={setStartMonth}
+                  label={"Start Month"}
+                />
+                <YearPicker
+                  value={startYear}
+                  setValue={setStartYear}
+                  label="Start Year"
+                />
+                <MonthPicker
+                  value={endMonth}
+                  setValue={setEndMonth}
+                  label={"End Month"}
+                />
+                <YearPicker
+                  value={endYear}
+                  setValue={setEndYear}
+                  label="End Year"
+                />
                 <TextField
                   variant="standard"
                   label="Description"
