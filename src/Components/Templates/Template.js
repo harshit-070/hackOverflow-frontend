@@ -12,6 +12,7 @@ import Template2 from "./Template/2";
 import Template4 from "./Template/4";
 import Template3 from "./Template/3/Template3";
 import FetchResume from "./Drawer/Fetch/Index";
+import Index from "./Template/5";
 
 const Template = () => {
   const [open, setOpen] = useState(false);
@@ -31,7 +32,7 @@ const Template = () => {
             boxShadow: "2px 5px 5px grey",
             borderRadius: "0px 20px 20px 0px",
             padding: "0px 10px",
-            marginTop: "5px",
+            marginTop: "100px",
             cursor: "pointer",
           }}
           onClick={() => setOpen(true)}
@@ -62,7 +63,9 @@ const Template = () => {
             <TabPanel value="4">
               <Template4 />
             </TabPanel>
-            <TabPanel value="5">Comming Soon...</TabPanel>
+            <TabPanel value="5">
+              <Index />
+            </TabPanel>
             <TabPanel value="6">Comming Soon...</TabPanel>
           </TabContext>
         </Box>

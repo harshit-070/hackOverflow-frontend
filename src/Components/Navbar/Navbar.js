@@ -22,7 +22,7 @@ const Navbar = () => {
   const classes = useStyles();
 
   return (
-    <AppBar className={classes.header}>
+    <AppBar /*className={classes.header}*/ classname='MuiAppBar-root'>
       <Toolbar 
         >
           <Box
