@@ -1,3 +1,4 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { apiSlice } from "./api";
 
 export const UserApi = apiSlice.injectEndpoints({

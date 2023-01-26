@@ -1,14 +1,12 @@
 import { Box } from "@mui/material";
 import React from "react";
-import Tooltip from "@mui/material/Tooltip";
-import Zoom from "@mui/material/Zoom";
 import PersonalDetails from "./PersonalDetails";
-const Index = ({ personalDetails }) => {
+import ContactDetails from "./ContactDetails";
+const Index = () => {
   return (
     <Box>
-      <Tooltip title="Add" TransitionComponent={Zoom} placement="right">
-        <PersonalDetails personalDetails={personalDetails} />
-      </Tooltip>
+      <PersonalDetails />
+      <ContactDetails />
     </Box>
   );
 };

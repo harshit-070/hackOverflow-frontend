@@ -19,8 +19,8 @@ const Teamplate_1 = () => {
     const { isLoading, isError, isSuccess, error, data } = getResumeResult;
     setError(isError);
     setLoading(isLoading);
-    console.log(data);
     if (isSuccess) {
+      console.log(data);
       setData(data.data);
     }
 

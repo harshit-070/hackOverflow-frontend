@@ -11,15 +11,11 @@ import Template1 from "./Template/1";
 import Template2 from "./Template/2";
 import Template4 from "./Template/4";
 import Template3 from "./Template/3/Template3";
+import FetchResume from "./Drawer/Fetch/Index";
 
 const Template = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = React.useState("1");
-
-  const [personalDetails, setPersonalDetails] = useState({
-    name: "",
-    summary: "",
-  });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -27,6 +23,7 @@ const Template = () => {
 
   return (
     <Box>
+      <FetchResume />
       <Box style={{ display: "flex", alignItems: "flex-start" }}>
         <Box
           style={{
@@ -59,15 +56,9 @@ const Template = () => {
                 <Tab label="Template Six" value="6" />
               </TabList>
             </Box>
-            <TabPanel value="1">
-              <Template1 />
-            </TabPanel>
-            <TabPanel value="2">
-              <Template2 />
-            </TabPanel>
-            <TabPanel value="3">
-              <Template3 />
-            </TabPanel>
+            <TabPanel value="1">{/* <Template1 /> */}</TabPanel>
+            <TabPanel value="2">{/* <Template2 /> */}</TabPanel>
+            <TabPanel value="3">{/* <Template3 /> */}</TabPanel>
             <TabPanel value="4">
               <Template4 />
             </TabPanel>

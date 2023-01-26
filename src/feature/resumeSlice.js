@@ -5,9 +5,17 @@ const initialState = {
     name: "",
     summary: "",
   },
+  loading: false,
   contact: {
     email: "",
     number: "",
+    city: "",
+    country: "",
+    linkedin: "",
+    github: "",
+    instagram: "",
+    facebook: "",
+    otherSocialMedia: [],
   },
   socialMedia: {
     linkedin: "",
@@ -23,8 +31,19 @@ export const resumeSlice = createSlice({
   name: "resume",
   initialState,
   reducers: {
-    setPersonalInfo: (state, action) => {
-      state.personalDetails = action.payload;
+    setPersonalDetails: (state, action) => {
+      if (action.payload) {
+        state.personalDetails = { ...action.payload };
+      }
+    },
+
+    setContactDetails: (state, action) => {
+      if (action.payload) {
+        state.contactDetails = { ...action.payload };
+      }
+    },
+    setResume: (state, action) => {
+      return { ...action.payload };
     },
 
     setContactInfo: (state, action) => {
@@ -39,6 +58,14 @@ export const resumeSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setPersonalInfo, setContactInfo } = resumeSlice.actions;
+export const {
+  setPersonalDetails,
+  setContactInfo,
+  setResume,
+  setContactDetails,
+} = resumeSlice.actions;
 
 export default resumeSlice.reducer;
+
+export const getPersonalDetails = (state) => state.resume.personalDetails;
+export const getContactDetails = (state) => state.resume.contactDetails;

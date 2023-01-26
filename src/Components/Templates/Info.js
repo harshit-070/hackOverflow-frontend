@@ -1,32 +1,28 @@
 import { LoadingButton } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setPersonalInfo } from "../../feature/resumeSlice";
-import {
-  useLazyGetPersonalInfoQuery,
-  useUpdatePersonalInfoMutation,
-} from "../../service/resume.service";
+import { getPersonalDetails } from "../../feature/resumeSlice";
+import { useUpdatePersonalInfoMutation } from "../../service/resume.service";
 import { toastError, toastSuccess } from "../../utils/toastMessage";
 
 const Info = () => {
   const [name, setName] = useState("");
-  const [headline, setHeadline] = useState("");
   const [aboutMe, setAboutMe] = useState("");
   const [loading, setLoading] = useState(false);
+
   const { resume_id } = useParams();
 
-  const [getPersonalInfo, getPersonalInfoResult] =
-    useLazyGetPersonalInfoQuery();
   const [updatePersonalInfo, updatePersonalInfoResult] =
     useUpdatePersonalInfoMutation();
 
-  const dispatch = useDispatch();
-
+  const personalDetails = useSelector((state) => getPersonalDetails(state));
+  console.log(personalDetails);
   useEffect(() => {
-    getPersonalInfo(resume_id);
-  }, [getPersonalInfo, resume_id]);
+    setName(personalDetails?.name || "");
+    setAboutMe(personalDetails.summary || "");
+  }, [personalDetails]);
 
   useEffect(() => {
     const { isLoading, isSuccess, isError, error } = updatePersonalInfoResult;
@@ -40,23 +36,8 @@ const Info = () => {
     }
   }, [updatePersonalInfoResult]);
 
-  useEffect(() => {
-    const { isError, error, isSuccess, data } = getPersonalInfoResult;
-
-    if (isSuccess) {
-      setName(data.data.name);
-      setHeadline(data.data.headline);
-      setAboutMe(data.data.summary);
-      dispatch(setPersonalInfo(data.data));
-    }
-
-    if (isError) {
-      toastError("", error);
-    }
-  }, [dispatch, getPersonalInfoResult]);
-
   const handleUpdateResume = () => {
-    updatePersonalInfo({ resume_id, name, summary: aboutMe, headline });
+    updatePersonalInfo({ resume_id, name, summary: aboutMe });
   };
 
   return (
@@ -68,14 +49,6 @@ const Info = () => {
         required
         value={name}
         onChange={(e) => setName(e.target.value)}
-      />
-      <TextField
-        variant="standard"
-        placeholder="Enter Name"
-        label="Headline"
-        required
-        value={headline}
-        onChange={(e) => setHeadline(e.target.value)}
       />
       <TextField
         variant="standard"
