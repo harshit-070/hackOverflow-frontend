@@ -1,14 +1,11 @@
 import { LoadingButton } from "@mui/lab";
 import { Box, Stack, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setContactInfo } from "../../feature/resumeSlice";
-import {
-  useLazyGetContactInfoQuery,
-  useUpdateContactInfoMutation,
-} from "../../service/resume.service";
-import { toastError, toastSuccess } from "../../utils/toastMessage";
+import { getContactDetails } from "../../../../feature/resumeSlice";
+import { useUpdateContactInfoMutation } from "../../../../service/resume.service";
+import { toastError, toastSuccess } from "../../../../utils/toastMessage";
 
 const ContactDetails = () => {
   const [mobile, setmobile] = useState("");
@@ -21,17 +18,12 @@ const ContactDetails = () => {
   const [instagram, setinstagram] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const contactDetails = useSelector((state) => getContactDetails(state));
+
   const { resume_id } = useParams();
 
-  const [getContactInfo, getContactInfoResult] = useLazyGetContactInfoQuery();
   const [updateContactInfo, updateContactResult] =
     useUpdateContactInfoMutation();
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getContactInfo(resume_id);
-  }, [getContactInfo, resume_id]);
 
   useEffect(() => {
     const { isLoading, isSuccess, isError, error } = updateContactResult;
@@ -46,43 +38,40 @@ const ContactDetails = () => {
   }, [updateContactResult]);
 
   useEffect(() => {
-    const { isError, error, isSuccess, data } = getContactInfoResult;
+    setmobile(contactDetails?.number || "");
+    setemail(contactDetails?.email || "");
+    setcity(contactDetails?.city || "");
+    setcountry(contactDetails?.country || "");
+    setlinkedin(contactDetails?.linkedin);
+    setgithub(contactDetails?.github);
+    setfacebook(contactDetails?.facebook);
+    setinstagram(contactDetails?.instagram);
+  }, [contactDetails]);
 
-    if (isSuccess) {
-      setmobile(data.data.contact?.number);
-      setemail(data.data.contact?.email);
-      setcity(data.data.address?.city);
-      setcountry(data.data.address?.country);
-      setlinkedin(data.data.socialMedia?.linkedin);
-      setgithub(data.data.socialMedia?.github);
-      dispatch(setContactInfo(data.data));
-    }
-
-    if (isError) {
-      toastError("", error);
-    }
-  }, [dispatch, getContactInfoResult]);
-
-  const handleUpdateResume = () => {
-    updateContactInfo({
-      resume_id,
-      contact: {
-        number: mobile,
+  const handleUpdateResume = (e) => {
+    e.preventDefault();
+    try {
+      const number = parseInt(mobile);
+      console.log(number);
+      updateContactInfo({
+        resume_id,
+        number,
         email,
-      },
-      address: {
         city,
         country,
-      },
-      socialMedia: {
         linkedin,
         github,
-      },
-    });
+        facebook,
+        instagram,
+        otherSocialMedia: [],
+      });
+    } catch (error) {
+      toastError(error);
+    }
   };
 
   return (
-    <>
+    <form onSubmit={handleUpdateResume}>
       <Stack direction="column" spacing={2}>
         <TextField
           size="small"
@@ -123,36 +112,32 @@ const ContactDetails = () => {
         <TextField
           variant="standard"
           label="LinkedIn URL"
-          multiline
           value={linkedin}
           onChange={(e) => setlinkedin(e.target.value)}
         />
         <TextField
           variant="standard"
           label="Github URL"
-          multiline
           value={github}
           onChange={(e) => setgithub(e.target.value)}
         />
         <TextField
           variant="standard"
-          label="facebook URL"
-          multiline
+          label="Facebook URL"
           value={facebook}
           onChange={(e) => setfacebook(e.target.value)}
         />
         <TextField
           variant="standard"
-          label="instagram URL"
-          multiline
+          label="Instagram URL"
           value={instagram}
           onChange={(e) => setinstagram(e.target.value)}
         />
-        <LoadingButton onClick={handleUpdateResume} loading={loading}>
+        <LoadingButton type="submit" loading={loading}>
           Update
         </LoadingButton>
       </Stack>
-    </>
+    </form>
   );
 };
 

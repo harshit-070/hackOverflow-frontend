@@ -12,17 +12,15 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import {
-  useLazyGetEducationInfoQuery,
-  useUpdateEducationInfoMutation,
-} from "../../service/resume.service";
-import { toastError, toastSuccess } from "../../utils/toastMessage";
+import { useUpdateEducationInfoMutation } from "../../../../service/resume.service";
+import { toastError, toastSuccess } from "../../../../utils/toastMessage";
 import { Delete, Edit } from "@mui/icons-material";
+import { getEducationDetails } from "../../../../feature/resumeSlice";
 
 const StyledButton = styled(Button)`
   text-transform: none;
@@ -44,16 +42,10 @@ const Education = () => {
 
   const { resume_id } = useParams();
 
-  const [getEducationInfo, getEducationInfoResult] =
-    useLazyGetEducationInfoQuery();
+  const educationDetails = useSelector((state) => getEducationDetails(state));
+
   const [updateEducationInfo, updateEducationResult] =
     useUpdateEducationInfoMutation();
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getEducationInfo(resume_id);
-  }, [getEducationInfo, resume_id]);
 
   useEffect(() => {
     const { isLoading, isSuccess, isError, error } = updateEducationResult;
@@ -68,9 +60,7 @@ const Education = () => {
   }, [updateEducationResult]);
 
   useEffect(() => {
-    const { isError, error, isSuccess, data } = getEducationInfoResult;
-
-    if (isSuccess) {
+    if (educationDetails) {
       setID("");
       seteducation(" ");
       setcategory("");
@@ -81,13 +71,9 @@ const Education = () => {
       setStartDate(new Date());
       setEndDate(new Date());
       setAddEducation(false);
-      setEducations(data.data.education || []);
+      setEducations(educationDetails || []);
     }
-
-    if (isError) {
-      toastError("", error);
-    }
-  }, [dispatch, getEducationInfoResult]);
+  }, [educationDetails]);
 
   const handleUpdateResume = (e) => {
     e.preventDefault();
@@ -147,7 +133,7 @@ const Education = () => {
   };
 
   return (
-    <>
+    <form onSubmit={handleUpdateResume}>
       <Stack direction="column" spacing={2}>
         {addEduction ? (
           <form onSubmit={handleUpdateResume}>
@@ -244,16 +230,16 @@ const Education = () => {
         <StyledButton onClick={handleAddEducation}>
           + Add Education
         </StyledButton>
-        {educations.map((education) => {
+        {educations.map((education, index) => {
           return (
             <Box
+              key={index}
               style={{
                 boxShadow: "0 2px 5px 0 grey",
                 padding: "5px",
                 borderRadius: "10px",
                 display: `${education._id === id ? "none" : "block"}`,
               }}
-              key={education._id}
             >
               <Typography variant="body1" fontWeight={600} component="span">
                 {education.name}
@@ -288,7 +274,7 @@ const Education = () => {
           );
         })}
       </Stack>
-    </>
+    </form>
   );
 };
 

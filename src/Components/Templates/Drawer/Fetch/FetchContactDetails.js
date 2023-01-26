@@ -1,15 +1,9 @@
 import React, { useEffect } from "react";
-import {
-  useLazyGetContactInfoQuery,
-  useLazyGetPersonalInfoQuery,
-} from "../../../../service/resume.service";
+import { useLazyGetContactInfoQuery } from "../../../../service/resume.service";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toastError } from "../../../../utils/toastMessage";
-import {
-  setLoading,
-  setPersonalDetails,
-} from "../../../../feature/resumeSlice";
+import { setContactDetails } from "../../../../feature/resumeSlice";
 
 const FetchContactDetails = () => {
   const [getContactInfo, getContactInfoResult] = useLazyGetContactInfoQuery();
@@ -31,7 +25,7 @@ const FetchContactDetails = () => {
     const { isLoading, isError, isSuccess, error, data } = getContactInfoResult;
 
     if (isSuccess) {
-      dispatch(setPersonalDetails(data.data.personalDetails));
+      dispatch(setContactDetails(data.data.contactDetails));
     }
 
     if (isError) {

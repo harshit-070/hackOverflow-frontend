@@ -11,9 +11,6 @@ import WorkExperinece from "./WorkExperinece";
 const Index = () => {
   return (
     <Box>
-      <PersonalDetails />
-      <ContactDetails />
-
       <Box
         sx={{
           width: "90%",
