@@ -17,6 +17,8 @@ const ContactDetails = () => {
   const [country, setcountry] = useState("");
   const [linkedin, setlinkedin] = useState("");
   const [github, setgithub] = useState("");
+  const [facebook, setfacebook] = useState("");
+  const [instagram, setinstagram] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { resume_id } = useParams();
@@ -122,7 +124,6 @@ const ContactDetails = () => {
           variant="standard"
           label="LinkedIn URL"
           multiline
-          required
           value={linkedin}
           onChange={(e) => setlinkedin(e.target.value)}
         />
@@ -130,9 +131,22 @@ const ContactDetails = () => {
           variant="standard"
           label="Github URL"
           multiline
-          required
           value={github}
           onChange={(e) => setgithub(e.target.value)}
+        />
+        <TextField
+          variant="standard"
+          label="facebook URL"
+          multiline
+          value={facebook}
+          onChange={(e) => setfacebook(e.target.value)}
+        />
+        <TextField
+          variant="standard"
+          label="instagram URL"
+          multiline
+          value={instagram}
+          onChange={(e) => setinstagram(e.target.value)}
         />
         <LoadingButton onClick={handleUpdateResume} loading={loading}>
           Update
