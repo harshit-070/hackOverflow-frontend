@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { useLazyGetCustmoizedSectionsInfoQuery } from "../../../../service/resume.service";
+import { useLazyGetCustmoizedSectionsQuery } from "../../../../service/resume.service";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toastError } from "../../../../utils/toastMessage";
 import { setCustmoizedSectionsDetails } from "../../../../feature/resumeSlice";
 const FetchCustmoizedSectionsDetails = () => {
   const [getCustmoizedSectionsInfo, getCustmoizedSectionsInfoResult] =
-    useLazyGetCustmoizedSectionsInfoQuery();
+    useLazyGetCustmoizedSectionsQuery();
 
   const { resume_id } = useParams();
   const navigate = useNavigate();
