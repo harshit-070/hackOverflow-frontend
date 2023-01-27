@@ -11,8 +11,8 @@ import {
 
 import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
-import { useAddCustomizedSectionMutation } from "../../../../service/resume.service";
-import { toastError, toastSuccess } from "../../../../utils/toastMessage";
+import { useAddCustomizedSectionMutation } from "../../../../../service/resume.service";
+import { toastError, toastSuccess } from "../../../../../utils/toastMessage";
 import { useParams } from "react-router-dom";
 
 const AddSection = ({ setSelected }) => {

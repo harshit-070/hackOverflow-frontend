@@ -34,7 +34,7 @@ const initialState = {
       otherCategory: "",
     },
   ],
-  custmoziedSections: [],
+  customziedSections: [],
   experience: [],
   projects: [],
   skills: [],
@@ -87,9 +87,9 @@ export const resumeSlice = createSlice({
       }
     },
 
-    setCustmoizedSectionsDetails: (state, action) => {
+    setCustomizedSectionsDetails: (state, action) => {
       if (action.payload) {
-        state.custmoziedSections = [...action.payload];
+        state.customziedSections = [...action.payload];
       }
     },
 
@@ -119,7 +119,7 @@ export const {
   setAchievementsDetails,
   setResume,
   setContactDetails,
-  setCustmoizedSectionsDetails,
+  setCustomizedSectionsDetails,
 } = resumeSlice.actions;
 
 export default resumeSlice.reducer;
@@ -131,3 +131,7 @@ export const getExperienceDetails = (state) => state.resume.experience;
 export const getProjectsDetails = (state) => state.resume.projects;
 export const getSkillsDetials = (state) => state.resume.skills;
 export const getAchievementDetails = (state) => state.resume.achievements;
+export const getCustomizedSectionsDetails = (state) =>
+  state.resume.customziedSections;
+export const getCustomizedSectionDetails = (state, id) =>
+  state.resume.customziedSections.find((section) => section._id === id);

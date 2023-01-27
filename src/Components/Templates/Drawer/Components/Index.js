@@ -27,18 +27,22 @@ import Experience from "./ExperienceDetails";
 import Projects from "./ProjectsDetails";
 import Skills from "./SkillsDetails";
 import Achievements from "./AchievementsDetails";
-import Template1 from "../../Template/1";
-import Template3 from "../../Template/3/Template3";
-import Teamplate_1 from "../../Template/1";
-import { LoadingButton } from "@mui/lab";
-import AddSection from "./AddSection";
-import ShowSections from "./ShowSections";
+import AddSection from "./Section/AddSection";
+import SectionLists from "./Section/SectionsLists";
+import ShowSection from "./Section/ShowSection";
 
 const drawerWidth = 250;
 
 const Information = ({ open, setOpen }) => {
   const [tagline, settagline] = useState("Your CV Sections");
   const [selected, setSelect] = useState(0);
+  const [customizedSectionId, setCustomizedSectionId] = useState("");
+
+  const selectSection = (_id, tagline) => {
+    setCustomizedSectionId(_id);
+    setSelect(9);
+    settagline(tagline);
+  };
 
   return (
     <>
@@ -169,7 +173,7 @@ const Information = ({ open, setOpen }) => {
                   </ListItem>
                 </ListItemButton>
               </List>
-              <ShowSections />
+              <SectionLists selectSection={selectSection} />
             </>
           ) : (
             <>
@@ -181,6 +185,11 @@ const Information = ({ open, setOpen }) => {
               {selected === 6 ? <Skills /> : ""}
               {selected === 7 ? <Achievements /> : ""}
               {selected === 8 ? <AddSection setSelected={setSelect} /> : ""}
+              {selected === 9 ? (
+                <ShowSection section_id={customizedSectionId} />
+              ) : (
+                ""
+              )}
             </>
           )}
         </Box>

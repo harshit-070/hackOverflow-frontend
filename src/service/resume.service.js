@@ -140,13 +140,24 @@ export const UserApi = apiSlice.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["CustomizedSections", "Resume"],
     }),
 
-    getCustmoizedSections: builder.query({
+    getCustomizedSections: builder.query({
       query: (resume_id) => ({
-        url: `/resume/custmozied/${resume_id}`,
+        url: `/resume/customized/${resume_id}`,
         method: "GET",
       }),
+      providesTags: ["CustomizedSections"],
+    }),
+
+    updateCustomizedSections: builder.mutation({
+      query: (body) => ({
+        url: `/resume/customized`,
+        method: "POST",
+        body,
+      }),
+      providesTags: ["CustomizedSections"],
     }),
   }),
 });
@@ -169,5 +180,6 @@ export const {
   useLazyGetAchievementsInfoQuery,
   useUpdateAchievementsInfoMutation,
   useAddCustomizedSectionMutation,
-  useLazyGetCustmoizedSectionsQuery,
+  useLazyGetCustomizedSectionsQuery,
+  useUpdateCustomizedSectionsMutation,
 } = UserApi;
