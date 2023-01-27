@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import React from "react";
 import { useState } from "react";
-import Information from "./Information";
+import Information from "./Drawer/Components/Index";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";

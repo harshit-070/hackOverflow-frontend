@@ -57,7 +57,7 @@ const Achievements = () => {
           sx={{ marginBottom: "15px", overflowX: "hidden" }}
         />
         <LoadingButton type="submit" loading={loading}>
-          Update{" "}
+          Update
         </LoadingButton>
       </Stack>
     </form>

@@ -1,7 +1,7 @@
 import { LoadingButton } from "@mui/lab";
 import { Chip, Stack, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getSkillsDetials } from "../../../../feature/resumeSlice";
 import { useUpdateSkillsInfoMutation } from "../../../../service/resume.service";

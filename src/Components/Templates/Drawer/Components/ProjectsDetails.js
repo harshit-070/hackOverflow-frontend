@@ -7,31 +7,31 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useParams } from "react-router-dom";
 import { useUpdateProjectsInfoMutation } from "../../../../service/resume.service";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { toastError, toastSuccess } from "../../../../utils/toastMessage";
 import { LoadingButton } from "@mui/lab";
 import { Delete, Edit } from "@mui/icons-material";
 import { getProjectsDetails } from "../../../../feature/resumeSlice";
+import { MonthPicker, YearPicker } from "./InputField";
 
 const StyledButton = styled(Button)`
   text-transform: none;
 `;
 const Projects = () => {
-  const [id, setId] = useState("");
-  const [title, settitle] = useState("");
-  const [role, setrole] = useState("");
-  const [company, setcompany] = useState("");
-  const [location, setlocation] = useState("");
-  const [description, setdescription] = useState("");
+  const [id, setId] = useState(" ");
+  const [title, settitle] = useState(" ");
+  const [role, setRole] = useState(" ");
+  const [company, setcompany] = useState(" ");
+  const [location, setlocation] = useState(" ");
+  const [description, setdescription] = useState(" ");
+  const [startMonth, setStartMonth] = useState("January");
+  const [startYear, setStartYear] = useState(1973);
+  const [endMonth, setEndMonth] = useState("January");
+  const [endYear, setEndYear] = useState(1973);
   const [loading, setLoading] = useState(false);
-  const [addProject, setProject] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [addProject, setAddProject] = useState(false);
 
   const [projects, setExperiences] = useState([]);
   const projectDetails = useSelector((state) => getProjectsDetails(state));
@@ -40,12 +40,24 @@ const Projects = () => {
   const [updateProjectInfo, updateProjectResult] =
     useUpdateProjectsInfoMutation();
 
-  const dispatch = useDispatch();
+  const initData = () => {
+    setId(" ");
+    settitle(" ");
+    setRole(" ");
+    setcompany(" ");
+    setlocation(" ");
+    setStartMonth("January");
+    setEndMonth("January");
+    setStartYear(1973);
+    setEndYear(1973);
+    setdescription(" ");
+  };
 
   useEffect(() => {
     const { isLoading, isSuccess, isError, error } = updateProjectResult;
     setLoading(isLoading);
     if (isSuccess) {
+      setAddProject(false);
       toastSuccess("Resume Updated");
     }
 
@@ -56,14 +68,6 @@ const Projects = () => {
 
   useEffect(() => {
     if (projectDetails) {
-      setId("");
-      settitle("");
-      setcompany("");
-      setlocation("");
-      setStartDate("");
-      setEndDate("");
-      setdescription("");
-      setProject(false);
       setExperiences(projectDetails || []);
     }
   }, [projectDetails]);
@@ -74,15 +78,17 @@ const Projects = () => {
 
     const dataToBePushed = {
       title,
+      role,
       company,
       location,
       description,
-      startDate,
-      endDate,
-      // start
+      start_year: parseInt(startYear),
+      end_year: parseInt(endYear),
+      start_month: startMonth,
+      end_month: endMonth,
     };
 
-    if (id) {
+    if (id !== " ") {
       dataToBePushed._id = id;
     }
 
@@ -92,25 +98,22 @@ const Projects = () => {
   };
 
   const handleAddProject = () => {
-    setId("");
-    settitle("");
-    setcompany("");
-    setlocation("");
-    setStartDate("");
-    setEndDate("");
-    setdescription("");
-    setProject(true);
+    initData();
+    setAddProject(true);
   };
 
   const handleEditProject = (_id) => {
     const data = projects.filter((project) => project._id === _id);
-    setProject(true);
+    setAddProject(true);
     setId(_id);
     settitle(data[0].title);
-    setcompany(data[0].name);
+    setRole(data[0].role);
+    setcompany(data[0].company);
     setlocation(data[0].location);
-    setStartDate(data[0].startDate);
-    setEndDate(data[0].endDate);
+    setStartMonth(data[0].start_month);
+    setEndMonth(data[0].end_month);
+    setStartYear(data[0].start_year);
+    setEndYear(data[0].end_year);
     setdescription(data[0].description);
   };
 
@@ -138,7 +141,7 @@ const Projects = () => {
                 variant="standard"
                 label="Project Role"
                 value={role}
-                onChange={(e) => setrole(e.target.value)}
+                onChange={(e) => setRole(e.target.value)}
                 required
               />
               <TextField
@@ -155,28 +158,26 @@ const Projects = () => {
                 onChange={(e) => setlocation(e.target.value)}
                 required
               />
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                  label="Start Date"
-                  variant="standard"
-                  value={startDate}
-                  onChange={(newValue) => {
-                    setStartDate(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                  label="End Date"
-                  variant=""
-                  value={endDate}
-                  onChange={(newValue) => {
-                    setEndDate(newValue);
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+              <MonthPicker
+                value={startMonth}
+                setValue={setStartMonth}
+                label={"Start Month"}
+              />
+              <YearPicker
+                value={startYear}
+                setValue={setStartYear}
+                label="Start Year"
+              />
+              <MonthPicker
+                value={endMonth}
+                setValue={setEndMonth}
+                label={"End Month"}
+              />
+              <YearPicker
+                value={endYear}
+                setValue={setEndYear}
+                label="End Year"
+              />
               <TextField
                 variant="standard"
                 multiline

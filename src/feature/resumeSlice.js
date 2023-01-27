@@ -34,6 +34,7 @@ const initialState = {
       otherCategory: "",
     },
   ],
+  custmoziedSections: [],
   experience: [],
   projects: [],
   skills: [],
@@ -86,6 +87,12 @@ export const resumeSlice = createSlice({
       }
     },
 
+    setCustmoizedSectionsDetails: (state, action) => {
+      if (action.payload) {
+        state.custmoziedSections = [...action.payload];
+      }
+    },
+
     setResume: (state, action) => {
       return { ...action.payload };
     },
@@ -112,6 +119,7 @@ export const {
   setAchievementsDetails,
   setResume,
   setContactDetails,
+  setCustmoizedSectionsDetails,
 } = resumeSlice.actions;
 
 export default resumeSlice.reducer;

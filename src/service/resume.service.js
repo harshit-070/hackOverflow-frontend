@@ -133,6 +133,21 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Achievement", "Resume"],
     }),
+
+    addCustomizedSection: builder.mutation({
+      query: (body) => ({
+        url: `/resume/customized/add`,
+        method: "POST",
+        body,
+      }),
+    }),
+
+    getCustmoizedSections: builder.query({
+      query: (resume_id) => ({
+        url: `/resume/custmozied/${resume_id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -153,4 +168,6 @@ export const {
   useUpdateSkillsInfoMutation,
   useLazyGetAchievementsInfoQuery,
   useUpdateAchievementsInfoMutation,
+  useAddCustomizedSectionMutation,
+  useLazyGetCustmoizedSectionsQuery,
 } = UserApi;

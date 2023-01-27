@@ -93,7 +93,7 @@ const Experience = () => {
       end_month: endMonth,
     };
 
-    if (id) {
+    if (id !== " ") {
       dataToBePushed._id = id;
     }
 

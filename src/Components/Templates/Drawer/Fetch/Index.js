@@ -1,6 +1,7 @@
 import React from "react";
 import FetchAchievementsDetails from "./FetchAchievementDetails";
 import FetchContactDetails from "./FetchContactDetails";
+import FetchCustmoizedSectionsDetails from "./FetchCustmoizedSectionDetails";
 import FetchEducationDetails from "./FetchEducationDetails";
 import FetchExperienceDetails from "./FetchExperienceDetails";
 import FetchPersonalDetails from "./FetchPersonalDetails";
@@ -17,6 +18,7 @@ const FetchResume = () => {
       <FetchProjectDetails />
       <FetchSkillsDetails />
       <FetchAchievementsDetails />
+      <FetchCustmoizedSectionsDetails />
     </div>
   );
 };
