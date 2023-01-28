@@ -19,12 +19,13 @@ const ShowSections = ({ selectSection }) => {
   return (
     <>
       <h1>Customized Section</h1>
-      {customizedSections.map((section) => {
+      {customizedSections.map((section, index) => {
         return (
           <List
             onClick={() => {
               selectSection(section._id, section.title);
             }}
+            key={index}
           >
             <ListItemButton>
               <Widgets />

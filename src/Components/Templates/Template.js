@@ -41,6 +41,7 @@ const Template = () => {
             style={{ fontWeight: 600, fontSize: "40px" }}
           />
         </Box>
+
         <Box
           sx={{
             width: "100%",
@@ -73,6 +74,36 @@ const Template = () => {
             </TabPanel>
             <TabPanel value="6">Comming Soon...</TabPanel>
           </TabContext>
+
+          <Information open={open} setOpen={setOpen} />
+
+          <div>
+            <TabContext value={value} sx={{ width: "2480px" }}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <TabList
+                  onChange={handleChange}
+                  aria-label="lab API tabs example"
+                >
+                  <Tab label="Template One" value="1" />
+                  <Tab label="Template Two" value="2" />
+                  <Tab label="Template Three" value="3" />
+                  <Tab label="Template Four" value="4" />
+                  <Tab label="Template Five" value="5" />
+                  <Tab label="Template Six" value="6" />
+                </TabList>
+              </Box>
+              <TabPanel value="1">{/* <Template1 /> */}</TabPanel>
+              <TabPanel value="2">{/* <Template2 /> */}</TabPanel>
+              <TabPanel value="3">{/* <Template3 /> */}</TabPanel>
+              <TabPanel value="4">
+                <Template4 />
+              </TabPanel>
+              <TabPanel value="5">
+                <Index />
+              </TabPanel>
+              <TabPanel value="6">Comming Soon...</TabPanel>
+            </TabContext>
+          </div>
         </Box>
         <Box sx={{ margin: "35px 5px" }}>
           <Button variant="contained" color="success">
@@ -80,7 +111,6 @@ const Template = () => {
           </Button>
         </Box>
       </Box>
-      <Information open={open} setOpen={setOpen} />
     </Box>
   );
 };
