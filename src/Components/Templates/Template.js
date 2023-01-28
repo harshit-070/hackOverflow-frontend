@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import React from "react";
 import { useState } from "react";
@@ -41,8 +41,13 @@ const Template = () => {
             style={{ fontWeight: 600, fontSize: "40px" }}
           />
         </Box>
-
-        <Box sx={{ width: "100%", typography: "body1", padding: "20px" }}>
+        <Box
+          sx={{
+            width: "100%",
+            typography: "body1",
+            padding: "20px",
+          }}
+        >
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <TabList
@@ -68,6 +73,11 @@ const Template = () => {
             </TabPanel>
             <TabPanel value="6">Comming Soon...</TabPanel>
           </TabContext>
+        </Box>
+        <Box sx={{ margin: "35px 5px" }}>
+          <Button variant="contained" color="success">
+            Download
+          </Button>
         </Box>
       </Box>
       <Information open={open} setOpen={setOpen} />

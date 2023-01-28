@@ -1,7 +1,6 @@
-import { Avatar, Button, Stack, styled } from "@mui/material";
-import React, { useContext } from "react";
+import { Button, Stack, styled } from "@mui/material";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-// import { useNavigate } from 'react-router-dom';
 
 //Style
 const StyledButton = styled(Button)`

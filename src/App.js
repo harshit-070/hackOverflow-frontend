@@ -37,7 +37,6 @@ function App() {
               <Route path="/home" element={<Landing />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/edit/resume/:resume_id" element={<EditResume />} />
-              
             </Route>
             <Route path="/edit/resume/:resume_id" element={<EditResume />} />
             <Route path="/forgot" element={<ForgotPassword />} />
