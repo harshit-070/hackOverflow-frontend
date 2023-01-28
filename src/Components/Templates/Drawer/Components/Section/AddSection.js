@@ -66,6 +66,11 @@ const AddSection = ({ setSelected }) => {
               value="Achievement Type"
               control={<Radio />}
               label="Achievement Type"
+            />{" "}
+            <FormControlLabel
+              value="Skill Type"
+              control={<Radio />}
+              label="Skill Type"
             />
           </RadioGroup>
         </FormControl>

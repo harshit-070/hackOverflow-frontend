@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { getCustomizedSectionsDetails } from "../../../../../feature/resumeSlice";
 import AchievementTypeSection from "./AchievementTypeSection";
 import ExperienceTypeSection from "./ExperienceTypeSection";
+import SkillTypeSections from "./SkillTypeSections";
 
 const ShowSection = ({ section_id }) => {
   const [section, setSection] = useState({});
@@ -26,6 +27,11 @@ const ShowSection = ({ section_id }) => {
       )}
       {section.type === "Experience Type" ? (
         <ExperienceTypeSection _id={section._id} />
+      ) : (
+        <></>
+      )}
+      {section.type === "Skill Type" ? (
+        <SkillTypeSections _id={section._id} />
       ) : (
         <></>
       )}

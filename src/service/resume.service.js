@@ -157,7 +157,7 @@ export const UserApi = apiSlice.injectEndpoints({
         method: "POST",
         body,
       }),
-      providesTags: ["CustomizedSections"],
+      invalidatesTags: ["CustomizedSections", "Resume"],
     }),
   }),
 });
