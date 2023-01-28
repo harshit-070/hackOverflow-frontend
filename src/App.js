@@ -18,6 +18,8 @@ import ViewResume from "./Components/Templates/View";
 import ResumeScorer from "./Components/ResumeScorer/ResumeScorer";
 import PrivateComponent from "./Components/PrivateComponent";
 import ForgotPassword from "./Components/Login/ForgotPassword";
+import Landing from "./Components/Landing/Landing";
+import Dashboard from "./Components/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -32,7 +34,10 @@ function App() {
             <Route path="/templates" element={<Templates />} />
             <Route path="/scorer" element={<ResumeScorer />} />
             <Route element={<PrivateComponent />}>
+              <Route path="/home" element={<Landing />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/edit/resume/:resume_id" element={<EditResume />} />
+              
             </Route>
             <Route path="/edit/resume/:resume_id" element={<EditResume />} />
             <Route path="/forgot" element={<ForgotPassword />} />
