@@ -9,6 +9,8 @@ import {
   TextField,
   Button,
   Typography,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { toastError, toastSuccess } from "../../../../utils/toastMessage";
@@ -191,11 +193,14 @@ const Experience = () => {
                   setValue={setEndMonth}
                   label={"End Month"}
                 />
-                <YearPicker
-                  value={endYear}
-                  setValue={setEndYear}
-                  label="End Year"
-                />
+                <Box sx={{display:'flex'}} gap={2}>
+              <YearPicker
+                value={endYear}
+                setValue={setEndYear}
+                label="End Year"
+              />
+              <FormControlLabel control={<Checkbox />} label="Present" />
+              </Box>
                 <TextField
                   variant="standard"
                   label="Description"

@@ -5,6 +5,8 @@ import {
   TextField,
   Button,
   Typography,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -173,11 +175,14 @@ const Projects = () => {
                 setValue={setEndMonth}
                 label={"End Month"}
               />
+              <Box sx={{display:'flex'}} gap={2}>
               <YearPicker
                 value={endYear}
                 setValue={setEndYear}
                 label="End Year"
               />
+              <FormControlLabel control={<Checkbox />} label="Present" />
+              </Box>
               <TextField
                 variant="standard"
                 multiline
