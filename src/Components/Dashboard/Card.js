@@ -4,7 +4,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import {
@@ -17,6 +17,7 @@ import { toastError, toastSuccess } from "../../utils/toastMessage";
 const DashboardCard = ({ resume }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [resumename, setResumeName] = useState("false");
   const handleEditClick = () => {
     return navigate(`/edit/resume/${resume._id}`);
   };
@@ -70,6 +71,7 @@ const DashboardCard = ({ resume }) => {
           <Typography gutterBottom variant="h5" component="div">
             <AccountCircle />
             &nbsp;&nbsp; Resume&nbsp;&nbsp;
+            {/* <TextField variant='standard' onChange={(e)=>setResumeName(e.target.value)}/> */}
             <LoadingButton
               loading={loading}
               onClick={handleEditClick}

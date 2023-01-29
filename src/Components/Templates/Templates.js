@@ -5,8 +5,6 @@ import { useCreateResumeMutation } from "../../service/resume.service";
 import { toastError, toastInfo, toastSuccess } from "../../utils/toastMessage";
 import "./Templates.css";
 
-
-
 const Image = styled("img")({
   height: "300px",
   width: "100%",
@@ -37,11 +35,13 @@ const Templates = () => {
   };
 
   return (
-    <Box style={{padding:'30px'}}>
+    <Box style={{ padding: "30px" }}>
       <Typography variant="h2" fontWeight={600}>
         Resume Templates
       </Typography>
-      <Box style={{ display: "flex", justifyContent: "center" ,marginTop:'30px'}}>
+      <Box
+        style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
+      >
         <Grid container style={{ width: "75vw" }}>
           <Grid
             item

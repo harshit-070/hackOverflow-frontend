@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import DashboardCard from "./Card";
 import { useLazyFetchDashboardQuery } from "../../service/dashboard.service";
 import { toastError } from "../../utils/toastMessage";
+import { Add } from "@mui/icons-material";
 
 const Dashboard = () => {
   const [fetchDashboard, fetchDashboardResult] = useLazyFetchDashboardQuery();
@@ -65,7 +66,28 @@ const Dashboard = () => {
           justifySelf: "space-between",
         }}
       >
-        {dashboard.map((resume) => {
+        <Box
+          component="span"
+          sx={{
+            width: "350px",
+            background: "#2aa92a",
+            padding: "10px 50px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "30px",
+            boxShadow: "10px 10px 15px #4db7df",
+            margin: "110px 150px",
+            cursor: "pointer",
+          }}
+        >
+          <Add sx={{ fontSize: "40px" }} />
+          &nbsp;&nbsp;
+          <Typography variant="h4" fontWeight={600}>
+            Create Resume
+          </Typography>
+        </Box>
+        {/* {dashboard.map((resume) => {
           return (
             <>
               <Box
@@ -80,7 +102,7 @@ const Dashboard = () => {
             </>
           );
         })}
-        <br />
+        <br /> */}
       </Grid>
     </Grid>
   );

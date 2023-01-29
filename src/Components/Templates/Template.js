@@ -63,7 +63,6 @@ const Template = () => {
             style={{ fontWeight: 600, fontSize: "40px" }}
           />
         </Box>
-
         <Box
           sx={{
             width: "100%",
