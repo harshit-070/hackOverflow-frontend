@@ -20,6 +20,7 @@ import PrivateComponent from "./Components/PrivateComponent";
 import ForgotPassword from "./Components/Login/ForgotPassword";
 import Landing from "./Components/Landing/Landing";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import PageNotFound from "./Components/PageNotFound";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
               path="/view/resume/:resume_id/:template"
               element={<ViewResume />}
             />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Box>
         <Footer />
