@@ -112,9 +112,28 @@ const Dashboard = () => {
           />
         </Stack>
       </Grid>
-      <Grid item lg={4} sx={{ padding: "10px" }}>
+      <Grid
+        item
+        lg={8}
+        sx={{
+          padding: "10px",
+          justifySelf: "space-between",
+        }}
+      >
         {dashboard.map((dashboard) => {
-          return <DashboardCard />;
+          return (
+            <>
+              <Box
+                sx={{
+                  padding: "10px",
+                  width: "45%",
+                  display: "inline-block",
+                }}
+              >
+                <DashboardCard />
+              </Box>
+            </>
+          );
         })}
         <br />
       </Grid>

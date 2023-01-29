@@ -1,4 +1,12 @@
-import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Link,
+  Menu,
+  MenuItem,
+  Modal,
+  Typography,
+} from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import React from "react";
 import { useState } from "react";
@@ -13,6 +21,19 @@ import Template4 from "./Template/4";
 import Template3 from "./Template/3/Template3";
 import FetchResume from "./Drawer/Fetch/Index";
 import Index from "./Template/5";
+import { LinkOutlined } from "@mui/icons-material";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const Template = () => {
   const [open, setOpen] = useState(false);
@@ -86,29 +107,25 @@ const Template = () => {
           <Button variant="contained" onClick={() => setPublish(true)}>
             Publish
           </Button>
-          <Menu
-            sx={{ mt: "75px" }}
-            id="menu-appbar"
-            // anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
+          <Modal
             open={publish}
             onClose={() => setPublish(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
           >
-            <MenuItem onClick={() => setPublish(false)}>
-              <Typography textAlign="center">Upload</Typography>
-            </MenuItem>
-            <MenuItem onClick={() => setPublish(false)}>
-              <Typography textAlign="center">Upload</Typography>
-            </MenuItem>
-          </Menu>
+            <Box sx={style}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Text in a modal
+              </Typography>
+              <Button
+                variant="contained"
+                startIcon={<LinkOutlined />}
+                sx={{ textTransform: "none" }}
+              >
+                Copy Url
+              </Button>
+            </Box>
+          </Modal>
         </Box>
       </Box>
     </Box>
