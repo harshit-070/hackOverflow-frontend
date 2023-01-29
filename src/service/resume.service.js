@@ -159,6 +159,22 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["CustomizedSections", "Resume"],
     }),
+    updateCustomizedTitleSections: builder.mutation({
+      query: (body) => ({
+        url: `/resume/customized/title`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["CustomizedSections", "Resume"],
+    }),
+    deleteCustomizedSections: builder.mutation({
+      query: (body) => ({
+        url: `/resume/customized`,
+        method: "DELETE",
+        body,
+      }),
+      invalidatesTags: ["CustomizedSections", "Resume"],
+    }),
   }),
 });
 
@@ -182,4 +198,6 @@ export const {
   useAddCustomizedSectionMutation,
   useLazyGetCustomizedSectionsQuery,
   useUpdateCustomizedSectionsMutation,
+  useUpdateCustomizedTitleSectionsMutation,
+  useDeleteCustomizedSectionsMutation,
 } = UserApi;

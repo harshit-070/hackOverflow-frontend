@@ -76,7 +76,6 @@ const Template = () => {
             <TabPanel value="6">Comming Soon...</TabPanel>
           </TabContext>
           <Information open={open} setOpen={setOpen} />
-          {/* deleting something */}
         </Box>
         <Box sx={{ margin: "35px 5px" }}>
           <Button variant="contained" color="success">

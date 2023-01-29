@@ -26,10 +26,19 @@ const CustmoizedSection = () => {
 };
 
 const SkillTypeView = ({ section }) => {
+  if (!section || !section.data || section.data.length === 0) {
+    return (
+      <>
+        <Typography variant="h5" fontWeight={600} sx={{ color: "navy" }}>
+          {section?.title}
+        </Typography>
+      </>
+    );
+  }
   return (
     <>
       <Typography variant="h5" fontWeight={600} sx={{ color: "navy" }}>
-        {section.title}
+        {section?.title}
       </Typography>
       <Divider variant="middle" sx={{ fontWeight: 600 }} />
       <Box sx={{ marginBottom: "1rem", padding: "0.3rem 0 0 1rem" }}>
