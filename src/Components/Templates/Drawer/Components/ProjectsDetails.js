@@ -60,6 +60,7 @@ const Projects = () => {
     setLoading(isLoading);
     if (isSuccess) {
       setAddProject(false);
+      setId(" ");
       toastSuccess("Resume Updated");
     }
 
@@ -175,13 +176,13 @@ const Projects = () => {
                 setValue={setEndMonth}
                 label={"End Month"}
               />
-              <Box sx={{display:'flex'}} gap={2}>
-              <YearPicker
-                value={endYear}
-                setValue={setEndYear}
-                label="End Year"
-              />
-              <FormControlLabel control={<Checkbox />} label="Present" />
+              <Box sx={{ display: "flex" }} gap={2}>
+                <YearPicker
+                  value={endYear}
+                  setValue={setEndYear}
+                  label="End Year"
+                />
+                <FormControlLabel control={<Checkbox />} label="Present" />
               </Box>
               <TextField
                 variant="standard"

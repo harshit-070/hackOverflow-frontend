@@ -64,6 +64,7 @@ const Experience = () => {
     setLoading(isLoading);
     if (isSuccess) {
       setAddExperience(false);
+      setId(" ");
       toastSuccess("Resume Updated");
     }
 
@@ -193,14 +194,14 @@ const Experience = () => {
                   setValue={setEndMonth}
                   label={"End Month"}
                 />
-                <Box sx={{display:'flex'}} gap={2}>
-              <YearPicker
-                value={endYear}
-                setValue={setEndYear}
-                label="End Year"
-              />
-              <FormControlLabel control={<Checkbox />} label="Present" />
-              </Box>
+                <Box sx={{ display: "flex" }} gap={2}>
+                  <YearPicker
+                    value={endYear}
+                    setValue={setEndYear}
+                    label="End Year"
+                  />
+                  <FormControlLabel control={<Checkbox />} label="Present" />
+                </Box>
                 <TextField
                   variant="standard"
                   label="Description"

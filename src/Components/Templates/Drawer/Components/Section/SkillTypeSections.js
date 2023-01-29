@@ -33,10 +33,10 @@ const SkillTypeSection = ({ _id }) => {
   }, [updateCustmoizedSectionResult]);
 
   useEffect(() => {
-    console.log(section.data);
-    if (section && section.data) {
+    console.log(section);
+    if (section && section?.data) {
       setskill(" ");
-      setSkills(section.data[0]?.skills || []);
+      setSkills(section?.data[0]?.skills || []);
     }
   }, [section]);
 

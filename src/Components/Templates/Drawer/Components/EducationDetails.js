@@ -68,6 +68,7 @@ const Education = () => {
     setLoading(isLoading);
     if (isSuccess) {
       setAddEducation(false);
+      setID(" ");
       toastSuccess("Resume Updated");
     }
 
@@ -197,13 +198,13 @@ const Education = () => {
                 setValue={setEndMonth}
                 label={"End Month"}
               />
-              <Box sx={{display:'flex'}} gap={2}>
-              <YearPicker
-                value={endYear}
-                setValue={setEndYear}
-                label="End Year"
-              />
-              <FormControlLabel control={<Checkbox />} label="Present" />
+              <Box sx={{ display: "flex" }} gap={2}>
+                <YearPicker
+                  value={endYear}
+                  setValue={setEndYear}
+                  label="End Year"
+                />
+                <FormControlLabel control={<Checkbox />} label="Present" />
               </Box>
               <LoadingButton loading={loading} type="submit">
                 {id === " " ? "Add" : "Update"}
@@ -217,6 +218,7 @@ const Education = () => {
           + Add Education
         </StyledButton>
         {educations.map((education, index) => {
+          console.log(education);
           return (
             <Box
               key={index}

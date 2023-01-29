@@ -60,6 +60,7 @@ const ExperienceTypeSections = ({ _id }) => {
     setLoading(isLoading);
     if (isSuccess) {
       setAddExperience(false);
+      setId(" ");
       toastSuccess("Resume Updated");
     }
 
