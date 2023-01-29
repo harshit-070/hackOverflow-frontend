@@ -5,7 +5,7 @@ import Logo from "../../Assets/Logo.jpeg";
 
 const Navbar = () => {
   return (
-    <AppBar className="MuiAppBar-root">
+    <AppBar className="MuiAppBar-root" color="error">
       <Toolbar>
         <Box
           component="img"

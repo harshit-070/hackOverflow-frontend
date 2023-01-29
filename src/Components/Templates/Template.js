@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import React from "react";
 import { useState } from "react";
@@ -16,6 +16,7 @@ import Index from "./Template/5";
 
 const Template = () => {
   const [open, setOpen] = useState(false);
+  const [publish, setPublish] = useState(false);
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
@@ -74,13 +75,40 @@ const Template = () => {
             </TabPanel>
             <TabPanel value="6">Comming Soon...</TabPanel>
           </TabContext>
-
           <Information open={open} setOpen={setOpen} />
         </Box>
         <Box sx={{ margin: "35px 5px" }}>
           <Button variant="contained" color="success">
             Download
           </Button>
+        </Box>
+        <Box sx={{ margin: "35px 5px" }}>
+          <Button variant="contained" onClick={() => setPublish(true)}>
+            Publish
+          </Button>
+          <Menu
+            sx={{ mt: "75px" }}
+            id="menu-appbar"
+            // anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={publish}
+            onClose={() => setPublish(false)}
+          >
+            <MenuItem onClick={() => setPublish(false)}>
+              <Typography textAlign="center">Upload</Typography>
+            </MenuItem>
+            <MenuItem onClick={() => setPublish(false)}>
+              <Typography textAlign="center">Upload</Typography>
+            </MenuItem>
+          </Menu>
         </Box>
       </Box>
     </Box>
