@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import React from "react";
 import { useState } from "react";
@@ -16,6 +16,7 @@ import Index from "./Template/5";
 
 const Template = () => {
   const [open, setOpen] = useState(false);
+  const [publish, setPublish] = useState(false);
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
@@ -74,41 +75,41 @@ const Template = () => {
             </TabPanel>
             <TabPanel value="6">Comming Soon...</TabPanel>
           </TabContext>
-
           <Information open={open} setOpen={setOpen} />
-
-          <div>
-            <TabContext value={value} sx={{ width: "2480px" }}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
-                >
-                  <Tab label="Template One" value="1" />
-                  <Tab label="Template Two" value="2" />
-                  <Tab label="Template Three" value="3" />
-                  <Tab label="Template Four" value="4" />
-                  <Tab label="Template Five" value="5" />
-                  <Tab label="Template Six" value="6" />
-                </TabList>
-              </Box>
-              <TabPanel value="1">{/* <Template1 /> */}</TabPanel>
-              <TabPanel value="2">{/* <Template2 /> */}</TabPanel>
-              <TabPanel value="3">{/* <Template3 /> */}</TabPanel>
-              <TabPanel value="4">
-                <Template4 />
-              </TabPanel>
-              <TabPanel value="5">
-                <Index />
-              </TabPanel>
-              <TabPanel value="6">Comming Soon...</TabPanel>
-            </TabContext>
-          </div>
+          {/* deleting something */}
         </Box>
         <Box sx={{ margin: "35px 5px" }}>
           <Button variant="contained" color="success">
             Download
           </Button>
+        </Box>
+        <Box sx={{ margin: "35px 5px" }}>
+          <Button variant="contained" onClick={() => setPublish(true)}>
+            Publish
+          </Button>
+          <Menu
+            sx={{ mt: "75px" }}
+            id="menu-appbar"
+            // anchorEl={anchorElUser}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={publish}
+            onClose={() => setPublish(false)}
+          >
+            <MenuItem onClick={() => setPublish(false)}>
+              <Typography textAlign="center">Upload</Typography>
+            </MenuItem>
+            <MenuItem onClick={() => setPublish(false)}>
+              <Typography textAlign="center">Upload</Typography>
+            </MenuItem>
+          </Menu>
         </Box>
       </Box>
     </Box>
