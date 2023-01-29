@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import {
   useDeleteResumeMutation,
-  usePublishResumeMutation,
+  useUpdateResumeMutation,
 } from "../../service/resume.service";
 import { LoadingButton } from "@mui/lab";
 import { toastError, toastSuccess } from "../../utils/toastMessage";
@@ -21,10 +20,15 @@ const DashboardCard = ({ resume }) => {
     return navigate(`/edit/resume/${resume._id}`);
   };
 
-  const [publishResume, publishResumeResult] = usePublishResumeMutation();
+  const [updateResume, updateResumeResult] = useUpdateResumeMutation();
   const [deleteResume, deleteResumeResult] = useDeleteResumeMutation();
+
+  const handleNameChange = () => {
+    // updateResume({resume_id : resume._id , name : })
+  };
+
   const handlePublishResume = () => {
-    publishResume({ resume_id: resume._id, publish: !resume.isPublished });
+    updateResume({ resume_id: resume._id, publish: !resume.isPublished });
   };
 
   const handleDeleteResume = () => {
@@ -32,7 +36,7 @@ const DashboardCard = ({ resume }) => {
   };
 
   useEffect(() => {
-    const { isLoading, isSuccess, isError, error } = publishResumeResult;
+    const { isLoading, isSuccess, isError, error } = updateResumeResult;
 
     setLoading(isLoading);
 
@@ -42,7 +46,7 @@ const DashboardCard = ({ resume }) => {
     if (isError) {
       toastError("", error);
     }
-  }, [publishResumeResult]);
+  }, [updateResumeResult]);
   useEffect(() => {
     const { isLoading, isSuccess, isError, error } = deleteResumeResult;
 

@@ -5,6 +5,8 @@ const initialState = {
     name: "",
     summary: "",
   },
+  isPublished: false,
+  template_number: 1,
   loading: false,
   contact: {
     email: "",
@@ -93,6 +95,20 @@ export const resumeSlice = createSlice({
       }
     },
 
+    setIsPublished: (state, action) => {
+      if (action.payload) {
+        state.isPublished = action.payload;
+      } else {
+        state.isPublished = false;
+      }
+    },
+
+    setTemplateNumber: (state, action) => {
+      if (action.payload) {
+        state.template_number = action.payload;
+      }
+    },
+
     setResume: (state, action) => {
       return { ...action.payload };
     },
@@ -120,6 +136,8 @@ export const {
   setResume,
   setContactDetails,
   setCustomizedSectionsDetails,
+  setIsPublished,
+  setTemplateNumber,
 } = resumeSlice.actions;
 
 export default resumeSlice.reducer;
@@ -135,3 +153,5 @@ export const getCustomizedSectionsDetails = (state) =>
   state.resume.customziedSections;
 export const getCustomizedSectionDetails = (state, id) =>
   state.resume.customziedSections.find((section) => section._id === id);
+export const getPublishDetails = (state) => state.resume.isPublished;
+export const getTemplateNumberDetails = (state) => state.resume.template_number;

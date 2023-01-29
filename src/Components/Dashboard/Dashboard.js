@@ -3,8 +3,12 @@ import { Box, Grid, Typography } from "@mui/material";
 import DashboardCard from "./Card";
 import { useLazyFetchDashboardQuery } from "../../service/dashboard.service";
 import { toastError } from "../../utils/toastMessage";
+import { useSelector } from "react-redux";
+import { getUserDetails } from "../../feature/userSlice";
 
 const Dashboard = () => {
+  const userDetails = useSelector((state) => getUserDetails(state));
+
   const [fetchDashboard, fetchDashboardResult] = useLazyFetchDashboardQuery();
   const [dashboard, setDashboard] = useState([]);
   useEffect(() => {
@@ -44,7 +48,7 @@ const Dashboard = () => {
         }}
       >
         <Typography variant="h4" fontWeight={600} gutterBottom>
-          SHIVAM KUMAR
+          {userDetails.name}
         </Typography>
         <img
           src="https://cdn3d.iconscout.com/3d/premium/thumb/young-businessman-avatar-5692595-4743364.png"

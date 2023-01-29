@@ -176,13 +176,13 @@ export const UserApi = apiSlice.injectEndpoints({
       invalidatesTags: ["CustomizedSections", "Resume"],
     }),
 
-    publishResume: builder.mutation({
+    updateResume: builder.mutation({
       query: (body) => ({
-        url: `/resume/publish`,
+        url: "/resume",
         method: "POST",
         body,
       }),
-      invalidatesTags: ["Resume", "Dashboard"],
+      invalidatesTags: ["Dashboard", "Resume"],
     }),
 
     deleteResume: builder.mutation({
@@ -217,6 +217,6 @@ export const {
   useUpdateCustomizedSectionsMutation,
   useUpdateCustomizedTitleSectionsMutation,
   useDeleteCustomizedSectionsMutation,
-  usePublishResumeMutation,
+  useUpdateResumeMutation,
   useDeleteResumeMutation,
 } = UserApi;
