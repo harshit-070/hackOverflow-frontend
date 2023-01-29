@@ -7,6 +7,7 @@ export const UserApi = apiSlice.injectEndpoints({
         url: "/dashboard",
         method: "GET",
       }),
+      providesTags: ["Dashboard"],
     }),
   }),
 });

@@ -18,6 +18,7 @@ export const apiSlice = createApi({
     "Project",
     "CustomizedSections",
     "Resume",
+    "Dashboard",
   ],
   endpoints: (builder) => ({}),
 });

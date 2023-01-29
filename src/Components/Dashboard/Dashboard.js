@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import DashboardCard from "./Card";
-import Logo from "../../Assets/Logo.jpeg";
-import dashboard_background from "../../Assets/dashboard_background.jpeg";
-import {
-  Email,
-  GitHub,
-  Instagram,
-  LinkedIn,
-  Twitter,
-} from "@mui/icons-material";
 import { useLazyFetchDashboardQuery } from "../../service/dashboard.service";
 import { toastError } from "../../utils/toastMessage";
 
@@ -18,7 +9,7 @@ const Dashboard = () => {
   const [dashboard, setDashboard] = useState([]);
   useEffect(() => {
     fetchDashboard();
-  }, []);
+  }, [fetchDashboard]);
 
   useEffect(() => {
     const { isSuccess, isError, error, data } = fetchDashboardResult;
@@ -65,52 +56,6 @@ const Dashboard = () => {
             background: "white",
           }}
         />
-        <Stack
-          direction="row"
-          spacing={2}
-          sx={{ display: "flex", justifyContent: "center", marginTop: "30px" }}
-        >
-          <Email
-            sx={{
-              backgroundColor: "lightgray",
-              padding: "10px",
-              borderRadius: "50%",
-              cursor: "pointer",
-            }}
-          />
-          <LinkedIn
-            sx={{
-              backgroundColor: "lightgray",
-              padding: "10px",
-              borderRadius: "50%",
-              cursor: "pointer",
-            }}
-          />
-          <Instagram
-            sx={{
-              backgroundColor: "lightgray",
-              padding: "10px",
-              borderRadius: "50%",
-              cursor: "pointer",
-            }}
-          />
-          <GitHub
-            sx={{
-              backgroundColor: "lightgray",
-              padding: "10px",
-              borderRadius: "50%",
-              cursor: "pointer",
-            }}
-          />
-          <Twitter
-            sx={{
-              backgroundColor: "lightgray",
-              padding: "10px",
-              borderRadius: "50%",
-              cursor: "pointer",
-            }}
-          />
-        </Stack>
       </Grid>
       <Grid
         item
@@ -120,7 +65,7 @@ const Dashboard = () => {
           justifySelf: "space-between",
         }}
       >
-        {dashboard.map((dashboard) => {
+        {dashboard.map((resume) => {
           return (
             <>
               <Box
@@ -130,7 +75,7 @@ const Dashboard = () => {
                   display: "inline-block",
                 }}
               >
-                <DashboardCard />
+                <DashboardCard resume={resume} />
               </Box>
             </>
           );

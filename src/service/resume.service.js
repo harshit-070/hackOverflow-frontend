@@ -175,6 +175,23 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["CustomizedSections", "Resume"],
     }),
+
+    publishResume: builder.mutation({
+      query: (body) => ({
+        url: `/resume/publish`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Resume", "Dashboard"],
+    }),
+
+    deleteResume: builder.mutation({
+      query: ({ resume_id }) => ({
+        url: `/resume/${resume_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Dashboard"],
+    }),
   }),
 });
 
@@ -200,4 +217,6 @@ export const {
   useUpdateCustomizedSectionsMutation,
   useUpdateCustomizedTitleSectionsMutation,
   useDeleteCustomizedSectionsMutation,
+  usePublishResumeMutation,
+  useDeleteResumeMutation,
 } = UserApi;
