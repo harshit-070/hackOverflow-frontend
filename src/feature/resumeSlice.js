@@ -93,6 +93,8 @@ export const resumeSlice = createSlice({
     setCustomizedSectionsDetails: (state, action) => {
       if (action.payload) {
         state.customziedSections = [...action.payload];
+      } else {
+        state.customziedSections = [];
       }
     },
 
