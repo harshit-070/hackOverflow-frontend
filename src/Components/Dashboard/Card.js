@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import {
@@ -12,10 +12,17 @@ import {
 } from "../../service/resume.service";
 import { LoadingButton } from "@mui/lab";
 import { toastError, toastSuccess } from "../../utils/toastMessage";
+import PublishModel from "../Templates/PublishModel";
+import { useSelector } from "react-redux";
+import { getUserDetails } from "../../feature/userSlice";
 
 const DashboardCard = ({ resume }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [resumeName, setResumeName] = useState(resume.name || "");
+  const [publish, setPublish] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const userDetails = useSelector((state) => getUserDetails(state));
   const handleEditClick = () => {
     return navigate(`/edit/resume/${resume._id}`);
   };
@@ -24,7 +31,10 @@ const DashboardCard = ({ resume }) => {
   const [deleteResume, deleteResumeResult] = useDeleteResumeMutation();
 
   const handleNameChange = () => {
-    // updateResume({resume_id : resume._id , name : })
+    if (resumeName !== resume.name) {
+      updateResume({ resume_id: resume._id, name: resumeName });
+    }
+    setIsEditing(false);
   };
 
   const handlePublishResume = () => {
@@ -41,9 +51,12 @@ const DashboardCard = ({ resume }) => {
     setLoading(isLoading);
 
     if (isSuccess) {
+      setIsEditing(false);
+      toastSuccess("Resume Updated");
     }
 
     if (isError) {
+      setIsEditing(true);
       toastError("", error);
     }
   }, [updateResumeResult]);
@@ -69,31 +82,53 @@ const DashboardCard = ({ resume }) => {
         boxShadow: "2px 2px 2px 3px #0ff",
       }}
     >
+      <PublishModel
+        publish={publish}
+        setPublish={setPublish}
+        resume_id={resume._id}
+        isPublished={resume.isPublished}
+        url={`${process.env.REACT_APP_FRONTEND_URL}/${userDetails.username}/${resumeName}`}
+      />
       <CardContent>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography gutterBottom variant="h5" component="div">
-            <AccountCircle />
-            &nbsp;&nbsp; Resume&nbsp;&nbsp;
-            <LoadingButton
-              loading={loading}
-              onClick={handleEditClick}
-              sx={{ color: "#f1c40f", fontWeight: 600, cursor: "pointer" }}
-              component="span"
-            >
-              Edit
-            </LoadingButton>
-          </Typography>
-        </Box>
+          <AccountCircle />
 
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Box sx={{ width: "50%" }}>
-            <Typography variant="subtitle1" color="gray" fontWeight={600}>
-              Created At
+          {isEditing ? (
+            <TextField
+              variant="standard"
+              value={resumeName}
+              onChange={(e) => setResumeName(e.target.value)}
+              onBlur={() => {
+                handleNameChange();
+              }}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  handleNameChange();
+                }
+              }}
+            />
+          ) : (
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              onDoubleClick={() => {
+                setIsEditing(true);
+                setResumeName(resume.name);
+              }}
+            >
+              &nbsp;&nbsp; {resumeName}&nbsp;&nbsp;
             </Typography>
-            <Typography variant="h6" color="black" fontWeight={600}>
-              12/08/2002
-            </Typography>
-          </Box>
+          )}
+
+          <LoadingButton
+            loading={loading}
+            onClick={handleEditClick}
+            sx={{ color: "#f1c40f", fontWeight: 600, cursor: "pointer" }}
+            component="span"
+          >
+            Edit
+          </LoadingButton>
         </Box>
       </CardContent>
       <CardActions>
@@ -107,7 +142,9 @@ const DashboardCard = ({ resume }) => {
             fontSize: "1.3rem",
             padding: "5px 20px",
           }}
-          onClick={handlePublishResume}
+          onClick={() => {
+            setPublish(true);
+          }}
         >
           Publish
         </LoadingButton>

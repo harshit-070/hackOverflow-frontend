@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import { LinkOutlined } from "@mui/icons-material";
+import { useUpdateResumeMutation } from "../../service/resume.service";
+import { toastError, toastSuccess } from "../../utils/toastMessage";
+import { LoadingButton } from "@mui/lab";
 
 const style = {
   position: "absolute",
@@ -14,7 +17,28 @@ const style = {
   p: 4,
 };
 
-const PublishModel = ({ publish, setPublish }) => {
+const PublishModel = ({ publish, setPublish, url, isPublished, resume_id }) => {
+  const [updateResume, updateResumeResult] = useUpdateResumeMutation();
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const { isLoading, isSuccess, isError, error } = updateResumeResult;
+
+    setLoading(isLoading);
+    if (isSuccess) {
+      toastSuccess("Resume Updated");
+    }
+
+    if (isError) {
+      toastError("", error);
+    }
+  }, [isPublished, setPublish, updateResumeResult]);
+
+  const handlePublish = () => {
+    updateResume({ resume_id, isPublished: !isPublished });
+  };
+
   return (
     <Modal
       open={publish}
@@ -24,7 +48,7 @@ const PublishModel = ({ publish, setPublish }) => {
     >
       <Box sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          Text in a modal
+          {url}
         </Typography>
         <Button
           variant="contained"
@@ -33,6 +57,13 @@ const PublishModel = ({ publish, setPublish }) => {
         >
           Copy Url
         </Button>
+        <LoadingButton
+          loading={loading}
+          variant="contained"
+          onClick={() => handlePublish()}
+        >
+          {isPublished ? "Unpublish" : "Publish"}
+        </LoadingButton>
       </Box>
     </Modal>
   );

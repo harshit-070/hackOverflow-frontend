@@ -13,11 +13,26 @@ import Template4 from "./Template/4";
 import Template3 from "./Template/3/Template3";
 import FetchResume from "./Drawer/Fetch/Index";
 import Index from "./Template/5";
+import PublishModel from "./PublishModel";
+import Publish from "./Publish";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+  getPublishDetails,
+  getResumeNameDetails,
+} from "../../feature/resumeSlice";
+import { getUserDetails } from "../../feature/userSlice";
 
 const Template = () => {
   const [open, setOpen] = useState(false);
   const [publish, setPublish] = useState(false);
   const [value, setValue] = React.useState("1");
+
+  const isPublished = useSelector((state) => getPublishDetails(state));
+  const resumeName = useSelector((state) => getResumeNameDetails(state));
+  const userDetails = useSelector((state) => getUserDetails(state));
+
+  const { resume_id } = useParams();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -26,6 +41,13 @@ const Template = () => {
   return (
     <Box>
       <FetchResume />
+      <PublishModel
+        publish={publish}
+        setPublish={setPublish}
+        resume_id={resume_id}
+        isPublished={isPublished}
+        url={`${process.env.REACT_APP_FRONTEND_URL}/${userDetails.username}/${resumeName}`}
+      />
       <Box style={{ display: "flex", alignItems: "flex-start" }}>
         <Box
           style={{
@@ -42,7 +64,6 @@ const Template = () => {
             style={{ fontWeight: 600, fontSize: "40px" }}
           />
         </Box>
-
         <Box
           sx={{
             width: "100%",
@@ -82,11 +103,7 @@ const Template = () => {
             Download
           </Button>
         </Box>
-        <Box sx={{ margin: "35px 5px" }}>
-          <Button variant="contained" onClick={() => setPublish(true)}>
-            Publish
-          </Button>
-        </Box>
+        <Publish setPublish={setPublish} />
       </Box>
     </Box>
   );

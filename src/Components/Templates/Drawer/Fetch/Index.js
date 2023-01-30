@@ -1,5 +1,6 @@
 import React from "react";
 import FetchAchievementsDetails from "./FetchAchievementDetails";
+import FetchBasicDetails from "./FetchBasicDetails";
 import FetchContactDetails from "./FetchContactDetails";
 import FetchCustomizedSectionsDetails from "./FetchCustomizedSectionDetails";
 import FetchEducationDetails from "./FetchEducationDetails";
@@ -11,6 +12,7 @@ import FetchSkillsDetails from "./FetchSkillsDetails";
 const FetchResume = () => {
   return (
     <div>
+      <FetchBasicDetails />
       <FetchPersonalDetails />
       <FetchContactDetails />
       <FetchEducationDetails />

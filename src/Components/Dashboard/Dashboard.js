@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import DashboardCard from "./Card";
 import { useLazyFetchDashboardQuery } from "../../service/dashboard.service";
 import { toastError } from "../../utils/toastMessage";
 import { useSelector } from "react-redux";
 import { getUserDetails } from "../../feature/userSlice";
+import { Add } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const userDetails = useSelector((state) => getUserDetails(state));
-
+  const navigate = useNavigate();
   const [fetchDashboard, fetchDashboardResult] = useLazyFetchDashboardQuery();
   const [dashboard, setDashboard] = useState([]);
   useEffect(() => {
     fetchDashboard();
   }, [fetchDashboard]);
+
+  const handleCreateResume = () => {
+    return navigate("/templates");
+  };
 
   useEffect(() => {
     const { isSuccess, isError, error, data } = fetchDashboardResult;
@@ -69,21 +75,47 @@ const Dashboard = () => {
           justifySelf: "space-between",
         }}
       >
-        {dashboard.map((resume) => {
-          return (
-            <>
-              <Box
-                sx={{
-                  padding: "10px",
-                  width: "45%",
-                  display: "inline-block",
-                }}
-              >
-                <DashboardCard resume={resume} />
-              </Box>
-            </>
-          );
-        })}
+        {dashboard.length === 0 ? (
+          <Box
+            component="span"
+            sx={{
+              width: "350px",
+              background: "#2aa92a",
+              padding: "10px 50px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "30px",
+              boxShadow: "10px 10px 15px #4db7df",
+              margin: "110px 150px",
+              cursor: "pointer",
+            }}
+            onClick={handleCreateResume}
+          >
+            <Add sx={{ fontSize: "40px" }} />
+            &nbsp;&nbsp;
+            <Typography variant="h4" fontWeight={600}>
+              Create Resume
+            </Typography>
+          </Box>
+        ) : (
+          <>
+            {dashboard.map((resume, index) => {
+              return (
+                <Box
+                  sx={{
+                    padding: "10px",
+                    width: "45%",
+                    display: "inline-block",
+                  }}
+                  key={index}
+                >
+                  <DashboardCard resume={resume} />
+                </Box>
+              );
+            })}
+          </>
+        )}
         <br />
       </Grid>
     </Grid>

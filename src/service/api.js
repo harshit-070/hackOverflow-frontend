@@ -19,6 +19,7 @@ export const apiSlice = createApi({
     "CustomizedSections",
     "Resume",
     "Dashboard",
+    "BasicDetails",
   ],
   endpoints: (builder) => ({}),
 });

@@ -7,6 +7,7 @@ export const UserApi = apiSlice.injectEndpoints({
         url: `/resume/create`,
         method: "POST",
       }),
+      invalidatesTags: ["Dashboard"],
     }),
 
     getResume: builder.query({
@@ -182,7 +183,7 @@ export const UserApi = apiSlice.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["Dashboard", "Resume"],
+      invalidatesTags: ["Dashboard", "Resume", "BasicDetails"],
     }),
 
     deleteResume: builder.mutation({
@@ -191,6 +192,14 @@ export const UserApi = apiSlice.injectEndpoints({
         method: "DELETE",
       }),
       invalidatesTags: ["Dashboard"],
+    }),
+
+    getBasicDetails: builder.query({
+      query: (resume_id) => ({
+        url: `/resume/basic/${resume_id}`,
+        method: "GET",
+      }),
+      providesTags: ["BasicDetails"],
     }),
   }),
 });
@@ -219,4 +228,5 @@ export const {
   useDeleteCustomizedSectionsMutation,
   useUpdateResumeMutation,
   useDeleteResumeMutation,
+  useLazyGetBasicDetailsQuery,
 } = UserApi;
