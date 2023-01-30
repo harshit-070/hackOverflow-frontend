@@ -9,7 +9,7 @@ import Skills from "./Skills";
 import WorkExperinece from "./WorkExperinece";
 import CustmoizedSection from "./CustmoizedSection";
 
-const Index = () => {
+const Index = ({}) => {
   return (
     <Box>
       <Box

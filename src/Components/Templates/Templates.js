@@ -1,6 +1,5 @@
 import { Box, Grid, styled, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import { redirect } from "react-router-dom";
 import { useCreateResumeMutation } from "../../service/resume.service";
 import { toastError, toastInfo, toastSuccess } from "../../utils/toastMessage";
 import "./Templates.css";
