@@ -8,7 +8,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import Template1 from "./Template/1";
-import Template2 from "./Template/2";
+// import Template2 from "./Template/2";
 import Template4 from "./Template/4";
 import Template3 from "./Template/3/Template3";
 import FetchResume from "./Drawer/Fetch/Index";
@@ -58,7 +58,7 @@ const Template = () => {
   }, [updateResumeResult]);
 
   return (
-    <Box>
+    <Box sx={{ backgroundColor: "lightgray" }}>
       <FetchResume />
       <PublishModel
         publish={publish}
@@ -99,21 +99,21 @@ const Template = () => {
                 <Tab label="Template One" value="1" />
                 <Tab label="Template Two" value="2" />
                 <Tab label="Template Three" value="3" />
-                <Tab label="Template Four" value="4" />
+                {/* <Tab label="Template Four" value="4" />
                 <Tab label="Template Five" value="5" />
-                <Tab label="Template Six" value="6" />
+                <Tab label="Template Six" value="6" /> */}
               </TabList>
             </Box>
-            <TabPanel value="1">{/* <Template1 /> */}</TabPanel>
-            <TabPanel value="2">{/* <Template2 /> */}</TabPanel>
-            <TabPanel value="3">{/* <Template3 /> */}</TabPanel>
-            <TabPanel value="4">
+            {/* <TabPanel value="1"><Template1 /></TabPanel>
+            <TabPanel value="2"><Template2 /></TabPanel>
+            <TabPanel value="3"><Template3 /></TabPanel> */}
+            <TabPanel value="1">
               <Template4 />
             </TabPanel>
-            <TabPanel value="5">
+            <TabPanel value="2">
               <Index />
             </TabPanel>
-            <TabPanel value="6">Comming Soon...</TabPanel>
+            <TabPanel value="3">Comming Soon...</TabPanel>
           </TabContext>
           <Information open={open} setOpen={setOpen} />
         </Box>

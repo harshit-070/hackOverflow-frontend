@@ -33,7 +33,7 @@ const Templates = () => {
   };
 
   return (
-    <Box style={{ padding: "30px" }}>
+    <Box style={{ padding: "30px", backgroundColor: "lightgray" }}>
       <Typography variant="h2" fontWeight={600}>
         Resume Templates
       </Typography>

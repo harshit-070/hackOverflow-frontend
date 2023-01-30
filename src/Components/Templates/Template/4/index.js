@@ -16,8 +16,9 @@ const Index = ({}) => {
         sx={{
           width: "90%",
           height: "fit-content",
-          border: "2px solid red",
+          border: "1px solid black",
           padding: "30px 50px",
+          backgroundColor: "white",
         }}
       >
         <PersonalDetails />
