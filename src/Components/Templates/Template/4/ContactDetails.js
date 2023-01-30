@@ -14,8 +14,6 @@ import {
 const ContactDetails = () => {
   const contactDetails = useSelector((state) => getContactDetails(state));
 
-  console.log(contactDetails);
-
   if (!contactDetails) {
     return <div>Loading...</div>;
   }

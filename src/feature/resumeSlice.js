@@ -116,7 +116,7 @@ export const resumeSlice = createSlice({
           state.name = action.payload.name;
         }
         if (action.payload.template_number) {
-          state.template_number = action.payload.template_number;
+          state.template_number = action.payload.template_number.toString();
         }
         state.isPublished = action.payload.isPublished;
       }

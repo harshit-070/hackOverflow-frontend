@@ -5,7 +5,6 @@ import { getPersonalDetails } from "../../../../feature/resumeSlice";
 
 const PersonalDetails = () => {
   const personalDetails = useSelector((state) => getPersonalDetails(state));
-  console.log(personalDetails);
 
   return (
     <Box sx={{ marginBottom: "1rem" }}>

@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Information from "./Drawer/Components/Index";
 import Tab from "@mui/material/Tab";
@@ -20,23 +20,42 @@ import { useSelector } from "react-redux";
 import {
   getPublishDetails,
   getResumeNameDetails,
+  getTemplateNumberDetails,
 } from "../../feature/resumeSlice";
 import { getUserDetails } from "../../feature/userSlice";
+import { useUpdateResumeMutation } from "../../service/resume.service";
+import { toastError, toastSuccess } from "../../utils/toastMessage";
 
 const Template = () => {
-  const [open, setOpen] = useState(false);
-  const [publish, setPublish] = useState(false);
-  const [value, setValue] = React.useState("1");
-
   const isPublished = useSelector((state) => getPublishDetails(state));
   const resumeName = useSelector((state) => getResumeNameDetails(state));
   const userDetails = useSelector((state) => getUserDetails(state));
+  const templateNumber = useSelector((state) =>
+    getTemplateNumberDetails(state)
+  );
 
+  const [open, setOpen] = useState(false);
+  const [publish, setPublish] = useState(false);
+  const [value, setValue] = useState(templateNumber.toString() || "1");
+  const [updateResume, updateResumeResult] = useUpdateResumeMutation();
   const { resume_id } = useParams();
 
   const handleChange = (event, newValue) => {
+    updateResume({ resume_id, template_number: parseInt(newValue) });
     setValue(newValue);
   };
+
+  useEffect(() => {
+    const { isSuccess, isError, error } = updateResumeResult;
+
+    if (isSuccess) {
+      toastSuccess("Resume Updated");
+    }
+
+    if (isError) {
+      toastError("", error);
+    }
+  }, [updateResumeResult]);
 
   return (
     <Box>

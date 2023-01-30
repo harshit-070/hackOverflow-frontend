@@ -37,10 +37,6 @@ const DashboardCard = ({ resume }) => {
     setIsEditing(false);
   };
 
-  const handlePublishResume = () => {
-    updateResume({ resume_id: resume._id, publish: !resume.isPublished });
-  };
-
   const handleDeleteResume = () => {
     deleteResume({ resume_id: resume._id });
   };
