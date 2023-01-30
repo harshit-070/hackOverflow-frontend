@@ -18,7 +18,6 @@ import { LoadingButton } from "@mui/lab";
 import { toastError } from "../../utils/toastMessage";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../feature/userSlice";
-import { redirect } from "react-router-dom";
 import LogoH from "../../Assets/LogoH.jpeg";
 
 //Components
@@ -47,7 +46,7 @@ const Login = ({ setLogin }) => {
     setLoading(isLoading);
     if (isSuccess) {
       dispatch(setUser(data.data.user));
-      return navigate("/templates");
+      return navigate("/dashboard");
     }
 
     if (isError) {

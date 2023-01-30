@@ -21,6 +21,7 @@ import ForgotPassword from "./Components/Login/ForgotPassword";
 import Landing from "./Components/Landing/Landing";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import PageNotFound from "./Components/PageNotFound";
+import FetchUserResume from "./Components/Templates/FetchUserResume";
 
 function App() {
   return (
@@ -34,12 +35,15 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/templates" element={<Templates />} />
             <Route path="/scorer" element={<ResumeScorer />} />
+            <Route
+              path="/:username/:resume_name"
+              element={<FetchUserResume />}
+            />
             <Route element={<PrivateComponent />}>
               <Route path="/home" element={<Landing />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/edit/resume/:resume_id" element={<EditResume />} />
             </Route>
-            <Route path="/edit/resume/:resume_id" element={<EditResume />} />
             <Route path="/forgot" element={<ForgotPassword />} />
             <Route path="" element={<SignUp />} />
             <Route path="" element={<Login />} />

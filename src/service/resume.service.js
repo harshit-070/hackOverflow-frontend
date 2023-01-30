@@ -201,6 +201,13 @@ export const UserApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["BasicDetails"],
     }),
+
+    getUserResume: builder.query({
+      query: ({ username, resume_name }) => ({
+        url: `/resume/get/${username}/${resume_name}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -229,4 +236,5 @@ export const {
   useUpdateResumeMutation,
   useDeleteResumeMutation,
   useLazyGetBasicDetailsQuery,
+  useLazyGetUserResumeQuery,
 } = UserApi;

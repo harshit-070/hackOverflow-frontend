@@ -9,7 +9,7 @@ const CustmoizedSection = () => {
   );
   return (
     <div>
-      {customizedSections.map((section, index) => {
+      {customizedSections?.map((section, index) => {
         if (section.type === "Skill Type") {
           return <SkillTypeView section={section} key={index} />;
         }
