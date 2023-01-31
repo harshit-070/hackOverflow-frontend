@@ -1,4 +1,4 @@
-import { Box, Chip, Divider, Typography } from "@mui/material";
+import { Box, Chip, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { getSkillsDetials } from "../../../../feature/resumeSlice";
@@ -10,7 +10,7 @@ const Skills = () => {
     return <></>;
   }
   return (
-    <>
+    <Grid item xs={6}>
       <Typography variant="h5" fontWeight={600} sx={{ color: "navy" }}>
         Skills
       </Typography>
@@ -23,7 +23,7 @@ const Skills = () => {
           </>
         ))}
       </Box>
-    </>
+    </Grid>
   );
 };
 

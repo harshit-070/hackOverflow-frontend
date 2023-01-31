@@ -5,6 +5,8 @@ import {
   TextField,
   Button,
   Typography,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { toastError, toastSuccess } from "../../../../../utils/toastMessage";
@@ -36,6 +38,7 @@ const ExperienceTypeSections = ({ _id }) => {
   const [loading, setLoading] = useState(false);
   const [addExperience, setAddExperience] = useState(false);
   const [experiences, setExperiences] = useState([]);
+  const [isPresent, setIsPresnet] = useState(false);
 
   const initData = () => {
     setId(" ");
@@ -47,6 +50,7 @@ const ExperienceTypeSections = ({ _id }) => {
     setStartYear(1973);
     setEndYear(1973);
     setdescription(" ");
+    setIsPresnet(false);
   };
 
   const { resume_id } = useParams();
@@ -91,6 +95,7 @@ const ExperienceTypeSections = ({ _id }) => {
       end_year: parseInt(endYear),
       start_month: startMonth,
       end_month: endMonth,
+      is_present: isPresent,
     };
 
     if (id !== " ") {
@@ -121,6 +126,7 @@ const ExperienceTypeSections = ({ _id }) => {
     setStartYear(data[0].start_year);
     setEndYear(data[0].end_year);
     setdescription(data[0].description);
+    setIsPresnet(data[0].is_present);
   };
 
   const handleDeleteExperience = (_id) => {
@@ -176,12 +182,25 @@ const ExperienceTypeSections = ({ _id }) => {
                   setValue={setEndMonth}
                   label={"End Month"}
                   required={false}
+                  disabled={isPresent}
                 />
                 <YearPicker
                   value={endYear}
                   setValue={setEndYear}
                   label="End Year"
                   required={false}
+                  disabled={isPresent}
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={isPresent}
+                      onChange={(e) => {
+                        setIsPresnet(e.target.checked);
+                      }}
+                    />
+                  }
+                  label="Present"
                 />
                 <TextField
                   variant="standard"
@@ -191,7 +210,7 @@ const ExperienceTypeSections = ({ _id }) => {
                   onChange={(e) => setdescription(e.target.value)}
                 />
                 <LoadingButton loading={loading} type="submit">
-                  Update
+                  {id === " " ? "Add" : "Update"}
                 </LoadingButton>
               </Stack>
             </form>

@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { getExperienceDetails } from "../../../../feature/resumeSlice";
@@ -10,7 +10,7 @@ const WorkExperinece = () => {
     return <></>;
   }
   return (
-    <>
+    <Grid item xs={6}>
       <Typography variant="h5" fontWeight={600} sx={{ color: "navy" }}>
         Work Experience
       </Typography>
@@ -21,13 +21,20 @@ const WorkExperinece = () => {
             {exp.name},{exp.location}
           </Typography>
           <Typography variant="body1">
-            {exp.title} ({exp.start_month}, {exp.start_year}-{exp.end_month},{" "}
-            {exp.end_year})
+            {exp.title} ({exp.start_month}, {exp.start_year}
+            {exp.is_present ? (
+              "-Present"
+            ) : (
+              <>
+                -{exp.end_month}, {exp.end_year}
+              </>
+            )}
+            )
           </Typography>
           <Typography variant="body1">{exp.description}</Typography>
         </Box>
       ))}
-    </>
+    </Grid>
   );
 };
 

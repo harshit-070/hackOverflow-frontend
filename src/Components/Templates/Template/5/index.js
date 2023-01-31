@@ -7,6 +7,8 @@ import PersonalDetails from "./PersonalDetails";
 import Projects from "./Projects";
 import Skills from "./Skills";
 import WorkExperinece from "./WorkExperinece";
+import CustmoizedSection from "./CustomizedSection";
+
 const Index = React.forwardRef(({ personalDetails }, ref) => {
   return (
     <Box
@@ -22,15 +24,12 @@ const Index = React.forwardRef(({ personalDetails }, ref) => {
       <PersonalDetails />
       <ContactDetails />
       <Grid container sx={{ justifyContent: "space-between" }}>
-        <Grid item sx={{ width: "48%" }}>
-          <EducationDetails />
-          <WorkExperinece />
-          <Projects />
-        </Grid>
-        <Grid item sx={{ width: "48%" }}>
-          <Skills />
-          <Achievements />
-        </Grid>
+        <EducationDetails />
+        <Skills />
+        <WorkExperinece />
+        <Achievements />
+        <Projects />
+        <CustmoizedSection />
       </Grid>
     </Box>
   );

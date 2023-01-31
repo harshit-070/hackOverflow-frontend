@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { getProjectsDetails } from "../../../../feature/resumeSlice";
@@ -10,7 +10,7 @@ const Projects = () => {
     return <></>;
   }
   return (
-    <>
+    <Grid item xs={6}>
       <Typography variant="h5" fontWeight={600} sx={{ color: "navy" }}>
         Projects
       </Typography>
@@ -30,7 +30,7 @@ const Projects = () => {
           <Typography variant="body1">{project.description}</Typography>
         </Box>
       ))}
-    </>
+    </Grid>
   );
 };
 

@@ -10,8 +10,6 @@ import {
   TextField,
   Button,
   Typography,
-  FormControlLabel,
-  Checkbox,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -204,7 +202,6 @@ const Education = () => {
                   setValue={setEndYear}
                   label="End Year"
                 />
-                <FormControlLabel control={<Checkbox />} label="Present" />
               </Box>
               <LoadingButton loading={loading} type="submit">
                 {id === " " ? "Add" : "Update"}

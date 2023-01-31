@@ -1,6 +1,12 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-export const MonthPicker = ({ value, setValue, label, required = true }) => {
+export const MonthPicker = ({
+  value,
+  setValue,
+  label,
+  required = true,
+  disabled = false,
+}) => {
   return (
     <FormControl fullWidth>
       <InputLabel>{label}</InputLabel>
@@ -9,6 +15,7 @@ export const MonthPicker = ({ value, setValue, label, required = true }) => {
         required={required}
         value={value}
         label={label}
+        disabled={disabled}
         onChange={(e) => setValue(e.target.value)}
       >
         <MenuItem value="January">January</MenuItem>
@@ -28,7 +35,13 @@ export const MonthPicker = ({ value, setValue, label, required = true }) => {
   );
 };
 
-export const YearPicker = ({ value, setValue, label, required = true }) => {
+export const YearPicker = ({
+  value,
+  setValue,
+  label,
+  required = true,
+  disabled = false,
+}) => {
   const year = new Date().getFullYear() - 50;
   const years = Array.from(new Array(80), (val, index) => index + year);
   return (
@@ -40,6 +53,7 @@ export const YearPicker = ({ value, setValue, label, required = true }) => {
         value={value}
         label={label}
         onChange={(e) => setValue(e.target.value)}
+        disabled={disabled}
       >
         {years.map((year, index) => {
           return (

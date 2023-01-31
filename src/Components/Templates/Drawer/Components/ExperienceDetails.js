@@ -26,12 +26,12 @@ const StyledButton = styled(Button)`
   text-transform: none;
 `;
 const Experience = () => {
-  const [id, setId] = useState("");
-  const [title, settitle] = useState("");
-  const [category, setcategory] = useState("");
-  const [company, setcompany] = useState("");
-  const [location, setlocation] = useState("");
-  const [description, setdescription] = useState("");
+  const [id, setId] = useState(" ");
+  const [title, settitle] = useState(" ");
+  const [category, setcategory] = useState(" ");
+  const [company, setcompany] = useState(" ");
+  const [location, setlocation] = useState(" ");
+  const [description, setdescription] = useState(" ");
   const [startMonth, setStartMonth] = useState("January");
   const [startYear, setStartYear] = useState(1973);
   const [endMonth, setEndMonth] = useState("January");
@@ -39,18 +39,19 @@ const Experience = () => {
   const [loading, setLoading] = useState(false);
   const [addExperience, setAddExperience] = useState(false);
   const [experiences, setExperiences] = useState([]);
-
+  const [isPresent, setIsPresnet] = useState(false);
   const initData = () => {
-    setId("");
-    settitle("");
-    setcompany("");
-    setcategory("");
-    setlocation("");
+    setId(" ");
+    settitle(" ");
+    setcompany(" ");
+    setcategory(" ");
+    setlocation(" ");
     setStartMonth("January");
     setEndMonth("January");
     setStartYear(1973);
     setEndYear(1973);
-    setdescription("");
+    setdescription(" ");
+    setIsPresnet(false);
   };
 
   const experienceDetails = useSelector((state) => getExperienceDetails(state));
@@ -94,6 +95,7 @@ const Experience = () => {
       end_year: parseInt(endYear),
       start_month: startMonth,
       end_month: endMonth,
+      is_present: isPresent,
     };
 
     if (id !== " ") {
@@ -123,6 +125,7 @@ const Experience = () => {
     setStartYear(data[0].start_year);
     setEndYear(data[0].end_year);
     setdescription(data[0].description);
+    setIsPresnet(data[0].is_present);
   };
 
   const handleDeleteExperience = (_id) => {
@@ -193,14 +196,26 @@ const Experience = () => {
                   value={endMonth}
                   setValue={setEndMonth}
                   label={"End Month"}
+                  disabled={isPresent}
                 />
                 <Box sx={{ display: "flex" }} gap={2}>
                   <YearPicker
                     value={endYear}
                     setValue={setEndYear}
                     label="End Year"
+                    disabled={isPresent}
                   />
-                  <FormControlLabel control={<Checkbox />} label="Present" />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={isPresent}
+                        onChange={(e) => {
+                          setIsPresnet(e.target.checked);
+                        }}
+                      />
+                    }
+                    label="Present"
+                  />
                 </Box>
                 <TextField
                   variant="standard"
@@ -211,7 +226,7 @@ const Experience = () => {
                   required
                 />
                 <LoadingButton loading={loading} type="submit">
-                  Update
+                  {id === " " ? "Add" : "Update"}
                 </LoadingButton>
               </Stack>
             </form>
@@ -255,13 +270,6 @@ const Experience = () => {
                 <Delete />
               </LoadingButton>
               &nbsp; &nbsp;
-              {/* <Typography
-                variant="subtitle1"
-                color="grey"
-                style={{ fontSize: "12px" }}
-              >
-                {experience.percentage}
-              </Typography> */}
             </Box>
           );
         })}

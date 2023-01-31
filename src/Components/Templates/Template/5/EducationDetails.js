@@ -1,6 +1,7 @@
 import {
   Box,
   Divider,
+  Grid,
   Table,
   TableBody,
   TableCell,
@@ -20,7 +21,7 @@ const EducationDetails = () => {
     return <></>;
   }
   return (
-    <>
+    <Grid item xs={6}>
       <Typography variant="h5" fontWeight={600} sx={{ color: "navy" }}>
         Education
       </Typography>
@@ -56,7 +57,7 @@ const EducationDetails = () => {
           </Box>
         );
       })}
-    </>
+    </Grid>
   );
 };
 

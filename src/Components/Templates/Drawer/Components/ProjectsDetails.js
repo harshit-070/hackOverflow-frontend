@@ -34,6 +34,7 @@ const Projects = () => {
   const [endYear, setEndYear] = useState(1973);
   const [loading, setLoading] = useState(false);
   const [addProject, setAddProject] = useState(false);
+  const [isPresent, setIsPresnet] = useState(false);
 
   const [projects, setExperiences] = useState([]);
   const projectDetails = useSelector((state) => getProjectsDetails(state));
@@ -53,6 +54,7 @@ const Projects = () => {
     setStartYear(1973);
     setEndYear(1973);
     setdescription(" ");
+    setIsPresnet(false);
   };
 
   useEffect(() => {
@@ -89,6 +91,7 @@ const Projects = () => {
       end_year: parseInt(endYear),
       start_month: startMonth,
       end_month: endMonth,
+      is_present: isPresent,
     };
 
     if (id !== " ") {
@@ -118,6 +121,7 @@ const Projects = () => {
     setStartYear(data[0].start_year);
     setEndYear(data[0].end_year);
     setdescription(data[0].description);
+    setIsPresnet(data[0].is_present);
   };
 
   const handleDeleteProject = (_id) => {
@@ -175,14 +179,26 @@ const Projects = () => {
                 value={endMonth}
                 setValue={setEndMonth}
                 label={"End Month"}
+                disabled={isPresent}
               />
               <Box sx={{ display: "flex" }} gap={2}>
                 <YearPicker
                   value={endYear}
                   setValue={setEndYear}
                   label="End Year"
+                  disabled={isPresent}
                 />
-                <FormControlLabel control={<Checkbox />} label="Present" />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={isPresent}
+                      onChange={(e) => {
+                        setIsPresnet(e.target.checked);
+                      }}
+                    />
+                  }
+                  label="Present"
+                />
               </Box>
               <TextField
                 variant="standard"
@@ -193,7 +209,7 @@ const Projects = () => {
                 required
               />
               <LoadingButton loading={loading} type="submit">
-                Update
+                {id === " " ? "Add" : "Update"}
               </LoadingButton>
             </Stack>
           </form>
