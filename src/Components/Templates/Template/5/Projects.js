@@ -1,15 +1,33 @@
-import { Box, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Typography } from "@mui/material";
+import React from "react";
+import { useSelector } from "react-redux";
+import { getProjectsDetails } from "../../../../feature/resumeSlice";
 
 const Projects = () => {
-  return (
-    <Box sx={{marginBottom:'2rem',padding:'0.3rem 0 0 1rem'}}>
-        <Typography variant='body1' fontWeight={600}>project title</Typography>
-        <Typography variant='body1' >Company Name,location</Typography>
-        <Typography variant='body1'>role (startdate-enddate)</Typography>
-        <Typography variant='body1'>description</Typography>
-    </Box>
-  )
-}
+  const projects = useSelector((state) => getProjectsDetails(state));
 
-export default Projects
+  if (!projects || projects.length === 0) {
+    return <></>;
+  }
+  return (
+    <>
+      {projects.map((project, index) => (
+        <Box sx={{ marginBottom: "2rem", padding: "0.3rem 0 0 1rem" }}>
+          <Typography variant="body1" fontWeight={600}>
+            {project.title}
+          </Typography>
+          <Typography variant="body1">
+            {project.company},{project.location}
+          </Typography>
+          <Typography variant="body1">
+            {project.role} ({project.start_month}, {project.start_year}-
+            {project.end_month}, {project.end_year})
+          </Typography>
+          <Typography variant="body1">{project.description}</Typography>
+        </Box>
+      ))}
+    </>
+  );
+};
+
+export default Projects;
