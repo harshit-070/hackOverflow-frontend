@@ -24,7 +24,7 @@ const WorkExperinece = () => {
             {exp.name},{exp.location}
           </Typography>
           <Typography variant="body1">
-            {exp.title} ({exp.start_month}, {exp.start_year}
+            {exp.title} ({exp.start_month}, {exp.start_year}-
             {exp.is_present ? (
               "-Present"
             ) : (

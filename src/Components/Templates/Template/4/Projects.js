@@ -29,7 +29,14 @@ const Projects = () => {
           </Typography>
           <Typography variant="body1">
             {project.role} ({project.start_month}, {project.start_year}-
-            {project.end_month}, {project.end_year})
+            {project.is_present ? (
+              "-Present"
+            ) : (
+              <>
+                -{project.end_month}, {project.end_year}
+              </>
+            )}
+            )
           </Typography>
           <Typography variant="body1">{project.description}</Typography>
         </Box>
