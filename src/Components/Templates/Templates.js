@@ -27,9 +27,9 @@ const Templates = () => {
     }
   }, [createResumeResult]);
 
-  const handleCreateResume = () => {
+  const handleCreateResume = (template_number) => {
     toastInfo("Please wait , creating your resume");
-    createResume();
+    createResume({ template_number });
   };
 
   return (
@@ -56,7 +56,12 @@ const Templates = () => {
                 alt="template"
               />
               <Box className="middle">
-                <Box className="text" onClick={handleCreateResume}>
+                <Box
+                  className="text"
+                  onClick={() => {
+                    handleCreateResume(1);
+                  }}
+                >
                   <Typography>Create Resume</Typography>
                 </Box>
               </Box>
@@ -64,7 +69,7 @@ const Templates = () => {
 
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Minimalist 1/6
+                Minimalist 1/2
               </Typography>
               <Typography
                 color="grey"
@@ -90,7 +95,12 @@ const Templates = () => {
                 alt="template"
               />
               <Box className="middle">
-                <Box className="text" onClick={handleCreateResume}>
+                <Box
+                  className="text"
+                  onClick={() => {
+                    handleCreateResume(2);
+                  }}
+                >
                   <Typography>Create Resume</Typography>
                 </Box>
               </Box>
@@ -98,7 +108,7 @@ const Templates = () => {
 
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Minimalist 2/6
+                Minimalist 2/2
               </Typography>
               <Typography
                 color="grey"
@@ -109,7 +119,7 @@ const Templates = () => {
               </Typography>
             </Box>
           </Grid>
-          <Grid
+          {/* <Grid
             item
             lg={3}
             md={4}
@@ -244,7 +254,7 @@ const Templates = () => {
                 conservative industries which prefer less flashy templates.
               </Typography>
             </Box>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
     </Box>

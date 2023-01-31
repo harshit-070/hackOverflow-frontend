@@ -42,8 +42,6 @@ const NavButtons = ({ direction }) => {
   };
   const loginHandler = () => {
     navigate("");
-
-    
   };
   return (
     <>
@@ -56,7 +54,7 @@ const NavButtons = ({ direction }) => {
         </StyledButton>
         <StyledButton variant="text" onClick={() => navigate("/templates")}>
           Templates
-        </StyledButton>
+        </StyledButton>{" "}
         <StyledButton variant="text" onClick={() => navigate("/scorer")}>
           Resume Scorer
         </StyledButton>
@@ -71,6 +69,9 @@ const NavButtons = ({ direction }) => {
           </>
         ) : (
           <>
+            <StyledButton variant="text" onClick={() => navigate("/dashboard")}>
+              Dashboard
+            </StyledButton>
             <LoginButton variant="text" onClick={logout}>
               Log Out
             </LoginButton>

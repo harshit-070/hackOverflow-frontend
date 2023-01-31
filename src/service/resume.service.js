@@ -3,9 +3,10 @@ import { apiSlice } from "./api";
 export const UserApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createResume: builder.mutation({
-      query: (resume_id) => ({
+      query: (body) => ({
         url: `/resume/create`,
         method: "POST",
+        body,
       }),
       invalidatesTags: ["Dashboard"],
     }),

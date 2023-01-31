@@ -40,8 +40,8 @@ function App() {
               path="/:username/:resume_name"
               element={<FetchUserResume />}
             />
+            <Route path="/home" element={<Landing />} />
             <Route element={<PrivateComponent />}>
-              <Route path="/home" element={<Landing />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/edit/resume/:resume_id" element={<EditResume />} />
             </Route>
