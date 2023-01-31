@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import Information from "./Drawer/Components/Index";
 import Tab from "@mui/material/Tab";
@@ -25,7 +25,7 @@ import {
 import { getUserDetails } from "../../feature/userSlice";
 import { useUpdateResumeMutation } from "../../service/resume.service";
 import { toastError, toastSuccess } from "../../utils/toastMessage";
-
+import { useReactToPrint } from "react-to-print";
 const Template = () => {
   const isPublished = useSelector((state) => getPublishDetails(state));
   const resumeName = useSelector((state) => getResumeNameDetails(state));
@@ -33,10 +33,14 @@ const Template = () => {
   const templateNumber = useSelector((state) =>
     getTemplateNumberDetails(state)
   );
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const [open, setOpen] = useState(false);
   const [publish, setPublish] = useState(false);
-  const [value, setValue] = useState(templateNumber.toString() || "1");
+  const [value, setValue] = useState(templateNumber.toString() || "4");
   const [updateResume, updateResumeResult] = useUpdateResumeMutation();
   const { resume_id } = useParams();
 
@@ -49,7 +53,7 @@ const Template = () => {
     const { isSuccess, isError, error } = updateResumeResult;
 
     if (isSuccess) {
-      toastSuccess("Resume Updated");
+      toastSuccess("Resume Template Updated");
     }
 
     if (isError) {
@@ -96,29 +100,27 @@ const Template = () => {
                 onChange={handleChange}
                 aria-label="lab API tabs example"
               >
-                <Tab label="Template One" value="1" />
-                <Tab label="Template Two" value="2" />
-                <Tab label="Template Three" value="3" />
+                <Tab label="Template One" value="4" />
+                <Tab label="Template Two" value="5" />
+                <Tab label="Template Three" value="6" />
                 {/* <Tab label="Template Four" value="4" />
                 <Tab label="Template Five" value="5" />
                 <Tab label="Template Six" value="6" /> */}
               </TabList>
             </Box>
-            {/* <TabPanel value="1"><Template1 /></TabPanel>
-            <TabPanel value="2"><Template2 /></TabPanel>
-            <TabPanel value="3"><Template3 /></TabPanel> */}
-            <TabPanel value="1">
-              <Template4 />
+
+            <TabPanel value="4">
+              <Template4 ref={componentRef} />
             </TabPanel>
-            <TabPanel value="2">
-              <Index />
+            <TabPanel value="5">
+              <Index ref={componentRef} />
             </TabPanel>
-            <TabPanel value="3">Comming Soon...</TabPanel>
+            <TabPanel value="6">Comming Soon...</TabPanel>
           </TabContext>
           <Information open={open} setOpen={setOpen} />
         </Box>
         <Box sx={{ margin: "35px 5px" }}>
-          <Button variant="contained" color="success">
+          <Button variant="contained" color="success" onClick={handlePrint}>
             Download
           </Button>
         </Box>

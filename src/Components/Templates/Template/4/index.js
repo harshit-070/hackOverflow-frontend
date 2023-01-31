@@ -9,9 +9,9 @@ import Skills from "./Skills";
 import WorkExperinece from "./WorkExperinece";
 import CustmoizedSection from "./CustmoizedSection";
 
-const Index = ({}) => {
+const Index = React.forwardRef((_, ref) => {
   return (
-    <Box>
+    <Box ref={ref}>
       <Box
         sx={{
           width: "90%",
@@ -32,6 +32,6 @@ const Index = ({}) => {
       </Box>
     </Box>
   );
-};
+});
 
 export default Index;
