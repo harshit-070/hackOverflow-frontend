@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { setResume } from "../../feature/resumeSlice";
 import { useLazyGetUserResumeQuery } from "../../service/resume.service";
+import LoadingScreen from "../LoadingPage";
 import Tempate4 from "./Template/4";
 import Tempate5 from "./Template/5";
 
@@ -11,6 +12,7 @@ const FetchUserResume = () => {
   const [fetchUserResume, fetchUserResumeResult] = useLazyGetUserResumeQuery();
   const [template, setTemplate] = useState();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     fetchUserResume({ username, resume_name });
@@ -18,7 +20,7 @@ const FetchUserResume = () => {
 
   useEffect(() => {
     const { isLoading, isError, isSuccess, data } = fetchUserResumeResult;
-
+    setLoading(isLoading);
     if (isSuccess) {
       console.log(data.data);
       setTemplate(data.data.template_number);
@@ -26,10 +28,13 @@ const FetchUserResume = () => {
     }
 
     if (isError) {
-      //   return navigate("/404");
+      return navigate("/404");
     }
-  }, [dispatch, fetchUserResumeResult, navigate]);
+  }, [dispatch, fetchUserResumeResult, loading, navigate]);
 
+  if (loading) {
+    return <LoadingScreen />;
+  }
   if (template === 1) {
     return <Tempate4 />;
   }

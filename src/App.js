@@ -22,6 +22,7 @@ import Landing from "./Components/Landing/Landing";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import PageNotFound from "./Components/PageNotFound";
 import FetchUserResume from "./Components/Templates/FetchUserResume";
+import LoadingScreen from "./Components/LoadingPage";
 
 function App() {
   return (

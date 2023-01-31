@@ -1,5 +1,6 @@
 import { Box, Button } from "@mui/material";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import Information from "./Drawer/Components/Index";
@@ -7,10 +8,7 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import Template1 from "./Template/1";
-// import Template2 from "./Template/2";
 import Template4 from "./Template/4";
-import Template3 from "./Template/3/Template3";
 import FetchResume from "./Drawer/Fetch/Index";
 import Index from "./Template/5";
 import PublishModel from "./PublishModel";
@@ -33,6 +31,7 @@ const Template = () => {
   const templateNumber = useSelector((state) =>
     getTemplateNumberDetails(state)
   );
+
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -48,6 +47,13 @@ const Template = () => {
     updateResume({ resume_id, template_number: parseInt(newValue) });
     setValue(newValue);
   };
+
+  useEffect(() => {
+    const template_number = templateNumber.toString();
+    if (templateNumber !== value) {
+      setValue(template_number);
+    }
+  }, [templateNumber]);
 
   useEffect(() => {
     const { isSuccess, isError, error } = updateResumeResult;
@@ -72,21 +78,31 @@ const Template = () => {
         url={`${process.env.REACT_APP_FRONTEND_URL}/${userDetails.username}/${resumeName}`}
       />
       <Box style={{ display: "flex", alignItems: "flex-start" }}>
-        <Box
-          style={{
-            display: "inline-block",
-            boxShadow: "2px 5px 5px grey",
-            borderRadius: "0px 20px 20px 0px",
-            padding: "0px 10px",
-            marginTop: "100px",
-            cursor: "pointer",
-          }}
-          onClick={() => setOpen(true)}
-        >
-          <KeyboardDoubleArrowRightIcon
-            style={{ fontWeight: 600, fontSize: "40px" }}
-          />
-        </Box>
+        <>
+          <Information open={open} setOpen={setOpen} />
+
+          <Box
+            style={{
+              display: "inline-block",
+              boxShadow: "2px 5px 5px grey",
+              borderRadius: "0px 20px 20px 0px",
+              padding: "0px 10px",
+              marginTop: "100px",
+              cursor: "pointer",
+            }}
+            onClick={() => setOpen((previousState) => !previousState)}
+          >
+            {open ? (
+              <KeyboardDoubleArrowLeftIcon
+                style={{ fontWeight: 600, fontSize: "40px" }}
+              />
+            ) : (
+              <KeyboardDoubleArrowRightIcon
+                style={{ fontWeight: 600, fontSize: "40px" }}
+              />
+            )}
+          </Box>
+        </>
         <Box
           sx={{
             width: "100%",
@@ -103,9 +119,6 @@ const Template = () => {
                 <Tab label="Template One" value="1" />
                 <Tab label="Template Two" value="2" />
                 <Tab label="Template Three" value="3" />
-                {/* <Tab label="Template Four" value="4" />
-                <Tab label="Template Five" value="5" />
-                <Tab label="Template Six" value="6" /> */}
               </TabList>
             </Box>
 
@@ -117,7 +130,6 @@ const Template = () => {
             </TabPanel>
             <TabPanel value="3">Comming Soon...</TabPanel>
           </TabContext>
-          <Information open={open} setOpen={setOpen} />
         </Box>
         <Box sx={{ margin: "35px 5px" }}>
           <Button variant="contained" color="success" onClick={handlePrint}>

@@ -5,6 +5,10 @@ export const toastError = (message, error) => {
   if (!message) {
     if (error && error.data && error.data.message) {
       message = error.data.message;
+      if (message === "Unauthorize") {
+        message = "Please Login to Continue";
+        localStorage.removeItem("user");
+      }
     } else {
       message = error.message;
     }
