@@ -40,7 +40,7 @@ const Template = () => {
 
   const [open, setOpen] = useState(false);
   const [publish, setPublish] = useState(false);
-  const [value, setValue] = useState(templateNumber.toString() || "4");
+  const [value, setValue] = useState(templateNumber.toString() || "1");
   const [updateResume, updateResumeResult] = useUpdateResumeMutation();
   const { resume_id } = useParams();
 
@@ -100,22 +100,22 @@ const Template = () => {
                 onChange={handleChange}
                 aria-label="lab API tabs example"
               >
-                <Tab label="Template One" value="4" />
-                <Tab label="Template Two" value="5" />
-                <Tab label="Template Three" value="6" />
+                <Tab label="Template One" value="1" />
+                <Tab label="Template Two" value="2" />
+                <Tab label="Template Three" value="3" />
                 {/* <Tab label="Template Four" value="4" />
                 <Tab label="Template Five" value="5" />
                 <Tab label="Template Six" value="6" /> */}
               </TabList>
             </Box>
 
-            <TabPanel value="4">
+            <TabPanel value="1">
               <Template4 ref={componentRef} />
             </TabPanel>
-            <TabPanel value="5">
+            <TabPanel value="2">
               <Index ref={componentRef} />
             </TabPanel>
-            <TabPanel value="6">Comming Soon...</TabPanel>
+            <TabPanel value="3">Comming Soon...</TabPanel>
           </TabContext>
           <Information open={open} setOpen={setOpen} />
         </Box>

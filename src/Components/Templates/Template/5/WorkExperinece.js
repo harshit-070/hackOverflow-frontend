@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { getExperienceDetails } from "../../../../feature/resumeSlice";
@@ -11,6 +11,10 @@ const WorkExperinece = () => {
   }
   return (
     <>
+      <Typography variant="h5" fontWeight={600} sx={{ color: "navy" }}>
+        Work Experience
+      </Typography>
+      <Divider variant="middle" sx={{ fontWeight: 600 }} />
       {experience.map((exp, index) => (
         <Box sx={{ marginBottom: "2rem", padding: "0.3rem 0 0 1rem" }}>
           <Typography variant="body1" fontWeight={600}>

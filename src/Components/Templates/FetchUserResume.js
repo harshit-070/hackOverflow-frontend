@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { setResume } from "../../feature/resumeSlice";
 import { useLazyGetUserResumeQuery } from "../../service/resume.service";
 import Tempate4 from "./Template/4";
+import Tempate5 from "./Template/5";
 
 const FetchUserResume = () => {
   const { username, resume_name } = useParams();
@@ -29,8 +30,12 @@ const FetchUserResume = () => {
     }
   }, [dispatch, fetchUserResumeResult, navigate]);
 
-  if (template === 4) {
+  if (template === 1) {
     return <Tempate4 />;
+  }
+
+  if (template === 2) {
+    return <Tempate5 />;
   }
 
   return <div></div>;

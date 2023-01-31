@@ -1,4 +1,4 @@
-import { Box, Chip } from "@mui/material";
+import { Box, Chip, Divider, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { getSkillsDetials } from "../../../../feature/resumeSlice";
@@ -10,14 +10,20 @@ const Skills = () => {
     return <></>;
   }
   return (
-    <Box sx={{ marginBottom: "2rem", padding: "0.3rem 0 0 1rem" }}>
-      {skills.map((skill) => (
-        <>
-          <Chip label={skill} />
-          &nbsp;&nbsp;
-        </>
-      ))}
-    </Box>
+    <>
+      <Typography variant="h5" fontWeight={600} sx={{ color: "navy" }}>
+        Skills
+      </Typography>
+      <Divider variant="middle" sx={{ fontWeight: 600 }} />
+      <Box sx={{ marginBottom: "2rem", padding: "0.3rem 0 0 1rem" }}>
+        {skills.map((skill) => (
+          <>
+            <Chip label={skill} />
+            &nbsp;&nbsp;
+          </>
+        ))}
+      </Box>
+    </>
   );
 };
 
